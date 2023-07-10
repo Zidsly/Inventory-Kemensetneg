@@ -999,7 +999,7 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Profie Page
+# Profile Page
 --------------------------------------------------------------*/
 .profile .profile-card img {
   max-width: 120px;
@@ -1035,6 +1035,11 @@ h6 {
 }
 
 .profile .profile-overview .card-title {
+  color: #892641;
+}
+
+.profile .profile-overview h5 {
+  font-weight: 800;
   color: #892641;
 }
 

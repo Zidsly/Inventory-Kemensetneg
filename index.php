@@ -374,7 +374,7 @@ $idUser = $_SESSION['id_user'];
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="kelolaPermintaan.php">
-      <i class="bi bi-journal-text"></i><span>Kelola Permintaan</span></i>
+      <i class="bi bi-journal-text"></i><span>Kelola Permintaan</span>
     </a>
   </li><!-- End Kelola Permintaan Data Sidebar -->
 
