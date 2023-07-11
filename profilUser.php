@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Periksa apakah pengguna masuk atau memiliki peran yang sesuai
+if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['role'] !== 'user')) {
+    header("Location: login.php");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -77,10 +88,6 @@
             </a>
           </li>
           <!-- End Search Icon-->
-
-          
-
-          
 
           <li class="nav-item dropdown pe-3">
             <a
@@ -164,7 +171,7 @@
         <li class="nav-item">
           <a class="nav-link collapsed" href="laporan.php">
             <i class="bi bi-journal-text"></i
-            ><span>Laporan Permintaan User</span>
+            ><span>Laporan</span>
           </a>
         </li>
         <!-- End Tables Nav -->
@@ -238,17 +245,17 @@
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Nama</div>
-                      <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                      <div class="col-lg-9 col-md-8">(nama)</div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Email</div>
-                      <div class="col-lg-9 col-md-8">Kevin@gmail.com</div>
+                      <div class="col-lg-9 col-md-8">(email)</div>
                     </div>
 
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Username</div>
-                      <div class="col-lg-9 col-md-8">kevin12</div>
+                      <div class="col-lg-9 col-md-8">(username)</div>
                     </div>
                   </div>
 
