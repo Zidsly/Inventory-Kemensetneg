@@ -57,7 +57,7 @@
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
       <div class="d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a href="indexUser.php" class="logo d-flex align-items-center">
           <img src="assets/img/logo2.png" alt="" />
           <span class="htsimpan"
             >SMART<br />
@@ -275,7 +275,7 @@
               <li>
                 <a
                   class="dropdown-item d-flex align-items-center"
-                  href="profil.html"
+                  href="profilUser.php"
                 >
                   <i class="bi bi-person"></i>
                   <span>Profile</span>
@@ -310,7 +310,7 @@
     <aside id="sidebar" class="sidebar">
       <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="indexUser.html">
+          <a class="nav-link" href="indexUser.php">
             <i class="bi bi-grid"></i>
             <span>Beranda</span>
           </a>
@@ -318,14 +318,14 @@
         <!-- End Dashboard Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="permintaanbarang.html">
+          <a class="nav-link collapsed" href="permintaanbarang.php">
             <i class="bi bi-journal-text"></i><span>Permintaan Barang</span>
           </a>
         </li>
         <!-- End Status Data Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="laporanUser2.html">
+          <a class="nav-link collapsed" href="laporan.php">
             <i class="bi bi-journal-text"></i
             ><span>Laporan Permintaan User</span>
           </a>
@@ -333,7 +333,7 @@
         <!-- End Tables Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="profil.html">
+          <a class="nav-link collapsed" href="profilUser.php">
             <i class="bi bi-person"></i>
             <span>Profile</span>
           </a>
@@ -348,7 +348,7 @@
         <h1>Profil</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Profil</a></li>
+            <li class="breadcrumb-item"><a href="indexUser.html">Profil</a></li>
             <li class="breadcrumb-item active">User</li>
           </ol>
         </nav>
