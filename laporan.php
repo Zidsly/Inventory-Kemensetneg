@@ -130,7 +130,7 @@ session_start();
 
         <li class="nav-item dropdown">
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-basket3"></i>
+            <i class="bi bi-bag"></i>
             <span class="badge bg-primary badge-number">4</span>
           </a><!-- End Cart Icon -->
 

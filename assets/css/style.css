@@ -470,15 +470,27 @@ h6 {
   padding: 0;
 }
 
+.header-nav .nav-link {
+  color: #fff;
+  transition: 0.3;
+  background: #892641;
+  border-radius: 4px;
+}
+
+.header-nav .nav-link:hover {
+  color: #892641;
+  background: #f6f9ff;
+}
+
 .header-nav .nav-icon {
   font-size: 22px;
-  color: #fff;
-  margin-right: 25px;
+  color: #f6f9ff;
+  margin-right: 24px;
   position: relative;
 }
 
 .header-nav .nav-profile {
-  color: #fff;
+  color: #f6f9ff;
 }
 
 .header-nav .nav-profile img {
@@ -495,7 +507,8 @@ h6 {
   inset: -2px -5px auto auto;
   font-weight: normal;
   font-size: 12px;
-  padding: 3px 6px;
+  padding: 4px 4px;
+  background-color: #f6f9ff;
 }
 
 .header-nav .notifications {
@@ -596,6 +609,10 @@ h6 {
 
 .header-nav .profile .dropdown-item:hover {
   background-color: #f6f9ff;
+}
+
+.header-nav .dropdown-toggle {
+  padding-right: 4px;
 }
 
 /*--------------------------------------------------------------
