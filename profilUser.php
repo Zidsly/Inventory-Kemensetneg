@@ -35,16 +35,7 @@
     <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet" />
 
     <!-- Template Main CSS File -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
     <link href="assets/css/style.css" rel="stylesheet" />
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
   </head>
 
   <style>
@@ -80,80 +71,12 @@
       <!-- End Logo -->
       <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
-          <li class="nav-item dropdown">
-            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-              <i class="bi bi-bag"></i>
-              <span class="badge bg-primary badge-number">4</span> </a
-            ><!-- End Cart Icon -->
-
-            <ul
-              class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications"
-            >
-              <li class="dropdown-header">
-                Baru Ditambahkan
-                <a href="#"
-                  ><span class="badge rounded-pill bg-primary p-2 ms-2"
-                    >Lihat Keranjang</span
-                  ></a
-                >
-              </li>
-
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-
-              <li class="notification-item">
-                <img src="product1.png" alt="Product 1" />
-                <div class="item">
-                  <h3>Product 1</h3>
-                  <div class="quantity">
-                    <button onclick="decreaseQuantity()">-</button>
-                    <input type="text" id="quantity" value="1" />
-                    <button onclick="increaseQuantity()">+</button>
-                  </div>
-                </div>
-              </li>
-
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-
-              <li class="notification-item">
-                <i class="bi bi-check-circle text-success"></i>
-                <div>
-                  <h4>Barang sudah diambil</h4>
-                  <p>Barang telah siap dan sudah diambil dari gudang</p>
-                  <p>2 hrs. ago</p>
-                </div>
-              </li>
-
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-
-              <li class="notification-item">
-                <i class="bi bi-info-circle text-primary"></i>
-                <div>
-                  <h4>Informasi update</h4>
-                  <p>Stok barang ini telah diperbarui</p>
-                  <p>4 hrs. ago</p>
-                </div>
-              </li>
-
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-
-              <li class="dropdown-footer">
-                <a href="#">Lihat Keranjang</a>
-              </li>
-            </ul>
-            <!-- End Notification Dropdown Items -->
+          <li class="nav-item d-block d-lg-none">
+            <a class="nav-link nav-icon search-bar-toggle" href="#">
+              <i class="bi bi-search"></i>
+            </a>
           </li>
+          <!-- End Search Icon-->
 
           <li class="nav-item dropdown">
             <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
@@ -342,7 +265,8 @@
               class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
             >
               <li class="dropdown-header">
-                <h6>User #1</h6>
+                <h6>Kevin</h6>
+                <span>User</span>
               </li>
               <li>
                 <hr class="dropdown-divider" />
@@ -386,101 +310,27 @@
     <aside id="sidebar" class="sidebar">
       <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="indexUser.html">
             <i class="bi bi-grid"></i>
             <span>Beranda</span>
           </a>
         </li>
-        <!-- End Beranda Sidebar -->
+        <!-- End Dashboard Nav -->
 
         <li class="nav-item">
-          <a
-            class="nav-link collapsed"
-            data-bs-target="#tables-nav"
-            data-bs-toggle="collapse"
-            href="#"
-          >
-            <i class="bi bi-bar-chart"></i><span>Kelola Data</span
-            ><i class="bi bi-chevron-down ms-auto"></i>
+          <a class="nav-link collapsed" href="permintaanbarang.html">
+            <i class="bi bi-journal-text"></i><span>Permintaan Barang</span>
           </a>
-          <ul
-            id="tables-nav"
-            class="nav-content collapse"
-            data-bs-parent="#sidebar-nav"
-          >
-            <li>
-              <a href="kelolaKategori.html">
-                <i class="bi bi-circle-fill"></i><span>Kelola Kategori</span>
-              </a>
-            </li>
-            <li>
-              <a href="inputBarangBaru.html">
-                <i class="bi bi-circle-fill"></i><span>Input Barang Baru</span>
-              </a>
-            </li>
-            <li>
-              <a href="inputStok.html">
-                <i class="bi bi-circle-fill"></i><span>Input Stok</span>
-              </a>
-            </li>
-            <li>
-              <a href="kelolaUser.html">
-                <i class="bi bi-circle-fill"></i><span>Kelola User</span>
-              </a>
-            </li>
-          </ul>
         </li>
-        <!-- End Kelola Data Sidebar -->
+        <!-- End Status Data Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="kelolaPermintaan.html">
-            <i class="bi bi-clipboard-check"></i><span>Kelola Permintaan</span>
+          <a class="nav-link collapsed" href="laporanUser2.html">
+            <i class="bi bi-journal-text"></i
+            ><span>Laporan Permintaan User</span>
           </a>
         </li>
-        <!-- End Kelola Permintaan Data Sidebar -->
-
-        <li class="nav-item">
-          <a
-            class="nav-link collapsed"
-            data-bs-target="#forms-nav"
-            data-bs-toggle="collapse"
-            href="#"
-          >
-            <i class="bi bi-journal-text"></i><span>Laporan</span
-            ><i class="bi bi-chevron-down ms-auto"></i>
-          </a>
-          <ul
-            id="forms-nav"
-            class="nav-content collapse"
-            data-bs-parent="#sidebar-nav"
-          >
-            <li>
-              <a href="laporanUser.html">
-                <i class="bi bi-circle-fill"></i
-                ><span>Laporan Permintaan User</span>
-              </a>
-            </li>
-            <li>
-              <a href="laporanMutasi.html">
-                <i class="bi bi-circle-fill"></i
-                ><span>Laporan Mutasi Barang Persediaan</span>
-              </a>
-            </li>
-            <li>
-              <a href="laporanBuku.html">
-                <i class="bi bi-circle-fill"></i
-                ><span>Laporan Buku Persediaan</span>
-              </a>
-            </li>
-            <li>
-              <a href="laporanPersediaan.html">
-                <i class="bi bi-circle-fill"></i
-                ><span>Laporan Persediaan Masuk</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <!-- End Laporan Sidebar -->
+        <!-- End Tables Nav -->
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="profil.html">
@@ -488,7 +338,7 @@
             <span>Profile</span>
           </a>
         </li>
-        <!-- End Profil Sidebar -->
+        <!-- End Profile Page Nav -->
       </ul>
     </aside>
     <!-- End Sidebar-->
@@ -499,7 +349,7 @@
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Profil</a></li>
-            <li class="breadcrumb-item active">Admin</li>
+            <li class="breadcrumb-item active">User</li>
           </ol>
         </nav>
       </div>
@@ -541,26 +391,16 @@
                       Ganti Password
                     </button>
                   </li>
-
-                  <li class="nav-item">
-                    <button
-                      class="nav-link"
-                      data-bs-toggle="tab"
-                      data-bs-target="#buatUser"
-                    >
-                      Buat Akun User
-                    </button>
-                  </li>
                 </ul>
-
                 <div class="tab-content pt-2">
                   <div
                     class="tab-pane fade show active profile-overview"
                     id="profile-overview"
                   >
                     <h5 class="card-title">Profile Details</h5>
+
                     <div class="row">
-                      <div class="col-lg-3 col-md-4 label">Nama Lengkap</div>
+                      <div class="col-lg-3 col-md-4 label">Nama</div>
                       <div class="col-lg-9 col-md-8">Kevin Anderson</div>
                     </div>
 
@@ -585,7 +425,7 @@
                         <label
                           for="nama"
                           class="col-md-4 col-lg-3 col-form-label"
-                          >Nama Lengkap</label
+                          >Nama</label
                         >
                         <div class="col-md-8 col-lg-9">
                           <input
@@ -602,7 +442,7 @@
                         <label
                           for="username"
                           class="col-md-4 col-lg-3 col-form-label"
-                          >Username</label
+                          >username</label
                         >
                         <div class="col-md-8 col-lg-9">
                           <input
@@ -641,10 +481,9 @@
                     <!-- End Profile Edit Form -->
                   </div>
 
-                  <div
-                    class="tab-pane fade profile-edit pt-3"
-                    id="profile-change-password"
-                  >
+                  <div class="tab-pane fade pt-3" id="profile-settings"></div>
+
+                  <div class="tab-pane fade pt-3" id="profile-change-password">
                     <!-- Change Password Form -->
                     <form>
                       <div class="row mb-3">
@@ -703,81 +542,6 @@
                     </form>
                     <!-- End Change Password Form -->
                   </div>
-
-                  <div class="tab-pane fade profile-edit pt-3" id="buatUser">
-                    <!-- Form Buat Akun -->
-                    <form action="buatAkun.php" method="POST">
-                      <div class="row mb-3">
-                        <label
-                          for="nama"
-                          class="col-md-4 col-lg-3 col-form-label"
-                          >Nama Lengkap</label
-                        >
-                        <div class="col-md-8 col-lg-9">
-                          <input
-                            name="nama"
-                            type="text"
-                            class="form-control"
-                            id="nama"
-                          />
-                        </div>
-                      </div>
-
-                      <div class="row mb-3">
-                        <label
-                          for="username"
-                          class="col-md-4 col-lg-3 col-form-label"
-                          >Username</label
-                        >
-                        <div class="col-md-8 col-lg-9">
-                          <input
-                            name="username"
-                            type="text"
-                            class="form-control"
-                            id="username"
-                          />
-                        </div>
-                      </div>
-
-                      <div class="row mb-3">
-                        <label
-                          for="email"
-                          class="col-md-4 col-lg-3 col-form-label"
-                          >Email</label
-                        >
-                        <div class="col-md-8 col-lg-9">
-                          <input
-                            name="email"
-                            type="email"
-                            class="form-control"
-                            id="email"
-                          />
-                        </div>
-                      </div>
-
-                      <div class="row mb-3">
-                        <label
-                          for="newPassword"
-                          class="col-md-4 col-lg-3 col-form-label"
-                          >Password</label
-                        >
-                        <div class="col-md-8 col-lg-9">
-                          <input
-                            name="password"
-                            type="password"
-                            class="form-control"
-                            id="newPassword"
-                          />
-                        </div>
-                      </div>
-
-                      <div class="text-center">
-                        <button type="submit" class="btn btn-primary">
-                          Buat Akun
-                        </button>
-                      </div>
-                    </form>
-                  </div>
                 </div>
                 <!-- End Bordered Tabs -->
               </div>
@@ -789,14 +553,16 @@
     <!-- End #main -->
 
     <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-      <strong>  SMART - </strong> <span> Sistem Informasi Manajemen Pengelolaan</span>
-    </div>
-    <div class="credits">
-      Made by <a>Tim Efektif</a>
-    </div>
-  </footer><!-- End Footer -->
+    <footer id="footer" class="footer">
+      <div class="copyright">
+        SMART
+        <strong><span>Sistem Informasi Manajemen Pengelolaan</span></strong>
+      </div>
+      <div class="credits">
+        Made by <a href="https://bootstrapmade.com/">Tim Efektif</a>
+      </div>
+    </footer>
+    <!-- End Footer -->
 
     <a
       href="#"

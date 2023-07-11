@@ -286,7 +286,7 @@ session_start();
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="profil.html">
+              <a class="dropdown-item d-flex align-items-center" href="profilUser.php">
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
               </a>
@@ -324,7 +324,7 @@ session_start();
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="indexUser.php">
           <i class="bi bi-grid"></i>
           <span>Beranda</span>
         </a>
@@ -336,12 +336,12 @@ session_start();
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="buatPermintaan.html">
+            <a href="permintaanBarang.php">
               <i class="bi"></i><span>Buat Permintaan</span>
             </a>
           </li>
           <li>
-            <a href="statusPermintaan.html">
+            <a href="statusPermintaan.php">
               <i class="bi"></i><span>Status Permintaan</span>
             </a>
           </li>

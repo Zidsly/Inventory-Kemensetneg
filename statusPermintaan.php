@@ -1,10 +1,20 @@
 <?php
 session_start();
 
-// Setelah session_start(), Anda dapat melanjutkan dengan kode Anda.
+// Periksa apakah pengguna masuk atau memiliki peran yang sesuai
+if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['role'] !== 'user')) {
+    header("Location: login.php");
+    exit();
+}
+
+
+// Mendapatkan username dan id_user dari session
+$username = $_SESSION['username'];
+$idUser = $_SESSION['id_user'];
+
+// Lanjutkan dengan konten halaman indexUser.php
 // ...
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +23,7 @@ session_start();
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Profile - SMART</title>
+  <title>STATUS PERMINTAAN - SMART</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -33,9 +43,16 @@ session_start();
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+  
 
   <!-- Template Main CSS File -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 
 <style>
@@ -43,22 +60,44 @@ session_start();
     background-color: #892641;
   }
   .sidebar{
-    background-color: #892641;
-  }
-.tbsmart{
+      background-color: #892641;
+    }
+  .tbsmart{
     font-size: 12px;
     margin-bottom: 0;
     font-weight: 600;
     color: #ffffff;
   }
+  .pengumuman{
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+    font-family: "Nunito", sans-serif;
+    text-align: center;
+    padding-top: 100px;
+  }
+    .c-item {
+  height: 360px;
+  }
+  .c-img {
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+  }
+  .img {
+  height: 50%; /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
+  width: auto; /* Menjaga rasio aspek gambar */
+}
 </style>
+
+
+
 
 <body>
 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
-    
     <div class="d-flex align-items-center justify-content-between">
       <a href="indexUser.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo2.png" alt="">
@@ -225,13 +264,13 @@ session_start();
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $username; ?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Admin Supervisor</h6>
-              <span>Web Designer</span>
+              <h6><?php echo $username; ?></h6>
+              <span><?php echo $idUser; ?></span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -267,234 +306,126 @@ session_start();
 
   </header><!-- End Header -->
 
- <!-- ======= Sidebar ======= -->
+  <!-- ======= Sidebar ======= -->
 
- <aside id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar">
 
-<ul class="sidebar-nav" id="sidebar-nav">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-  <li class="nav-item">
-    <a class="nav-link " href="indexUser.php">
-      <i class="bi bi-grid"></i>
-      <span>Beranda</span>
-    </a>
-  </li><!-- End Dashboard Nav -->
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-  <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-journal-text"></i><span></span>Permintaan Barang</span><i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-    <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-      <li>
-        <a href="buatPermintaan.php">
-          <i class="bi"></i><span>Buat Permintaan</span>
+<li class="nav-item">
+  <a class="nav-link " href="indexUser.php">
+    <i class="bi bi-grid"></i>
+    <span>Beranda</span>
+  </a>
+</li><!-- End Dashboard Nav -->
+
+<li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span></span>Kelola Permintaan</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li>
-      <li>
-        <a href="statusPermintaan.php">
-          <i class="bi"></i><span>Status Permintaan</span>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="permintaanBarang.php">
+              <i class="bi"></i><span>Buat Permintaan</span>
+            </a>
+          </li>
+          <li>
+            <a href="statusPermintaan.php">
+              <i class="bi"></i><span>Status Permintaan</span>
+            </a>
+          </li>
+        </ul>
+  </li><!-- End Tables Nav -->
+
+<li class="nav-item">
+  <a class="nav-link collapsed" href="laporan.php">
+    <i class="bi bi-bar-chart"></i>
+    <span>Laporan</span>
+  </a>
+</li><!-- End Tables Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="profil.php">
+          <i class="bi bi-person"></i>
+          <span>Profil</span>
         </a>
-      </li>
+      </li><!-- End Profil Sidebar -->
+
     </ul>
-  </li><!-- End Tables Nav -->
 
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="laporan.php">
-      <i class="bi bi-bar-chart"></i>
-      <span>Laporan</span>
-    </a>
-  </li><!-- End Tables Nav -->
+  </aside>
+  <!-- End Sidebar-->
 
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="profilUser.php">
-      <i class="bi bi-person"></i>
-      <span>Profile</span>
-    </a>
-  </li><!-- End Profile Page Nav -->
-
-</ul>
-  </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
 
-    <div class="pagetitle">
-      <h1>Profil</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="indexUser.php">Profil</a></li>
-          <li class="breadcrumb-item active">Admin</li>
-        </ol>
-    </nav>
-    </div><!-- End Page Title -->
+      <!-- Card Data permintaan -->
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Permintaan</h5>
 
+                <!--Tabel Data Kategori-->
+                <table id="example" class="table table-striped" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th>Id Transaksi</th>
+                      <th>Pemesan</th>
+                      <th>Tanggal</th>
+                      <th>Nama Barang</th>
+                      <th>Jumlah</th>
+                      <th>Status</th>
+                      <th>Ready</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    // Koneksi ke database
+                    require_once 'koneksi.php';
+                    $con = db_connect();
 
-    <section class="section profile">
-      <div class="row">
+                    $query = "SELECT tb_order.id_transaksi, tb_user.nama_lengkap, GROUP_CONCAT(tb_barang.nama SEPARATOR '<br>') AS nama, tb_order.tgl_minta, GROUP_CONCAT(tb_order_detail.jumlah_minta SEPARATOR '<br>') AS jumlah_minta, tb_order.status
+                    FROM tb_order
+                    JOIN tb_user ON tb_order.id_user = tb_user.id_user
+                    JOIN tb_order_detail ON tb_order.id_transaksi = tb_order_detail.id_transaksi
+                    JOIN tb_barang ON tb_order_detail.id_barang = tb_barang.id_barang
+                    WHERE tb_user.username = '$username'
+                    GROUP BY tb_order.id_transaksi";
 
-        <div class="col-xl-11">
+                    $result = mysqli_query($con, $query);
 
-          <div class="card">
-            <div class="card-body pt-3">
-              <!-- Bordered Tabs -->
-              <ul class="nav nav-tabs nav-tabs-bordered">
-
-                <li class="nav-item">
-                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Informasi Profil</button>
-                </li>
-
-                <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profil</button>
-                </li>
-
-                <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Ganti Password</button>
-                </li>
-
-                <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#buatUser">Buat Akun User</button>
-                </li>
-
-              </ul>
-              <div class="tab-content pt-2">
-
-                <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                  
-                  <h5 class="card-title">Profile Details</h5>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
-                    <div class="col-lg-9 col-md-8">Kevin Anderson</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8">Kevin@gmail.com</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Username</div>
-                    <div class="col-lg-9 col-md-8">kevin12</div>
-                  </div>
-                </div>
-
-                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-
-                  <!-- Profile Edit Form -->
-                  <form>
-
-                    <div class="row mb-3">
-                      <label for="nama" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="nama" type="text" class="form-control" id="nama" value="Kevin Anderson">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="username" class="col-md-4 col-lg-3 col-form-label">username</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="username" type="text" class="form-control" id="username" value="Kevin Anderson">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="kevin@gmail.com">
-                      </div>
-                    </div>
-
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </div>
-                  </form><!-- End Profile Edit Form -->
-
-                </div>
-
-                <div class="tab-pane fade pt-3" id="profile-settings">
-
-                  
-
-                </div>
-
-                <div class="tab-pane fade pt-3" id="profile-change-password">
-                  <!-- Change Password Form -->
-                  <form>
-
-                    <div class="row mb-3">
-                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="password" type="password" class="form-control" id="currentPassword">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="newpassword" type="password" class="form-control" id="newPassword">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
-                      </div>
-                    </div>
-
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Change Password</button>
-                    </div>
-                  </form><!-- End Change Password Form -->
-                </div>
-
-
-                <div class="tab-pane fade pt-3" id="buatUser">
-                  <!-- Form Buat Akun -->
-                  <form action="buatAkun.php" method="POST">
-                  <div class="row mb-3">
-                        <label for="username" class="col-md-4 col-lg-3 col-form-label">Username</label>
-                        <div class="col-md-8 col-lg-9">
-                            <input name="username" type="text" class="form-control" id="username">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label for="nama" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
-                        <div class="col-md-8 col-lg-9">
-                            <input name="nama_lengkap" type="text" class="form-control" id="nama">
-                        </div>
-                    </div>
-                
-                    <div class="row mb-3">
-                        <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                        <div class="col-md-8 col-lg-9">
-                            <input name="email" type="email" class="form-control" id="email">
-                        </div>
-                    </div>
-                
-                    <div class="row mb-3">
-                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Password</label>
-                        <div class="col-md-8 col-lg-9">
-                            <input name="password" type="password" class="form-control" id="newPassword">
-                        </div>
-                    </div>
-                
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Buat Akun</button>
-                    </div>
-                
-                </form>
-
-              </div><!-- End Bordered Tabs -->
-
+                    // Iterasi dan tampilkan data dalam tabel
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      echo "<tr>";
+                      echo "<td>" . $row['id_transaksi'] . "</td>";
+                      echo "<td>" . $row['nama_lengkap'] . "</td>";
+                      echo "<td>" . $row['tgl_minta'] . "</td>";
+                      echo "<td>" . $row['nama'] . "</td>";
+                      echo "<td>" . $row['jumlah_minta'] . "</td>";
+                      echo "<td>" . $row['status'] . "</td>";
+                      echo "<td>";
+                      echo "<button type='button' class='btn btn-warning btn-ready' data-id='" . $row['id_transaksi'] . "'><i class='bi bi-check-circle'></i></button>";
+                      echo "</td>";
+                      echo "</tr>";
+                    }
+                    // Tutup koneksi ke database
+                    db_disconnect($con);
+                    ?>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-
         </div>
-      </div>
-    </section>
+      </section>
 
-  </main><!-- End #main -->
+  </main>
+  
+  <!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
@@ -502,7 +433,7 @@ session_start();
       SMART <strong><span>Sistem Informasi Manajemen Pengelolaan</span></strong>
     </div>
     <div class="credits">
-      Made by <a>Tim Efektif</a>
+      Made by <a href="https://bootstrapmade.com/">Tim Efektif</a>
     </div>
   </footer><!-- End Footer -->
 
@@ -517,10 +448,78 @@ session_start();
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <script>
+    $(document).ready(function () {
+    $('#example').DataTable();
+    $('#example2').DataTable();
+    $('#example3').DataTable();
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var readyButtons = document.querySelectorAll('.btn-ready');
+    var selesaiButtons = document.querySelectorAll('.btn-selesai');
+
+    readyButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        var idTransaksi = this.getAttribute('data-id');
+
+        // Kirim permintaan AJAX untuk mengubah status menjadi 'Selesai'
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'updateStatus.php');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            // Status berhasil diubah, lakukan tindakan lain jika diperlukan
+            alert('Status berhasil diubah menjadi Ready');
+            location.reload(); // Melakukan refresh halaman
+            // Refresh halaman atau lakukan tindakan lainnya
+          } else {
+            // Gagal mengubah status, tampilkan pesan error atau lakukan tindakan lain jika diperlukan
+            alert('Terjadi kesalahan saat mengubah status');
+          }
+        };
+        xhr.send('id_transaksi=' + encodeURIComponent(idTransaksi));
+      });
+    });
+
+    selesaiButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        var idTransaksi = this.getAttribute('data-id');
+
+        // Kirim permintaan AJAX untuk mengubah status menjadi 'Selesai'
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'updateStatus2.php');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            // Status berhasil diubah, lakukan tindakan lain jika diperlukan
+            alert('Status berhasil diubah menjadi Selesai');
+            location.reload(); // Melakukan refresh halaman
+            // Refresh halaman atau lakukan tindakan lainnya
+          } else {
+            // Gagal mengubah status, tampilkan pesan error atau lakukan tindakan lain jika diperlukan
+            alert('Terjadi kesalahan saat mengubah status');
+          }
+        };
+        xhr.send('id_transaksi=' + encodeURIComponent(idTransaksi));
+      });
+    });
+
+  });
+
+  
+
+  </script>
+
 </body>
 
 </html>
+
+

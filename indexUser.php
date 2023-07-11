@@ -430,7 +430,7 @@ $idUser = $_SESSION['id_user'];
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="indexUser.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo2.png" alt="">
         <span class="htsimpan">SMART<br>
           <tb class="tbsmart">Sistem Informasi Manajemen Pengelolaan</tb></span>
@@ -649,7 +649,7 @@ $idUser = $_SESSION['id_user'];
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="profil.html">
+              <a class="dropdown-item d-flex align-items-center" href="profilUser.php">
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
               </a>
@@ -704,7 +704,7 @@ $idUser = $_SESSION['id_user'];
             </a>
           </li>
           <li>
-            <a href="statusPermintaan.html">
+            <a href="statusPermintaan.php">
               <i class="bi"></i><span>Status Permintaan</span>
             </a>
           </li>
@@ -737,7 +737,7 @@ $idUser = $_SESSION['id_user'];
       <h1>Beranda</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="indexUser.php">Home</a></li>
           <li class="breadcrumb-item active">Beranda</li>
         </ol>
 
