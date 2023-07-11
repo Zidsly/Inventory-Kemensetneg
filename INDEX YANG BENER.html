@@ -56,6 +56,11 @@
   </head>
 
   <style>
+    .sidebar {
+      background-color: #892641;
+      top: 10%;
+    }
+
     .product-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -158,6 +163,182 @@
     .cat-item:hover div * {
       color: #892641 !important;
     }
+
+    .items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .item {
+      margin: 10px;
+    }
+
+    .item img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .item h3 {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .quantity {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .quantity button {
+      padding: 5px 10px;
+      margin: 0 5px;
+    }
+
+    .order-btn {
+      padding: 10px 20px;
+    }
+
+    .dropdown {
+      display: inline-block;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 40px;
+    }
+
+    .dropdown-btn {
+      display: inline-block;
+      height: 40px;
+      font-size: 14px;
+      font-weight: 600;
+      background-color: #892641;
+      border: 1px solid #892641;
+      color: #fff;
+      transition: 0.2s;
+      cursor: pointer;
+      outline: none;
+      padding: 8px 16px;
+      border-radius: 24px;
+    }
+
+    .dropdown-btn:hover {
+      background-color: #fff;
+      border: 1px solid #892641;
+      color: #892641;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #f9f9f9;
+      z-index: 1;
+      margin-top: 10px;
+      padding: 10px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .subcategories {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-gap: 10px;
+      max-height: 200px; /* Atur ketinggian maksimum jika perlu */
+      overflow-y: auto; /* Aktifkan pengguliran jika perlu */
+    }
+
+    .subcategories a {
+      display: block;
+      padding: 5px;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 150px;
+      background-color: #ccc;
+      margin-bottom: 10px;
+      margin-top: 50px;
+    }
+
+    .button-container2 {
+      position: fixed;
+      bottom: 50px;
+      right: 20px;
+    }
+
+    .button-container2 .btn {
+      background-color: transparent;
+      border: none;
+    }
+
+    .title2 {
+      text-align: center;
+      color: inherit;
+      font-weight: bold;
+      font-size: 24px;
+      color: #892641;
+      background-color: transparent;
+      border: none;
+    }
+
+    .search-bar {
+      position: relative;
+    }
+
+    .search-bar input {
+      height: 40px;
+      width: 50px;
+      background: #892641;
+      border: 1px solid #892641;
+      border-radius: 50px;
+      box-sizing: border-box;
+      font-size: 14px;
+      color: #892641;
+      outline: none;
+      padding-left: 16px;
+      transition: 0.5s;
+    }
+
+    .search-bar input::placeholder {
+      opacity: 0;
+      color: #892641;
+    }
+
+    .search-bar:hover input {
+      width: 300px;
+      background: #fff;
+      border-radius: 24px;
+      z-index: 2;
+    }
+
+    .search-bar:hover .dropdown-btn {
+      display: none;
+    }
+
+    .search-bar:hover input::placeholder {
+      opacity: 100;
+    }
+
+    .search-bar i {
+      position: absolute;
+      top: 50%;
+      right: 5px;
+      transform: translate(-50%, -50%);
+      font-size: 20px;
+      color: #fff;
+      transition: 0.2s;
+    }
+
+    .search-bar:hover i {
+      color: #892641;
+      z-index: 3;
+    }
   </style>
 
   <body>
@@ -179,18 +360,79 @@
 
       <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
-          <li class="nav-item d-block d-lg-none">
-            <a class="nav-link nav-icon search-bar-toggle" href="#">
-              <i class="bi bi-search"></i>
-            </a>
-          </li>
-          <!-- End Search Icon-->
-
           <li class="nav-item dropdown">
             <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
               <i class="bi bi-basket3"></i>
               <span class="badge bg-primary badge-number">4</span> </a
             ><!-- End Cart Icon -->
+
+            <ul
+              class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications"
+            >
+              <li class="dropdown-header">
+                Baru Ditambahkan
+                <a href="#"
+                  ><span class="badge rounded-pill bg-primary p-2 ms-2"
+                    >Lihat Keranjang</span
+                  ></a
+                >
+              </li>
+
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+
+              <li class="notification-item">
+                <img src="product1.png" alt="Product 1" />
+                <div class="item">
+                  <h3>Product 1</h3>
+                  <div class="quantity">
+                    <button onclick="decreaseQuantity()">-</button>
+                    <input type="text" id="quantity" value="1" />
+                    <button onclick="increaseQuantity()">+</button>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+
+              <li class="notification-item">
+                <i class="bi bi-check-circle text-success"></i>
+                <div>
+                  <h4>Barang sudah diambil</h4>
+                  <p>Barang telah siap dan sudah diambil dari gudang</p>
+                  <p>2 hrs. ago</p>
+                </div>
+              </li>
+
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+
+              <li class="notification-item">
+                <i class="bi bi-info-circle text-primary"></i>
+                <div>
+                  <h4>Informasi update</h4>
+                  <p>Stok barang ini telah diperbarui</p>
+                  <p>4 hrs. ago</p>
+                </div>
+              </li>
+
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+
+              <li class="dropdown-footer">
+                <a href="#">Lihat Keranjang</a>
+              </li>
+            </ul>
+            <!-- End Notification Dropdown Items -->
           </li>
 
           <li class="nav-item dropdown">
@@ -372,7 +614,7 @@
                 class="rounded-circle"
               />
               <span class="d-none d-md-block dropdown-toggle ps-2"
-                >Admin</span
+                >User</span
               > </a
             ><!-- End Profile Iamge Icon -->
 
@@ -380,8 +622,7 @@
               class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
             >
               <li class="dropdown-header">
-                <h6>Admin Supervisor</h6>
-                <span>Web Designer</span>
+                <h6>User #1</h6>
               </li>
               <li>
                 <hr class="dropdown-divider" />
@@ -421,12 +662,6 @@
     <!-- End Header -->
 
     <!-- ======= Sidebar ======= -->
-    <style>
-      .sidebar {
-        background-color: #892641;
-        top: 10%;
-      }
-    </style>
 
     <aside id="sidebar" class="sidebar">
       <ul class="sidebar-nav" id="sidebar-nav">
@@ -530,150 +765,9 @@
       </div>
       <!-- End Page Title -->
 
-      <style>
-        .dropdown {
-          display: inline-block;
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          height: 40px;
-        }
-
-        .dropdown-btn {
-          display: inline-block;
-          height: 40px;
-          font-size: 14px;
-          font-weight: 600;
-          background-color: #892641;
-          border: 1px solid #892641;
-          color: #fff;
-          transition: 0.2s;
-          cursor: pointer;
-          outline: none;
-          padding: 8px 16px;
-          border-radius: 24px;
-        }
-
-        .dropdown-btn:hover {
-          background-color: #fff;
-          border: 1px solid #892641;
-          color: #892641;
-        }
-
-        .dropdown-content {
-          display: none;
-          position: absolute;
-          top: 100%;
-          left: 0;
-          width: 100%;
-          background-color: #f9f9f9;
-          z-index: 1;
-          margin-top: 10px;
-          padding: 10px;
-          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        }
-
-        .subcategories {
-          display: grid;
-          grid-template-columns: repeat(5, 1fr);
-          grid-gap: 10px;
-          max-height: 200px; /* Atur ketinggian maksimum jika perlu */
-          overflow-y: auto; /* Aktifkan pengguliran jika perlu */
-        }
-
-        .subcategories a {
-          display: block;
-          padding: 5px;
-          text-decoration: none;
-          color: #333;
-        }
-
-        .product-image {
-          width: 100%;
-          height: 150px;
-          background-color: #ccc;
-          margin-bottom: 10px;
-          margin-top: 50px;
-        }
-
-        .button-container2 {
-          position: fixed;
-          bottom: 50px;
-          right: 20px;
-        }
-
-        .button-container2 .btn {
-          background-color: transparent;
-          border: none;
-        }
-
-        .title2 {
-          text-align: center;
-          color: inherit;
-          font-weight: bold;
-          font-size: 24px;
-          color: #892641;
-          background-color: transparent;
-          border: none;
-        }
-
-        .search-bar {
-          position: relative;
-        }
-
-        .search-bar input {
-          height: 40px;
-          width: 50px;
-          background: #892641;
-          border: 1px solid #892641;
-          border-radius: 50px;
-          box-sizing: border-box;
-          font-size: 14px;
-          color: #892641;
-          outline: none;
-          padding-left: 16px;
-          transition: 0.5s;
-        }
-
-        .search-bar input::placeholder {
-          opacity: 0;
-          color: #892641;
-        }
-
-        .search-bar:hover input {
-          width: 300px;
-          background: #fff;
-          border-radius: 24px;
-          z-index: 2;
-        }
-
-        .search-bar:hover .dropdown-btn {
-          display: none;
-        }
-
-        .search-bar:hover input::placeholder {
-          opacity: 100;
-        }
-
-        .search-bar i {
-          position: absolute;
-          top: 50%;
-          right: 5px;
-          transform: translate(-50%, -50%);
-          font-size: 20px;
-          color: #fff;
-          transition: 0.2s;
-        }
-
-        .search-bar:hover i {
-          color: #892641;
-          z-index: 3;
-        }
-      </style>
-
       <body>
         <div class="dropdown">
-          <button class="dropdown-btn" data="cat1">Bahan Konsumsi</button>
+          <button class="dropdown-btn" data="cat1">Konsumsi</button>
           <div class="dropdown-content" id="cat1">
             <div class="subcategories">
               <a href="productcard1.html">Alat Tulis</a>
@@ -710,7 +804,7 @@
               <a href="#">Subkategori 1.32</a>
             </div>
           </div>
-          <button class="dropdown-btn" data="cat2">Bahan Pemeliharaan</button>
+          <button class="dropdown-btn" data="cat2">Pemeliharaan</button>
           <div class="dropdown-content" id="cat2">
             <div class="subcategories">
               <a href="productcard1.html">Alat Tulis</a>
@@ -821,7 +915,7 @@
               <a href="#">Subkategori 4.32</a>
             </div>
           </div>
-          <button class="dropdown-btn" data="cat5">Persediaan Penjagaan</button>
+          <button class="dropdown-btn" data="cat5">Penjagaan</button>
           <div class="dropdown-content" id="cat5">
             <div class="subcategories">
               <a href="productcard1.html">Alat Tulis</a>
@@ -858,7 +952,7 @@
               <a href="#">Subkategori 5.32</a>
             </div>
           </div>
-          <button class="dropdown-btn" data="cat6">Persediaan Lainnya</button>
+          <button class="dropdown-btn" data="cat6">Lainnya</button>
           <div class="dropdown-content" id="cat6">
             <div class="subcategories">
               <a href="productcard1.html">Alat Tulis</a>
@@ -909,6 +1003,7 @@
           </div>
           <!-- End Search Bar -->
         </div>
+        <!-- End Category -->
 
         <div class="product-grid">
           <!-- Kartu Produk 1-5 -->
@@ -955,211 +1050,6 @@
             </div>
             <div class="product-title">Flashdisk 8GB</div>
             <a href="#" class="product-button">Tambahkan</a>
-          </div>
-        </div>
-
-        <div class="container">
-          <div class="row gx-5 justify-content-center bg-white">
-            <div class="col-md-12 py-4">
-              <div class="heading">
-                <h1 class="h5 fw-normal" style="color: #892641">
-                  Keranjang Permintaan
-                </h1>
-                <hr />
-              </div>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="row">
-                    <div class="col-md">
-                      <form action="" method="post">
-                        <table class="table table-hover table-borderless">
-                          <thead>
-                            <tr>
-                              <th scope="col">No</th>
-                              <th scope="col" style="width: 125px">Gambar</th>
-                              <th scope="col" style="width: 150px">
-                                Sub Kategori
-                              </th>
-                              <th scope="col" style="width: 675px">
-                                Nama Barang
-                              </th>
-                              <th scope="col">Jumlah Barang</th>
-                            </tr>
-                          </thead>
-
-                          <tbody>
-                            <tr>
-                              <td scope="row">1</td>
-                              <td>
-                                <img
-                                  src="assets/img/gambar2.jpg"
-                                  width="50"
-                                  class="img-fluid rounded-start"
-                                  alt="Alat Tulis"
-                                />
-                              </td>
-                              <td>
-                                <p>Alat Tulis</p>
-                              </td>
-                              <td>
-                                <p>Buku Agenda Bintang Obor</p>
-                              </td>
-                              <td>
-                                <div class="d-flex flex-wrap">
-                                  <button
-                                    type="button"
-                                    class="btn btn-primary btn-tambah-1 me-2"
-                                  >
-                                    +
-                                  </button>
-                                  <!-- tipe number -->
-                                  <!-- <input type="number" class="form-control jumlah" id="jumlah" name="jumlah" min="1" value="1" style="width: 75px;"> -->
-
-                                  <!-- tipe text - ada tambahan validasi -->
-                                  <input
-                                    type="text"
-                                    class="form-control jumlah-1"
-                                    id="jumlah"
-                                    name="jumlah"
-                                    min="1"
-                                    value="1"
-                                    style="width: 75px"
-                                  />
-                                  <button
-                                    type="button"
-                                    class="btn btn-primary btn-kurang-1 mx-2"
-                                  >
-                                    -
-                                  </button>
-                                  <button class="btn btn-danger" type="submit">
-                                    Batal
-                                  </button>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td scope="row">2</td>
-                              <td>
-                                <img
-                                  src="assets/img/gambar1.jpg"
-                                  width="50"
-                                  class="img-fluid rounded-start"
-                                  alt="Alat Tulis"
-                                />
-                              </td>
-                              <td>
-                                <p>Alat Tulis</p>
-                              </td>
-                              <td>
-                                <p>Ballpoint Balliner Merah</p>
-                              </td>
-                              <td>
-                                <div class="d-flex flex-wrap">
-                                  <button
-                                    type="button"
-                                    class="btn btn-primary btn-tambah-2 me-2"
-                                  >
-                                    +
-                                  </button>
-                                  <!-- tipe number -->
-                                  <!-- <input type="number" class="form-control jumlah" id="jumlah" name="jumlah" min="1" value="1" style="width: 75px;"> -->
-
-                                  <!-- tipe text - ada tambahan validasi -->
-                                  <input
-                                    type="text"
-                                    class="form-control jumlah-2"
-                                    id="jumlah"
-                                    name="jumlah"
-                                    min="1"
-                                    value="1"
-                                    style="width: 75px"
-                                  />
-                                  <button
-                                    type="button"
-                                    class="btn btn-primary btn-kurang-2 mx-2"
-                                  >
-                                    -
-                                  </button>
-                                  <button class="btn btn-danger" type="submit">
-                                    Batal
-                                  </button>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td scope="row">3</td>
-                              <td>
-                                <img
-                                  src="assets/img/gambar3.jpg"
-                                  width="50"
-                                  class="img-fluid rounded-start"
-                                  alt="Alat Tulis"
-                                />
-                              </td>
-                              <td>
-                                <p>Alat Tulis</p>
-                              </td>
-                              <td>
-                                <p>Stabillo Boss</p>
-                              </td>
-                              <td>
-                                <div class="d-flex flex-wrap">
-                                  <button
-                                    type="button"
-                                    class="btn btn-primary btn-tambah-3 me-2"
-                                  >
-                                    +
-                                  </button>
-                                  <!-- tipe number -->
-                                  <!-- <input type="number" class="form-control jumlah" id="jumlah" name="jumlah" min="1" value="1" style="width: 75px;"> -->
-
-                                  <!-- tipe text - ada tambahan validasi -->
-                                  <input
-                                    type="text"
-                                    class="form-control jumlah-3"
-                                    id="jumlah"
-                                    name="jumlah"
-                                    min="1"
-                                    value="1"
-                                    style="width: 75px"
-                                  />
-                                  <button
-                                    type="button"
-                                    class="btn btn-primary btn-kurang-3 mx-2"
-                                  >
-                                    -
-                                  </button>
-                                  <button class="btn btn-danger" type="submit">
-                                    Batal
-                                  </button>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-
-                        <div class="row">
-                          <div class="col-md d-flex justify-content-start">
-                            <a
-                              href="index.html"
-                              class="btn btn-danger rounded-pill px-4 me-0 me-xl-3"
-                              >Kembali</a
-                            >
-                            <button
-                              type="submit"
-                              class="btn btn-primary rounded-pill px-4"
-                            >
-                              Pesan
-                            </button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </body>
