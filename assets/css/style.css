@@ -744,7 +744,6 @@ h6 {
 }
 
 .sidebar-nav .nav-content {
-  padding: 5px 0 0 0;
   margin: 0;
   list-style: none;
 }
@@ -756,8 +755,10 @@ h6 {
   font-weight: 600;
   color: #fff;
   transition: 0.3;
-  padding: 10px 0 10px 40px;
+  padding: 10px 0;
   transition: 0.3s;
+  border-radius: 4px;
+  margin: 8px 0;
 }
 
 .sidebar-nav .nav-content a i {
@@ -771,7 +772,6 @@ h6 {
 .sidebar-nav .nav-content a.active {
   color: #892641;
   background: #f6f9ff;
-  border-radius: 4px;
 }
 
 .sidebar-nav .nav-content a.active i {
