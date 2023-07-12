@@ -3,8 +3,8 @@ session_start();
 
 // Periksa apakah pengguna masuk atau memiliki peran yang sesuai
 if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['role'] !== 'user')) {
-    header("Location: login.php");
-    exit();
+  header("Location: login.php");
+  exit();
 }
 
 
@@ -65,19 +65,21 @@ $idUser = $_SESSION['id_user'];
     top: 10%;
   }
 
-  .tbsmart{
+  .tbsmart {
     font-size: 12px;
     margin-bottom: 0;
     font-weight: 600;
     color: #ffffff;
   }
-  .pengumuman{
+
+  .pengumuman {
     font-size: 40px;
     font-weight: 700;
     color: #fff;
     font-family: "Nunito", sans-serif;
     text-align: center;
   }
+
   .container {
     display: flex;
     justify-content: center;
@@ -85,51 +87,57 @@ $idUser = $_SESSION['id_user'];
     height: 70vh;
   }
 
-.content {
+  .content {
     text-align: center;
   }
-.c-item {
-  height: 200px;
+
+  .c-item {
+    height: 200px;
   }
+
   .c-img {
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.6);
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
   }
+
   .img {
-  height: 35%; /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
-  width: auto; /* Menjaga rasio aspek gambar */
-}
-.cat-item div {
+    height: 35%;
+    /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
+    width: auto;
+    /* Menjaga rasio aspek gambar */
+  }
+
+  .cat-item div {
     background: #FFFFFF;
     transition: .5s;
 
-}
+  }
 
-.cat-item:hover div {
+  .cat-item:hover div {
     background: gray;
     border-color: transparent;
-}
+  }
 
-.cat-item div * {
+  .cat-item div * {
     transition: .5s;
-}
+  }
 
-.cat-item:hover div * {
+  .cat-item:hover div * {
     color: #892641 !important;
-}
+  }
 
-.dropdown-container {
+  .dropdown-container {
     display: flex;
     align-items: center;
-}
+  }
 
-.dropdown {
+  .dropdown {
     display: flex;
     align-items: center;
-}
+  }
 
-.dropdown-btn {
+  .dropdown-btn {
     display: inline-block;
     height: 50px;
     font-size: 13px;
@@ -143,15 +151,15 @@ $idUser = $_SESSION['id_user'];
     padding: 8px 16px;
     border-radius: 24px;
     margin-right: 10px;
-}
+  }
 
-.dropdown-btn:hover {
+  .dropdown-btn:hover {
     background-color: #fff;
     border: 1px solid #892641;
     color: #892641;
-}
+  }
 
-.dropdown-content {
+  .dropdown-content {
     display: none;
     position: absolute;
     top: 100%;
@@ -162,33 +170,33 @@ $idUser = $_SESSION['id_user'];
     margin-top: 10px;
     padding: 10px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-}
+  }
 
-.subcategories {
+  .subcategories {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 10px;
     max-height: 200px;
     overflow-y: auto;
-}
+  }
 
-.subcategories a {
+  .subcategories a {
     display: block;
     padding: 5px;
     text-decoration: none;
     color: #333;
-}
+  }
 
-.search-bar {
+  .search-bar {
     display: flex;
     align-items: center;
-}
+  }
 
-.search-form {
+  .search-form {
     margin-bottom: 0;
-}
+  }
 
-.search-bar input {
+  .search-bar input {
     height: 48px;
     width: 50px;
     background: #892641;
@@ -200,72 +208,73 @@ $idUser = $_SESSION['id_user'];
     outline: none;
     padding-left: 16px;
     transition: .5s;
-}
+  }
 
-.search-bar input::placeholder {
+  .search-bar input::placeholder {
     opacity: 0;
     color: #892641;
-}
+  }
 
-.search-bar:hover input {
+  .search-bar:hover input {
     width: 300px;
     background: #fff;
     border-radius: 24px;
     z-index: 2;
-}
+  }
 
-.search-bar:hover .dropdown-btn {
+  .search-bar:hover .dropdown-btn {
     display: none;
-}
+  }
 
-.search-bar:hover input::placeholder {
+  .search-bar:hover input::placeholder {
     opacity: 100;
-}
+  }
 
-.search-bar i {
+  .search-bar i {
     font-size: 20px;
     color: #fff;
     transition: .2s;
     margin-left: 10px;
-}
+  }
 
-.search-bar:hover i {
+  .search-bar:hover i {
     color: #892641;
     z-index: 3;
-}
+  }
 
-.product-image {
+  .product-image {
     width: 100%;
     height: 150px;
     background-color: #ccc;
     margin-bottom: 10px;
     margin-top: 50px;
-}
+  }
 
-.button-container2 {
+  .button-container2 {
     position: fixed;
     bottom: 50px;
     right: 20px;
-}
+  }
 
-.button-container2 .btn {
+  .button-container2 .btn {
     background-color: transparent;
     border: none;
-}
+  }
 
-      .title2 {
-        text-align: center;
-        color: inherit;
-        font-weight: bold;
-        font-size: 24px;
-        color: #892641;
-        background-color: transparent;
-        border: none
-}
+  .title2 {
+    text-align: center;
+    color: inherit;
+    font-weight: bold;
+    font-size: 24px;
+    color: #892641;
+    background-color: transparent;
+    border: none
+  }
 
 
-.product-container {
-    max-height: 600px; /* Atur tinggi maksimum sesuai kebutuhan */
+  .product-container {
+    max-height: 600px;
+    /* Atur tinggi maksimum sesuai kebutuhan */
     margin-bottom: 20px;
   }
 
@@ -278,7 +287,8 @@ $idUser = $_SESSION['id_user'];
 
   .product-card {
     text-align: center;
-    width: calc(16.666% - 20px); /* 6 kolom */
+    width: calc(16.666% - 20px);
+    /* 6 kolom */
   }
 
   .product-image {
@@ -355,6 +365,7 @@ $idUser = $_SESSION['id_user'];
   .view-options-select {
     margin-right: 10px;
   }
+
   .dropdown-menu {
     min-width: 400px;
     max-width: 400px;
@@ -391,7 +402,7 @@ $idUser = $_SESSION['id_user'];
     font-size: 14px;
     color: #888;
   }
-  
+
   .product-number {
     font-size: 20px;
     margin-right: 18px;
@@ -417,8 +428,6 @@ $idUser = $_SESSION['id_user'];
     margin-top: 30px;
     margin-bottom: 10px;
   }
-
-  
 </style>
 
 
@@ -433,7 +442,8 @@ $idUser = $_SESSION['id_user'];
       <a href="indexUser.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo2.png" alt="">
         <span class="htsimpan">SMART<br>
-          <tb class="tbsmart">Sistem Informasi Manajemen Pengelolaan</tb></span>
+          <tb class="tbsmart">Sistem Informasi Manajemen Pengelolaan</tb>
+        </span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -449,127 +459,54 @@ $idUser = $_SESSION['id_user'];
         </li><!-- End Search Icon-->
 
         <li class="nav-item dropdown">
-    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-      <i class="bi bi-bag"></i>
-      <span class="badge bg-primary badge-number">4</span>
-    </a><!-- End Cart Icon -->
-    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-      <form>
-        <ul class="product-list">
-          <li>
-            <span class="product-number">1</span>
-            <img src="assets/img/spidol.jpg" alt="Product 1">
-            <div class="product-info">
-              <h6>Spidol</h6>
-              <div class="col-sm-4">
-              <input type="number" class="form-control" id="spidolCount" name="spidolCount" value="2">
-              </div>
-              <button class="delete-button" onclick="deleteProduct('spidol')">Delete</button>
-            </div>
-          </li>
-          <li>
-            <span class="product-number">2</span>
-            <img src="assets/img/hvs.png" alt="Product 2">
-            <div class="product-info">
-              <h6>Kertas HVS</h6>
-              <div class="col-sm-4">
-              <input type="number" class="form-control" id="hvsCount" name="hvsCount" value="5">
-              </div>
-              <button class="delete-button" onclick="deleteProduct('hvs')">Delete</button>
-            </div>
-          </li>
-          <li>
-            <span class="product-number">3</span>
-            <img src="assets/img/b100.png" alt="Product 3">
-            <div class="product-info">
-              <h6>Mouse Logitech B100</h6>
-              <div class="col-sm-4">
-              <input type="number" class="form-control" id="mouseCount" name="mouseCount" value="3">
-              </div>
-              <button class="delete-button" onclick="deleteProduct('mouse')">Delete</button>
-            </div>
-          </li>
-        </ul>
-        <button type="button" class="btn btn-success" onclick="submitForm()">Pesan</button>
-      </form>
-    </ul><!-- End Cart Dropdown Items -->
-  </li>
-
-
-        <li class="nav-item dropdown">
-
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
+            <i class="bi bi-bag"></i>
             <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
-
+          </a><!-- End Cart Icon -->
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              Notifikasi Terbaru
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Lihat Semua</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <form>
+              <ul class="product-list">
+                <li>
+                  <span class="product-number">1</span>
+                  <img src="assets/img/spidol.jpg" alt="Product 1">
+                  <div class="product-info">
+                    <h6>Spidol</h6>
+                    <div class="col-sm-4">
+                      <input type="number" class="form-control" id="spidolCount" name="spidolCount" value="2">
+                    </div>
+                    <button class="delete-button" onclick="deleteProduct('spidol')">Delete</button>
+                  </div>
+                </li>
+                <li>
+                  <span class="product-number">2</span>
+                  <img src="assets/img/hvs.png" alt="Product 2">
+                  <div class="product-info">
+                    <h6>Kertas HVS</h6>
+                    <div class="col-sm-4">
+                      <input type="number" class="form-control" id="hvsCount" name="hvsCount" value="5">
+                    </div>
+                    <button class="delete-button" onclick="deleteProduct('hvs')">Delete</button>
+                  </div>
+                </li>
+                <li>
+                  <span class="product-number">3</span>
+                  <img src="assets/img/b100.png" alt="Product 3">
+                  <div class="product-info">
+                    <h6>Mouse Logitech B100</h6>
+                    <div class="col-sm-4">
+                      <input type="number" class="form-control" id="mouseCount" name="mouseCount" value="3">
+                    </div>
+                    <button class="delete-button" onclick="deleteProduct('mouse')">Delete</button>
+                  </div>
+                </li>
+              </ul>
+              <button type="button" class="btn btn-success" onclick="submitForm()">Pesan</button>
+            </form>
+          </ul><!-- End Cart Dropdown Items -->
+        </li>
 
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Peringatan</h4>
-                <p>Stok barang berkurang</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
 
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Stok Habis</h4>
-                <p>Barang persediaan ini di gudang sudah habis</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Barang sudah diambil</h4>
-                <p>Barang telah siap dan sudah diambil dari gudang</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Informasi update</h4>
-                <p>Stok barang ini telah diperbarui</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Lihat semua notifikasi</a>
-            </li>
-
-          </ul><!-- End Notification Dropdown Items -->
-
-        </li><!-- End Notification Nav -->
 
         <li class="nav-item dropdown">
 
@@ -684,48 +621,48 @@ $idUser = $_SESSION['id_user'];
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+      <ul class="sidebar-nav" id="sidebar-nav">
 
-<li class="nav-item">
-  <a class="nav-link " href="indexUser.php">
-    <i class="bi bi-grid"></i>
-    <span>Beranda</span>
-  </a>
-</li><!-- End Dashboard Nav -->
+        <li class="nav-item">
+          <a class="nav-link " href="indexUser.php">
+            <i class="bi bi-grid"></i>
+            <span>Beranda</span>
+          </a>
+        </li><!-- End Dashboard Nav -->
 
-<li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span></span>Kelola Permintaan</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="permintaanBarang.php">
-              <i class="bi"></i><span>Buat Permintaan</span>
-            </a>
-          </li>
-          <li>
-            <a href="statusPermintaan.php">
-              <i class="bi"></i><span>Status Permintaan</span>
-            </a>
-          </li>
-        </ul>
-  </li><!-- End Tables Nav -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-journal-text"></i><span></span>Kelola Permintaan</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="permintaanBarang.php">
+                <i class="bi"></i><span>Buat Permintaan</span>
+              </a>
+            </li>
+            <li>
+              <a href="statusPermintaan.php">
+                <i class="bi"></i><span>Status Permintaan</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Tables Nav -->
 
-<li class="nav-item">
-  <a class="nav-link collapsed" href="laporan.php">
-    <i class="bi bi-bar-chart"></i>
-    <span>Laporan</span>
-  </a>
-</li><!-- End Tables Nav -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="laporan.php">
+            <i class="bi bi-bar-chart"></i>
+            <span>Laporan</span>
+          </a>
+        </li><!-- End Tables Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="profilUser.php">
-          <i class="bi bi-person"></i>
-          <span>Profil</span>
-        </a>
-      </li><!-- End Profil Sidebar -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="profilUser.php">
+            <i class="bi bi-person"></i>
+            <span>Profil</span>
+          </a>
+        </li><!-- End Profil Sidebar -->
 
-    </ul>
+      </ul>
 
   </aside>
   <!-- End Sidebar-->
@@ -752,68 +689,68 @@ $idUser = $_SESSION['id_user'];
             <div class="carousel-caption top-0 mt-4">
               <p class="pengumuman">Harap Mengambil Barang yang Sudah Dipesan</p>
             </div>
-            </div>
           </div>
+        </div>
 
         <!--End Image Dashboard-->
 
 
 
-    </nav>
-    <br>
+      </nav>
+      <br>
     </div><!-- End Page Title -->
 
     <div class="dropdown">
-        <?php
-        // Menghubungkan ke database
-        require 'koneksi.php';
-        $conn = db_connect();
+      <?php
+      // Menghubungkan ke database
+      require 'koneksi.php';
+      $conn = db_connect();
 
-        // Ambil data dari tabel tb_kategori
-        $sql = "SELECT nama_kategori FROM tb_kategori";
-        $result = mysqli_query($conn, $sql);
+      // Ambil data dari tabel tb_kategori
+      $sql = "SELECT nama_kategori FROM tb_kategori";
+      $result = mysqli_query($conn, $sql);
 
-        $kategoriArray = array(); // Membuat array untuk menyimpan nama kategori unik
+      $kategoriArray = array(); // Membuat array untuk menyimpan nama kategori unik
 
-        if (mysqli_num_rows($result) > 0) {
-            // Membuat tombol dropdown untuk setiap baris data yang belum ada di array
-            while ($row = mysqli_fetch_assoc($result)) {
-                $namaKategori = $row["nama_kategori"];
-                if (!in_array($namaKategori, $kategoriArray)) {
-                    $kategoriArray[] = $namaKategori;
-                    $dropdownContentId = strtolower(str_replace(" ", "", $namaKategori));
+      if (mysqli_num_rows($result) > 0) {
+        // Membuat tombol dropdown untuk setiap baris data yang belum ada di array
+        while ($row = mysqli_fetch_assoc($result)) {
+          $namaKategori = $row["nama_kategori"];
+          if (!in_array($namaKategori, $kategoriArray)) {
+            $kategoriArray[] = $namaKategori;
+            $dropdownContentId = strtolower(str_replace(" ", "", $namaKategori));
 
-                    // Query untuk mendapatkan subkategori berdasarkan kategori
-                    $querySubkategori = "SELECT nama_sub_kategori FROM tb_kategori WHERE nama_kategori = '$namaKategori'";
-                    $resultSubkategori = mysqli_query($conn, $querySubkategori);
+            // Query untuk mendapatkan subkategori berdasarkan kategori
+            $querySubkategori = "SELECT nama_sub_kategori FROM tb_kategori WHERE nama_kategori = '$namaKategori'";
+            $resultSubkategori = mysqli_query($conn, $querySubkategori);
 
-                    echo '<button class="dropdown-btn" data="' . $dropdownContentId . '">' . $namaKategori . '</button>';
-                    echo '<div class="dropdown-content" id="' . $dropdownContentId . '">';
-                    echo '    <div class="subcategories">';
-                    while ($rowSubkategori = mysqli_fetch_assoc($resultSubkategori)) {
-                        $namaSubkategori = $rowSubkategori["nama_sub_kategori"];
-                        echo '        <a href="#">' . $namaSubkategori . '</a>';
-                    }
-                    echo '    </div>';
-                    echo '</div>';
-                }
+            echo '<button class="dropdown-btn" data="' . $dropdownContentId . '">' . $namaKategori . '</button>';
+            echo '<div class="dropdown-content" id="' . $dropdownContentId . '">';
+            echo '    <div class="subcategories">';
+            while ($rowSubkategori = mysqli_fetch_assoc($resultSubkategori)) {
+              $namaSubkategori = $rowSubkategori["nama_sub_kategori"];
+              echo '        <a href="#">' . $namaSubkategori . '</a>';
             }
-        } else {
-            echo "Tidak ada data kategori.";
+            echo '    </div>';
+            echo '</div>';
+          }
         }
+      } else {
+        echo "Tidak ada data kategori.";
+      }
 
-        // Memutus koneksi dari database
-        db_disconnect($conn);
-        ?>
-        <!-- Start Search Bar -->
-        <div class="search-bar">
+      // Memutus koneksi dari database
+      db_disconnect($conn);
+      ?>
+      <!-- Start Search Bar -->
+      <div class="search-bar">
         <form class="search-form" method="POST" action="#">
-            <input type="text" name="query" placeholder="Cari barang">
+          <input type="text" name="query" placeholder="Cari barang">
         </form>
         <i class="bi bi-search"></i>
-        </div>
-        </div>
-        <!-- End Search Bar -->
+      </div>
+    </div>
+    <!-- End Search Bar -->
     </div>
 
 
@@ -822,7 +759,7 @@ $idUser = $_SESSION['id_user'];
 
     <br><br>
 
-        <div class="product-container">
+    <div class="product-container">
       <div class="view-options">
         <label for="view-options-select" class="view-options-label">Show</label>
         <select id="view-options-select" class="view-options-select" onchange="changeLimit(this.value)">
@@ -834,122 +771,118 @@ $idUser = $_SESSION['id_user'];
       </div>
 
       <?php
-require_once 'koneksi.php';
-$con = db_connect();
+      require_once 'koneksi.php';
+      $con = db_connect();
 
-// Mendapatkan jumlah produk yang akan ditampilkan
-$limit = isset($_GET['limit']) ? intval($_GET['limit']) : 18;
+      // Mendapatkan jumlah produk yang akan ditampilkan
+      $limit = isset($_GET['limit']) ? intval($_GET['limit']) : 18;
 
-// Query untuk mengambil data barang dari tabel tb_barang
-$query = "SELECT * FROM tb_barang LIMIT $limit";
-$result = mysqli_query($con, $query);
+      // Query untuk mengambil data barang dari tabel tb_barang
+      $query = "SELECT * FROM tb_barang LIMIT $limit";
+      $result = mysqli_query($con, $query);
 
-// Menghitung jumlah card yang sudah ditampilkan
-$count = 0;
+      // Menghitung jumlah card yang sudah ditampilkan
+      $count = 0;
 
-echo '<div class="product-grid">';
+      echo '<div class="product-grid">';
 
-while ($row = mysqli_fetch_assoc($result)) {
-  echo '<div class="product-card">';
-  echo '<div class="product-image">';
-  echo '<img src="' . $row['gambar'] . '" alt="' . $row['nama'] . '">';
-  echo '</div>';
-  echo '<div class="product-title">' . $row['nama'] . '</div>';
-  echo '<form action="tambahCart.php" method="POST">';
-  echo '<input type="hidden" name="username" value="' . $_SESSION['username'] . '">';
-  echo '<input type="hidden" name="id_user" value="' . $_SESSION['id_user'] . '">';
-  echo '<input type="hidden" name="id_barang" value="' . $row['id_barang'] . '">';
-  echo '<input type="hidden" name="nama" value="' . $row['nama'] . '">';
-  echo '<button type="submit" class="product-button">Tambahkan</button>';
-  echo '</form>';
-  echo '</div>';
+      while ($row = mysqli_fetch_assoc($result)) {
+        echo '<div class="product-card">';
+        echo '<div class="product-image">';
+        echo '<img src="' . $row['gambar'] . '" alt="' . $row['nama'] . '">';
+        echo '</div>';
+        echo '<div class="product-title">' . $row['nama'] . '</div>';
+        echo '<form action="tambahCart.php" method="POST">';
+        echo '<input type="hidden" name="username" value="' . $_SESSION['username'] . '">';
+        echo '<input type="hidden" name="id_user" value="' . $_SESSION['id_user'] . '">';
+        echo '<input type="hidden" name="id_barang" value="' . $row['id_barang'] . '">';
+        echo '<input type="hidden" name="nama" value="' . $row['nama'] . '">';
+        echo '<button type="submit" class="product-button">Tambahkan</button>';
+        echo '</form>';
+        echo '</div>';
 
-  $count++;
+        $count++;
 
-  // Membuat baris baru setelah 6 kolom terpenuhi
-  if ($count % 6 === 0) {
-    echo '</div>';
-    echo '<div class="product-grid">';
-  }
-}
+        // Membuat baris baru setelah 6 kolom terpenuhi
+        if ($count % 6 === 0) {
+          echo '</div>';
+          echo '<div class="product-grid">';
+        }
+      }
 
-echo '</div>';
+      echo '</div>';
 
-// Menampilkan opsi "Next Page"
-echo '<div class="pagination">';
-echo '<div class="pagination-wrapper">';
-echo '<a href="?limit=12" class="pagination-link">1</a>';
-echo '<a href="?limit=24" class="pagination-link">2</a>';
-echo '<a href="?limit=48" class="pagination-link">3</a>';
-echo '<a href="?limit=72" class="pagination-link">4</a>';
-echo '<a href="?limit=96" class="pagination-link">5</a>';
-echo '<a href="?limit=all" class="pagination-link active">All</a>';
-echo '</div>';
-echo '</div>';
+      // Menampilkan opsi "Next Page"
+      echo '<div class="pagination">';
+      echo '<div class="pagination-wrapper">';
+      echo '<a href="?limit=12" class="pagination-link">1</a>';
+      echo '<a href="?limit=24" class="pagination-link">2</a>';
+      echo '<a href="?limit=48" class="pagination-link">3</a>';
+      echo '<a href="?limit=72" class="pagination-link">4</a>';
+      echo '<a href="?limit=96" class="pagination-link">5</a>';
+      echo '<a href="?limit=all" class="pagination-link active">All</a>';
+      echo '</div>';
+      echo '</div>';
 
-// Menutup koneksi
-db_disconnect($con);
-?>
+      // Menutup koneksi
+      db_disconnect($con);
+      ?>
     </div>
 
-  </footer><!-- End Footer -->
+    </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/chart.js/chart.umd.js"></script>
-  <script src="assets/vendor/echarts/echarts.min.js"></script>
-  <script src="assets/vendor/quill/quill.min.js"></script>
-  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="assets/vendor/echarts/echarts.min.js"></script>
+    <script src="assets/vendor/quill/quill.min.js"></script>
+    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <script>
-    $(document).ready(function () {
-    $('#example').DataTable();
-    });
+    <script>
+      $(document).ready(function() {
+        $('#example').DataTable();
+      });
 
-        // Tampilkan dropdown content saat tombol dropdown di klik
-        var dropdownButtons = document.querySelectorAll('.dropdown-btn');
-        dropdownButtons.forEach(function (button) {
-            button.addEventListener('click', function () {
-                var dropdownContentId = button.getAttribute('data');
-                var dropdownContent = document.getElementById(dropdownContentId);
-                dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-            });
+      // Tampilkan dropdown content saat tombol dropdown di klik
+      var dropdownButtons = document.querySelectorAll('.dropdown-btn');
+      dropdownButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+          var dropdownContentId = button.getAttribute('data');
+          var dropdownContent = document.getElementById(dropdownContentId);
+          dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
         });
+      });
 
-        // Sembunyikan dropdown content saat klik di luar dropdown
-        window.addEventListener('click', function (event) {
-            if (!event.target.matches('.dropdown-btn')) {
-                var dropdowns = document.getElementsByClassName('dropdown-content');
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var dropdown = dropdowns[i];
-                    if (dropdown.style.display === 'block') {
-                        dropdown.style.display = 'none';
-                    }
-                }
+      // Sembunyikan dropdown content saat klik di luar dropdown
+      window.addEventListener('click', function(event) {
+        if (!event.target.matches('.dropdown-btn')) {
+          var dropdowns = document.getElementsByClassName('dropdown-content');
+          for (var i = 0; i < dropdowns.length; i++) {
+            var dropdown = dropdowns[i];
+            if (dropdown.style.display === 'block') {
+              dropdown.style.display = 'none';
             }
-        });
+          }
+        }
+      });
 
-        function changeLimit(limit) {
-    window.location.href = "?limit=" + limit;
-  }
-
-
-  </script>
+      function changeLimit(limit) {
+        window.location.href = "?limit=" + limit;
+      }
+    </script>
 
 </body>
 
 </html>
-
-
