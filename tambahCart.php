@@ -4,7 +4,7 @@ require_once 'koneksi.php';
 $con = db_connect();
 
 $username = $_POST['username'];
-$idUser = $_POST['id_user'];
+$id_user = $_POST['id_user'];
 $nama = $_POST['nama'];
 $jumlahMinta = $_POST['jumlah_minta'][$idBarang];
 
@@ -18,7 +18,7 @@ if (!isset($_SESSION["cart"])) {
 
 $cartItem = array(
     "username" => $username,
-    "id_user" => $idUser,
+    "id_user" => $id_user,
     "id_barang" => $hasil->id_barang, // Mengambil id_barang dari hasil query
     "nama" => $nama,
     "jumlah_minta" => $jumlahMinta
@@ -28,4 +28,3 @@ $cartItem = array(
 $_SESSION["cart"][] = $cartItem;
 
 header("Location: permintaanBarang.php");
-?>

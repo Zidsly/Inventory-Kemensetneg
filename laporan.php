@@ -3,13 +3,15 @@ session_start();
 
 // Periksa apakah pengguna masuk atau memiliki peran yang sesuai
 if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['role'] !== 'user')) {
-    header("Location: login.php");
-    exit();
+  header("Location: login.php");
+  exit();
 }
 
 // Mendapatkan username dan id_user dari session
 $username = $_SESSION['username'];
-$idUser = $_SESSION['id_user'];
+$id_user = $_SESSION['id_user'];
+$nama_lengkap = $_SESSION['nama_lengkap'];
+$tipe_akun = $_SESSION['tipe_akun'];
 ?>
 
 <!DOCTYPE html>
@@ -54,20 +56,20 @@ $idUser = $_SESSION['id_user'];
   .header {
     background-color: #892641;
   }
-  
+
   .sidebar {
     background-color: #892641;
     top: 10%;
   }
-  
-    .tbsmart{
+
+  .tbsmart {
     font-size: 12px;
     margin-bottom: 0;
     font-weight: 600;
     color: #ffffff;
   }
-  
-  .pengumuman{
+
+  .pengumuman {
     font-size: 40px;
     font-weight: 700;
     color: #fff;
@@ -75,32 +77,34 @@ $idUser = $_SESSION['id_user'];
     text-align: center;
     padding-top: 100px;
   }
-  
+
   .c-item {
     height: 360px;
   }
-  
+
   .c-img {
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.6);
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
   }
-  
+
   .img {
-    height: 50%; /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
-    width: auto; /* Menjaga rasio aspek gambar */
+    height: 50%;
+    /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
+    width: auto;
+    /* Menjaga rasio aspek gambar */
   }
-  
+
   .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70vh;
   }
-          
+
   .content {
     text-align: center;
-    }
+  }
 </style>
 
 
@@ -115,101 +119,30 @@ $idUser = $_SESSION['id_user'];
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo2.png" alt="">
         <span class="htsimpan">SMART<br>
-          <tb class="tbsmart">Sistem Informasi Manajemen Pengelolaan</tb>
+          <tb class="tbsmart">Sistem Manajemen dan Pelayanan Permintaan Barang Persediaan Terpadu</tb>
         </span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Cari barang" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
-
     <nav class="header-nav ms-auto">
 
       <ul class="d-flex align-items-center">
 
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
 
-        <li class="nav-item dropdown">
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-            <li class="dropdown-header">
-              You have 3 new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Anna Nelson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>6 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>David Muldon</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>8 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="dropdown-footer">
-              <a href="#">Show all messages</a>
-            </li>
-
-          </ul><!-- End Messages Dropdown Items -->
-
-        </li><!-- End Messages Nav -->
 
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $username; ?></span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $nama_lengkap; ?></span> </a>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6><?php echo $username; ?></h6>
-              <span><?php echo $idUser; ?></span>
+              <span><?php echo $id_user; ?></span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -218,7 +151,7 @@ $idUser = $_SESSION['id_user'];
             <li>
               <a class="dropdown-item d-flex align-items-center" href="profil.html">
                 <i class="bi bi-person"></i>
-                <span>Profile</span>
+                <span>Profil</span>
               </a>
             </li>
             <li>
@@ -286,7 +219,7 @@ $idUser = $_SESSION['id_user'];
       <li class="nav-item">
         <a class="nav-link collapsed" href="profilUser.php">
           <i class="bi bi-person"></i>
-          <span>Profile</span>
+          <span>Profil</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
@@ -305,7 +238,7 @@ $idUser = $_SESSION['id_user'];
         </ol>
 
 
-    </nav>
+      </nav>
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
@@ -325,7 +258,7 @@ $idUser = $_SESSION['id_user'];
                   <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <li class="dropdown-header text-start">
                       <h6>Filter</h6>
-                      <li><a class="dropdown-item" href="?tgl_minta=hari_ini">Hari ini</a></li>
+                    <li><a class="dropdown-item" href="?tgl_minta=hari_ini">Hari ini</a></li>
                     <li><a class="dropdown-item" href="?tgl_minta=bulan_ini">Bulan ini</a></li>
                     <li><a class="dropdown-item" href="?tgl_minta=tahun_ini">Tahun ini</a></li>
                   </ul>
@@ -334,42 +267,42 @@ $idUser = $_SESSION['id_user'];
                 <div class="card-body pb-0">
                   <h5 class="card-title">Laporan Permintaan User <span>| Hari ini</span></h5>
 
-                      <!-- Koneksi ke database -->
-                        <?php
-                        require_once 'koneksi.php';
-                        $con = db_connect();
-                        ?>
+                  <!-- Koneksi ke database -->
+                  <?php
+                  require_once 'koneksi.php';
+                  $con = db_connect();
+                  ?>
 
-                        <!-- Tabel Data -->
-                        <table id="example" class="table table-striped" style="width:100%">
-                          <thead>
-                            <tr>
-                              <th>ID Transaksi</th>
-                              <th>Tanggal Minta</th>
-                              <th>Tanggal Ambil</th>
-                              <th>Kode Barang</th>
-                              <th>Nama Barang</th>
-                              <th>Jumlah Minta</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <?php
+                  <!-- Tabel Data -->
+                  <table id="example" class="table table-striped" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>ID Transaksi</th>
+                        <th>Tanggal Minta</th>
+                        <th>Tanggal Ambil</th>
+                        <th>Kode Barang</th>
+                        <th>Nama Barang</th>
+                        <th>Jumlah Minta</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
 
-                              // Mengambil nilai parameter tgl_minta dari URL
-                              $tglMinta = isset($_GET['tgl_minta']) ? $_GET['tgl_minta'] : 'hari_ini';
+                      // Mengambil nilai parameter tgl_minta dari URL
+                      $tglMinta = isset($_GET['tgl_minta']) ? $_GET['tgl_minta'] : 'hari_ini';
 
-                              // Mengecek jika tgl_minta tidak ada atau bernilai 'hari_ini', maka default ke hari ini
-                              if (!$tglMinta || $tglMinta == 'hari_ini') {
-                                $tglMinta = 'hari_ini';
-                                $tglFilter = "DATE(tb_order.tgl_minta) = CURDATE()";
-                              } else if ($tglMinta == 'bulan_ini') {
-                                $tglFilter = "MONTH(tb_order.tgl_minta) = MONTH(CURDATE())";
-                              } else if ($tglMinta == 'tahun_ini') {
-                                $tglFilter = "YEAR(tb_order.tgl_minta) = YEAR(CURDATE())";
-                              }
+                      // Mengecek jika tgl_minta tidak ada atau bernilai 'hari_ini', maka default ke hari ini
+                      if (!$tglMinta || $tglMinta == 'hari_ini') {
+                        $tglMinta = 'hari_ini';
+                        $tglFilter = "DATE(tb_order.tgl_minta) = CURDATE()";
+                      } else if ($tglMinta == 'bulan_ini') {
+                        $tglFilter = "MONTH(tb_order.tgl_minta) = MONTH(CURDATE())";
+                      } else if ($tglMinta == 'tahun_ini') {
+                        $tglFilter = "YEAR(tb_order.tgl_minta) = YEAR(CURDATE())";
+                      }
 
-                              // Query untuk mendapatkan data dari tabel
-                              $query = "SELECT tb_order.id_transaksi, tb_order.tgl_minta, tb_order.tgl_ambil, tb_user.nama_lengkap, 
+                      // Query untuk mendapatkan data dari tabel
+                      $query = "SELECT tb_order.id_transaksi, tb_order.tgl_minta, tb_order.tgl_ambil, tb_user.nama_lengkap, 
                               GROUP_CONCAT(tb_barang.kode_barang) AS kode_barang,
                               GROUP_CONCAT(tb_barang.nama) AS nama_barang,
                               GROUP_CONCAT(tb_order_detail.jumlah_minta) AS jumlah_minta
@@ -380,27 +313,27 @@ $idUser = $_SESSION['id_user'];
                               GROUP BY tb_order.id_transaksi, tb_user.nama_lengkap";
 
 
-                              $result = mysqli_query($con, $query);
+                      $result = mysqli_query($con, $query);
 
-                              // Iterasi dan tampilkan data dalam tabel
-                              while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<tr>";
-                                echo "<td>" . $row['id_transaksi'] . "</td>";
-                                echo "<td>" . $row['tgl_minta'] . "</td>";
-                                echo "<td>" . $row['tgl_ambil'] . "</td>";
-                                echo "<td>" . $row['kode_barang'] . "</td>";
-                                echo "<td>" . $row['nama_barang'] . "</td>";
-                                echo "<td>" . $row['jumlah_minta'] . "</td>";
-                                echo "</tr>";
-                              }
-                            ?>
-                          </tbody>
-                        </table>
+                      // Iterasi dan tampilkan data dalam tabel
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr>";
+                        echo "<td>" . $row['id_transaksi'] . "</td>";
+                        echo "<td>" . $row['tgl_minta'] . "</td>";
+                        echo "<td>" . $row['tgl_ambil'] . "</td>";
+                        echo "<td>" . $row['kode_barang'] . "</td>";
+                        echo "<td>" . $row['nama_barang'] . "</td>";
+                        echo "<td>" . $row['jumlah_minta'] . "</td>";
+                        echo "</tr>";
+                      }
+                      ?>
+                    </tbody>
+                  </table>
 
-                        <!-- Tutup koneksi ke database -->
-                        <?php
-                        db_disconnect($con);
-                        ?>
+                  <!-- Tutup koneksi ke database -->
+                  <?php
+                  db_disconnect($con);
+                  ?>
 
 
 
@@ -410,23 +343,23 @@ $idUser = $_SESSION['id_user'];
             </div><!-- End Top Selling -->
 
           </div>
-        </div><!-- End Left side columns -->
+      </div><!-- End Left side columns -->
 
-        <!-- Right side columns -->
-        <div class="col-lg-4">
+      <!-- Right side columns -->
+      <div class="col-lg-4">
 
-          
-          
+
+
 
       </div>
     </section>
 
   </main><!-- End #main -->
 
-<!-- ======= Footer ======= -->
-<footer id="footer" class="footer">
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
     <div class="copyright">
-      <strong>  SMART - </strong> <span>Sistem Manajemen dan Pelayanan Permintaan Barang Persediaan Terpadu</span>
+      <strong> SMART - </strong> <span>Sistem Manajemen dan Pelayanan Permintaan Barang Persediaan Terpadu</span>
     </div>
     <div class="credits">
       Made by <a>Tim Efektif</a>

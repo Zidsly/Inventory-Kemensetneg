@@ -4,13 +4,13 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <title>KELOLA USER - SMART</title>
+    <title>Lap.Buku Persediaan - SMART</title>
     <meta content="" name="description" />
     <meta content="" name="keywords" />
 
     <!-- Favicons -->
-    <link href="assets/img/logo2.png" rel="icon" />
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link href="../assets/img/logo2.png" rel="icon" />
+    <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect" />
@@ -21,18 +21,24 @@
 
     <!-- Vendor CSS Files -->
     <link
-      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      href="../assets/vendor/bootstrap/css/bootstrap.min.css"
       rel="stylesheet"
     />
     <link
-      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      href="../assets/vendor/bootstrap-icons/bootstrap-icons.css"
       rel="stylesheet"
     />
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
-    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet" />
-    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet" />
-    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
-    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet" />
+    <link
+      href="../assets/vendor/boxicons/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link href="../assets/vendor/quill/quill.snow.css" rel="stylesheet" />
+    <link href="../assets/vendor/quill/quill.bubble.css" rel="stylesheet" />
+    <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link
+      href="../assets/vendor/simple-datatables/style.css"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"
@@ -51,8 +57,8 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
       rel="stylesheet"
     />
-    <link href="assets/css/style.css" rel="stylesheet" />
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/style.css" rel="stylesheet" />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   </head>
 
   <style>
@@ -94,41 +100,9 @@
       align-items: center;
       height: 70vh;
     }
+
     .content {
       text-align: center;
-    }
-    .editKategoriPopup {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 9999;
-    }
-
-    .editKategoriPopup-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 5px;
-      width: 600px;
-    }
-
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      cursor: pointer;
-    }
-
-    .table-bordered {
-      color: white;
-      border-color: #892641;
     }
   </style>
 
@@ -137,7 +111,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
       <div class="d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center">
-          <img src="assets/img/logo2.png" alt="" />
+          <img src="../assets/img/logo2.png" alt="" />
           <span class="htsimpan"
             >SMART<br />
             <tb class="tbsmart"
@@ -232,7 +206,7 @@
               data-bs-toggle="dropdown"
             >
               <img
-                src="assets/img/profile-img.jpg"
+                src="../assets/img/profile-img.jpg"
                 alt="Profile"
                 class="rounded-circle"
               />
@@ -257,7 +231,7 @@
                   href="profil.html"
                 >
                   <i class="bi bi-person"></i>
-                  <span>Profile</span>
+                  <span>Profil</span>
                 </a>
               </li>
               <li>
@@ -388,7 +362,7 @@
         <li class="nav-item">
           <a class="nav-link collapsed" href="profil.html">
             <i class="bi bi-person"></i>
-            <span>Profile</span>
+            <span>Profil</span>
           </a>
         </li>
         <!-- End Profil Sidebar -->
@@ -398,128 +372,99 @@
 
     <main id="main" class="main">
       <div class="pagetitle">
-        <h1>Kelola User</h1>
+        <h1>Laporan Buku Persediaan</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="index.html">Kelola Data</a>
-            </li>
-            <li class="breadcrumb-item active">Kelola User</li>
+            <li class="breadcrumb-item"><a href="index.html">Laporan</a></li>
+            <li class="breadcrumb-item active">Laporan Buku Persediaan</li>
           </ol>
         </nav>
       </div>
       <!-- End Page Title -->
 
-      <div class="col-lg-8">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Buat Akun Baru</h5>
-
-            <form action="buatAkun.php" method="POST">
-              <!-- Form untuk Buat Akun Baru -->
-
-              <div class="row mb-3">
-                <label for="username" class="col-sm-2 col-form-label"
-                  >Nama Lengkap</label
-                >
-                <div class="col-sm-10">
-                  <input
-                    name="username"
-                    type="text"
-                    class="form-control"
-                    id="nama"
-                  />
-                </div>
-              </div>
-
-              <div class="row mb-3">
-                <label for="nama" class="col-sm-2 col-form-label"
-                  >Username</label
-                >
-                <div class="col-sm-10">
-                  <input
-                    name="nama_lengkap"
-                    type="text"
-                    class="form-control"
-                    id="username"
-                  />
-                </div>
-              </div>
-
-              <div class="row mb-3">
-                <label for="email" class="col-sm-2 col-form-label">Email</label>
-                <div class="col-sm-10">
-                  <input
-                    name="email"
-                    type="email"
-                    class="form-control"
-                    id="email"
-                  />
-                </div>
-              </div>
-
-              <div class="row mb-3">
-                <label for="nip" class="col-sm-2 col-form-label">NIP</label>
-                <div class="col-sm-10">
-                  <input
-                    name="nip"
-                    type="number"
-                    class="form-control"
-                    id="username"
-                  />
-                </div>
-              </div>
-
-              <div class="row mb-3">
-                <label for="Password" class="col-sm-2 col-form-label"
-                  >Password</label
-                >
-                <div class="col-sm-10">
-                  <input
-                    name="password"
-                    type="password"
-                    class="form-control"
-                    id="newPassword"
-                  />
-                </div>
-              </div>
-
-              <div class="row mb-3">
-                <label for="tipeAkun" class="col-sm-2 col-form-label"
-                  >Tipe Akun</label
-                >
-                <div class="col-sm-10">
-                  <select
-                    class="form-select"
-                    name="tipe_akun"
-                    id="kategori"
-                    required
-                  >
-                    <option value="">Pilih Jenis Akun</option>
-                    <option value="supervisor">Admin Supervisor</option>
-                    <option value="admin">Admin Gudang</option>
-                    <option value="user">User</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary">Buat Akun</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card -->
-      <section class="section">
+      <section class="section dashboard">
         <div class="row">
-          <div class="col-lg-12">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Tabel Data User</h5>
+          <!-- Riwayat Pengambilan -->
+          <div class="col-12">
+            <div class="card top-selling overflow-auto">
+              <div class="filter">
+                <a class="icon" href="#" data-bs-toggle="dropdown"
+                  ><i class="bi bi-three-dots"></i
+                ></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                  <li class="dropdown-header text-start">
+                    <h6>Filter</h6>
+                  </li>
 
-                <!--Tabel Data User-->
+                  <li><a class="dropdown-item" href="#">Bulan ini</a></li>
+                  <li><a class="dropdown-item" href="#">Triwulan ini</a></li>
+                  <li><a class="dropdown-item" href="#">Tahun ini</a></li>
+                </ul>
+              </div>
+
+              <div class="card-body pb-0">
+                <h5 class="card-title">
+                  Laporan Buku Persediaan <span>| Hari ini</span>
+                </h5>
+                <div class="row mb-3">
+                  <label for="kategori" class="col-sm-2 col-form-label"
+                    >Kategori Barang</label
+                  >
+                  <div class="col-sm-10">
+                    <select
+                      class="form-select"
+                      name="kategori"
+                      id="kategori"
+                      required
+                    >
+                      <option value="">Pilih Kategori</option>
+                      <option value="Alat Tulis Kantor">Barang Konsumsi</option>
+                      <option value="Bahan Kimia">
+                        Bahan untuk Pemeliharaan
+                      </option>
+                      <option value="Perlengkapan Kantor">Bahan baku</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="kategori" class="col-sm-2 col-form-label"
+                    >sub Kategori</label
+                  >
+                  <div class="col-sm-10">
+                    <select
+                      class="form-select"
+                      name="kategori"
+                      id="kategori"
+                      required
+                    >
+                      <option value="">Pilih Sub Kategori</option>
+                      <option value="Alat Tulis Kantor">Penjepit Kertas</option>
+                      <option value="Bahan Kimia">Penghapus</option>
+                      <option value="Perlengkapan Kantor">Buku Tulis</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="kategori" class="col-sm-2 col-form-label"
+                    >Nama Barang</label
+                  >
+                  <div class="col-sm-10">
+                    <select
+                      class="form-select"
+                      name="kategori"
+                      id="kategori"
+                      required
+                    >
+                      <option value="">Buku Tulis</option>
+                      <option value="Alat Tulis Kantor">Pulpen</option>
+                      <option value="Bahan Kimia">Pensil</option>
+                      <option value="Perlengkapan Kantor">Kertas A4</option>
+                    </select>
+                  </div>
+                </div>
+
                 <table
                   id="example"
                   class="table table-striped"
@@ -527,100 +472,41 @@
                 >
                   <thead>
                     <tr>
-                      <th>Username</th>
-                      <th>Nama Lengkap</th>
-                      <th>Email</th>
-                      <th>NIP</th>
-                      <th>Password</th>
-                      <th>Tipe Akun</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
+                      <th scope="col">No</th>
+                      <th scope="col">Tanggal</th>
+                      <th scope="col">User</th>
+                      <th scope="col">Keluar</th>
+                      <th scope="col">Saldo Persediaan</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>supervisor</td>
-                      <td>Admin Supervisor</td>
-                      <td>adminsupervisor@gmail.com</td>
-                      <td>000056788</td>
-                      <td>admin</td>
-                      <td>supervisor</td>
-                      <td>
-                        <button
-                          type="button"
-                          class="btn btn-primary"
-                          onclick="toggleEditPopup()"
-                        >
-                          Edit
-                        </button>
-                      </td>
-                      <td>
-                        <button
-                          type="button"
-                          class="btn btn-danger"
-                          style="margin-left: 10px"
-                        >
-                          Hapus
-                        </button>
-                      </td>
+                      <th>123200</th>
+                      <td>1-06-2023</td>
+                      <td>Davina</td>
+                      <td>2</td>
+                      <td>10</td>
                     </tr>
                     <tr>
-                      <td>admin1</td>
-                      <td>Admin Gudang</td>
-                      <td>admingudang@gmail.com</td>
-                      <td>000056782</td>
-                      <td>admin</td>
-                      <td>admin</td>
-                      <td>
-                        <button
-                          type="button"
-                          class="btn btn-primary"
-                          onclick="toggleEditPopup()"
-                        >
-                          Edit
-                        </button>
-                      </td>
-                      <td>
-                        <button
-                          type="button"
-                          class="btn btn-danger"
-                          style="margin-left: 10px"
-                        >
-                          Hapus
-                        </button>
-                      </td>
+                      <th>123204</th>
+                      <td>1-06-2023</td>
+                      <td>Zidan</td>
+                      <td>1</td>
+                      <td>5</td>
                     </tr>
                     <tr>
-                      <td>zids</td>
-                      <td>Muhammad Zidan Satrio</td>
-                      <td>m.zidan.satrio@gmail.com</td>
-                      <td>000056781</td>
-                      <td>xyz123</td>
-                      <td>user</td>
-                      <td>
-                        <button
-                          type="button"
-                          class="btn btn-primary"
-                          onclick="toggleEditPopup()"
-                        >
-                          Edit
-                        </button>
-                      </td>
-                      <td>
-                        <button
-                          type="button"
-                          class="btn btn-danger"
-                          style="margin-left: 10px"
-                        >
-                          Hapus
-                        </button>
-                      </td>
+                      <th>123210</th>
+                      <td>7-06-2023</td>
+                      <td>Fakhri</td>
+                      <td>3</td>
+                      <td>7</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
+          <!-- End Top Selling -->
         </div>
       </section>
     </main>
@@ -645,53 +531,22 @@
     ></a>
 
     <!-- Vendor JS Files -->
-    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/chart.js/chart.umd.js"></script>
-    <script src="assets/vendor/echarts/echarts.min.js"></script>
-    <script src="assets/vendor/quill/quill.min.js"></script>
-    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="../assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="../assets/vendor/echarts/echarts.min.js"></script>
+    <script src="../assets/vendor/quill/quill.min.js"></script>
+    <script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="../assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="../assets/vendor/php-email-form/validate.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
 
     <script>
-      function confirmDelete(username) {
-        if (
-          confirm(
-            "Apakah Anda yakin ingin menghapus pengguna dengan username " +
-              username +
-              "?"
-          )
-        ) {
-          // Kirim permintaan penghapusan data ke server
-          var xhr = new XMLHttpRequest();
-          xhr.open("POST", "delete_user.php", true);
-          xhr.setRequestHeader(
-            "Content-type",
-            "application/x-www-form-urlencoded"
-          );
-          xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-              // Tanggapi hasil penghapusan data
-              var response = JSON.parse(xhr.responseText);
-              if (response.success) {
-                // Refresh halaman setelah penghapusan berhasil
-                location.reload();
-              } else {
-                // Tampilkan pesan error jika penghapusan gagal
-                alert("Terjadi kesalahan saat menghapus pengguna.");
-              }
-            }
-          };
-          xhr.send("username=" + username);
-        }
-      }
       $(document).ready(function () {
         $("#example").DataTable();
       });

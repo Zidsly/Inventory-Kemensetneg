@@ -9,8 +9,8 @@
     <meta content="" name="keywords" />
 
     <!-- Favicons -->
-    <link href="assets/img/logo2.png" rel="icon" />
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link href="../assets/img/logo2.png" rel="icon" />
+    <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect" />
@@ -21,18 +21,24 @@
 
     <!-- Vendor CSS Files -->
     <link
-      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      href="../assets/vendor/bootstrap/css/bootstrap.min.css"
       rel="stylesheet"
     />
     <link
-      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      href="../assets/vendor/bootstrap-icons/bootstrap-icons.css"
       rel="stylesheet"
     />
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
-    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet" />
-    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet" />
-    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
-    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet" />
+    <link
+      href="../assets/vendor/boxicons/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link href="../assets/vendor/quill/quill.snow.css" rel="stylesheet" />
+    <link href="../assets/vendor/quill/quill.bubble.css" rel="stylesheet" />
+    <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link
+      href="../assets/vendor/simple-datatables/style.css"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"
@@ -51,23 +57,27 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
       rel="stylesheet"
     />
-    <link href="assets/css/style.css" rel="stylesheet" />
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/style.css" rel="stylesheet" />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   </head>
 
   <style>
     .header {
       background-color: #892641;
     }
+
     .sidebar {
       background-color: #892641;
+      top: 10%;
     }
+
     .tbsmart {
       font-size: 12px;
       margin-bottom: 0;
       font-weight: 600;
       color: #ffffff;
     }
+
     .pengumuman {
       font-size: 40px;
       font-weight: 700;
@@ -76,18 +86,22 @@
       text-align: center;
       padding-top: 100px;
     }
+
     .c-item {
       height: 360px;
     }
+
     .c-img {
       height: 100%;
       object-fit: cover;
       filter: brightness(0.6);
     }
+
     .img {
       height: 50%; /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
       width: auto; /* Menjaga rasio aspek gambar */
     }
+
     .container {
       display: flex;
       justify-content: center;
@@ -98,6 +112,10 @@
     .content {
       text-align: center;
     }
+
+    .card {
+      padding-bottom: 8px;
+    }
   </style>
 
   <body>
@@ -105,7 +123,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
       <div class="d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center">
-          <img src="assets/img/logo2.png" alt="" />
+          <img src="../assets/img/logo2.png" alt="" />
           <span class="htsimpan"
             >SMART<br />
             <tb class="tbsmart"
@@ -116,6 +134,7 @@
         <i class="bi bi-list toggle-sidebar-btn"></i>
       </div>
       <!-- End Logo -->
+
       <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
           <li class="nav-item d-block d-lg-none">
@@ -125,6 +144,13 @@
           </li>
           <!-- End Search Icon-->
 
+          <li class="nav-item dropdown">
+            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+              <i class="bi bi-bag"></i>
+              <span class="badge bg-primary badge-number">4</span> </a
+            ><!-- End Cart Icon -->
+          </li>
+
           <li class="nav-item dropdown pe-3">
             <a
               class="nav-link nav-profile d-flex align-items-center pe-0"
@@ -132,7 +158,7 @@
               data-bs-toggle="dropdown"
             >
               <img
-                src="assets/img/profile-img.jpg"
+                src="../assets/img/profile-img.jpg"
                 alt="Profile"
                 class="rounded-circle"
               />
@@ -158,7 +184,7 @@
                   href="profil.html"
                 >
                   <i class="bi bi-person"></i>
-                  <span>Profile</span>
+                  <span>Profil</span>
                 </a>
               </li>
               <li>
@@ -190,7 +216,7 @@
     <aside id="sidebar" class="sidebar">
       <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="indexUser.html">
+          <a class="nav-link" href="index.html">
             <i class="bi bi-grid"></i>
             <span>Beranda</span>
           </a>
@@ -198,16 +224,37 @@
         <!-- End Dashboard Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="permintaanbarang.html">
-            <i class="bi bi-journal-text"></i><span>Permintaan Barang</span>
+          <a
+            class="nav-link collapsed"
+            data-bs-target="#tables-nav"
+            data-bs-toggle="collapse"
+            href="#"
+          >
+            <i class="bi bi-journal-text"></i><span>Permintaan Barang</span
+            ><i class="bi bi-chevron-down ms-auto"></i>
           </a>
+          <ul
+            id="tables-nav"
+            class="nav-content collapse"
+            data-bs-parent="#sidebar-nav"
+          >
+            <li>
+              <a href="buatPermintaan.html">
+                <i class="bi"></i><span>Buat Permintaan</span>
+              </a>
+            </li>
+            <li>
+              <a href="statusPermintaan.html">
+                <i class="bi"></i><span>Status Permintaan</span>
+              </a>
+            </li>
+          </ul>
         </li>
-        <!-- End Status Data Nav -->
+        <!-- End Tables Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="laporanUser2.html">
-            <i class="bi bi-journal-text"></i
-            ><span>Laporan Permintaan User</span>
+          <a class="nav-link collapsed" href="laporan.html">
+            <i class="bi bi-journal-text"></i><span>Laporan</span>
           </a>
         </li>
         <!-- End Tables Nav -->
@@ -215,7 +262,7 @@
         <li class="nav-item">
           <a class="nav-link collapsed" href="profil.html">
             <i class="bi bi-person"></i>
-            <span>Profile</span>
+            <span>Profil</span>
           </a>
         </li>
         <!-- End Profile Page Nav -->
@@ -310,11 +357,8 @@
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
       <div class="copyright">
-        SMART
-        <strong><span>Sistem Informasi Manajemen Pengelolaan</span></strong>
-      </div>
-      <div class="credits">
-        Made by <a href="https://bootstrapmade.com/">Tim Efektif</a>
+        <strong>SMART</strong>
+        <span>Sistem Informasi Manajemen Pengelolaan</span>
       </div>
     </footer>
     <!-- End Footer -->
@@ -326,20 +370,20 @@
     ></a>
 
     <!-- Vendor JS Files -->
-    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/chart.js/chart.umd.js"></script>
-    <script src="assets/vendor/echarts/echarts.min.js"></script>
-    <script src="assets/vendor/quill/quill.min.js"></script>
-    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="../assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="../assets/vendor/echarts/echarts.min.js"></script>
+    <script src="../assets/vendor/quill/quill.min.js"></script>
+    <script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="../assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="../assets/vendor/php-email-form/validate.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
 
     <script>
       $(document).ready(function () {

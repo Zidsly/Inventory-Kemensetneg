@@ -6,13 +6,13 @@ $con = db_connect();
 // Periksa apakah tombol Pesan ditekan
 if (isset($_POST['pesan'])) {
     // Mendapatkan id_user dari session
-    $idUser = $_SESSION['id_user'];
+    $id_user = $_SESSION['id_user'];
 
     // Mendapatkan tanggal saat ini
     $tglMinta = date('Y-m-d');
 
     // Memasukkan data ke dalam tabel tb_order
-    $queryOrder = "INSERT INTO tb_order (id_user, tgl_minta) VALUES ('$idUser', '$tglMinta')";
+    $queryOrder = "INSERT INTO tb_order (id_user, tgl_minta) VALUES ('$id_user', '$tglMinta')";
     $resultOrder = mysqli_query($con, $queryOrder);
 
     if ($resultOrder) {
@@ -52,4 +52,3 @@ if (isset($_POST['pesan'])) {
     header("Location: hapusCart.php");
     exit;
 }
-?>

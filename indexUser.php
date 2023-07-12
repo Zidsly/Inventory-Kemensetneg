@@ -10,7 +10,9 @@ if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['r
 
 // Mendapatkan username dan id_user dari session
 $username = $_SESSION['username'];
-$idUser = $_SESSION['id_user'];
+$id_user = $_SESSION['id_user'];
+$nama_lengkap = $_SESSION['nama_lengkap'];
+$tipe_akun = $_SESSION['tipe_akun'];
 
 // Lanjutkan dengan konten halaman indexUser.php
 // ...
@@ -20,65 +22,48 @@ $idUser = $_SESSION['id_user'];
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
   <title>Buat Permintaan - SMART</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <meta content="" name="description" />
+  <meta content="" name="keywords" />
 
   <!-- Favicons -->
-  <link href="assets/img/logo2.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/logo2.png" rel="icon" />
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
   <!-- Google Fonts -->
-  <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet" />
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet" />
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet" />
 
   <!-- Template Main CSS File -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/css/style.css" rel="stylesheet" />
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Updated: May 30 2023 with Bootstrap v5.3.0
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
 
 <style>
-  .header {
-    background-color: #892641;
-  }
-
   .sidebar {
     background-color: #892641;
-    top: 10%;
-  }
-
-  .tbsmart {
-    font-size: 12px;
-    font-family: "Inter", sans-serif;
-    margin-bottom: 0;
-    font-weight: 600;
-    color: #ffffff;
-  }
-
-  .pengumuman {
-    font-size: 40px;
-    font-weight: 700;
-    color: #fff;
-    font-family: "Nunito", sans-serif;
-    text-align: center;
   }
 
   .container {
@@ -92,8 +77,28 @@ $idUser = $_SESSION['id_user'];
     text-align: center;
   }
 
+  .header {
+    background-color: #892641;
+  }
+
+  .tbsmart {
+    font-size: 12px;
+    margin-bottom: 0;
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .pengumuman {
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+    font-family: "Nunito", sans-serif;
+    text-align: center;
+    padding-top: 100px;
+  }
+
   .c-item {
-    height: 200px;
+    height: 360px;
   }
 
   .c-img {
@@ -102,17 +107,10 @@ $idUser = $_SESSION['id_user'];
     filter: brightness(0.6);
   }
 
-  .img {
-    height: 35%;
-    /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
-    width: auto;
-    /* Menjaga rasio aspek gambar */
-  }
-
+  /*** Category ***/
   .cat-item div {
-    background: #FFFFFF;
-    transition: .5s;
-
+    background: #ffffff;
+    transition: 0.5s;
   }
 
   .cat-item:hover div {
@@ -121,27 +119,26 @@ $idUser = $_SESSION['id_user'];
   }
 
   .cat-item div * {
-    transition: .5s;
+    transition: 0.5s;
   }
 
   .cat-item:hover div * {
     color: #892641 !important;
   }
 
-  .dropdown-container {
-    display: flex;
-    align-items: center;
-  }
-
   .dropdown {
+    display: inline-block;
     display: flex;
+    justify-content: space-around;
     align-items: center;
+    height: 40px;
+    padding: 32px 0;
   }
 
   .dropdown-btn {
     display: inline-block;
-    height: 50px;
-    font-size: 13px;
+    height: 40px;
+    font-size: 14px;
     font-weight: 600;
     background-color: #892641;
     border: 1px solid #892641;
@@ -151,7 +148,6 @@ $idUser = $_SESSION['id_user'];
     outline: none;
     padding: 8px 16px;
     border-radius: 24px;
-    margin-right: 10px;
   }
 
   .dropdown-btn:hover {
@@ -178,7 +174,9 @@ $idUser = $_SESSION['id_user'];
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 10px;
     max-height: 200px;
+    /* Atur ketinggian maksimum jika perlu */
     overflow-y: auto;
+    /* Aktifkan pengguliran jika perlu */
   }
 
   .subcategories a {
@@ -188,120 +186,33 @@ $idUser = $_SESSION['id_user'];
     color: #333;
   }
 
-  .search-bar {
-    display: flex;
-    align-items: center;
+  /*** Product ***/
+  .product-container {
+    padding: 24px;
   }
 
-  .search-form {
-    margin-bottom: 0;
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
   }
 
-  .search-bar input {
-    height: 48px;
-    width: 50px;
-    background: #892641;
-    border: 1px solid #892641;
-    border-radius: 50px;
-    box-sizing: border-box;
-    font-size: 14px;
-    color: #892641;
-    outline: none;
-    padding-left: 16px;
-    transition: .5s;
-  }
-
-  .search-bar input::placeholder {
-    opacity: 0;
-    color: #892641;
-  }
-
-  .search-bar:hover input {
-    width: 300px;
-    background: #fff;
-    border-radius: 24px;
-    z-index: 2;
-  }
-
-  .search-bar:hover .dropdown-btn {
-    display: none;
-  }
-
-  .search-bar:hover input::placeholder {
-    opacity: 100;
-  }
-
-  .search-bar i {
-    font-size: 20px;
-    color: #fff;
-    transition: .2s;
-    margin-left: 10px;
-  }
-
-  .search-bar:hover i {
-    color: #892641;
-    z-index: 3;
+  .product-card {
+    text-align: center;
   }
 
   .product-image {
-    width: 100%;
     height: 150px;
+    width: 100%;
     background-color: #ccc;
     margin-bottom: 10px;
     margin-top: 50px;
   }
 
-  .button-container2 {
-    position: fixed;
-    bottom: 50px;
-    right: 20px;
-  }
-
-  .button-container2 .btn {
-    background-color: transparent;
-    border: none;
-  }
-
-  .title2 {
-    text-align: center;
-    color: inherit;
-    font-weight: bold;
-    font-size: 24px;
-    color: #892641;
-    background-color: transparent;
-    border: none
-  }
-
-  .product-container {
-    max-height: 600px;
-    /* Atur tinggi maksimum sesuai kebutuhan */
-    margin-bottom: 20px;
-  }
-
-  .product-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: flex-start;
-  }
-
-  .product-card {
-    text-align: center;
-    width: calc(16.666% - 20px);
-    /* 6 kolom */
-  }
-
-  .product-image {
-    width: 100%;
-    height: 150px;
-    background-color: #ccc;
-    margin-bottom: 10px;
-  }
-
   .product-image img {
+    object-fit: cover;
     height: 150px;
     width: 100%;
-    object-fit: fill;
   }
 
   .product-title {
@@ -328,6 +239,85 @@ $idUser = $_SESSION['id_user'];
     color: #fff;
   }
 
+  .button-container2 {
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+  }
+
+  .button-container2 .btn {
+    background-color: transparent;
+    border: none;
+  }
+
+  .title2 {
+    text-align: center;
+    color: inherit;
+    font-weight: bold;
+    font-size: 24px;
+    color: #892641;
+    background-color: transparent;
+    border: none;
+  }
+
+  .search-bar {
+    position: relative;
+  }
+
+  .search-bar input {
+    height: 40px;
+    width: 50px;
+    background: #892641;
+    border: 1px solid #892641;
+    border-radius: 50px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #892641;
+    outline: none;
+    padding-left: 16px;
+    transition: 0.5s;
+  }
+
+  .search-bar input::placeholder {
+    opacity: 0;
+    color: #892641;
+  }
+
+  .search-bar:hover input {
+    width: 300px;
+    background: #fff;
+    border-radius: 24px;
+    z-index: 2;
+  }
+
+  .search-bar:hover .dropdown-btn {
+    display: none;
+  }
+
+  .search-bar:hover input::placeholder {
+    opacity: 100;
+  }
+
+  .search-bar i {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: #fff;
+    transition: 0.2s;
+  }
+
+  .search-bar:hover i {
+    color: #892641;
+    z-index: 3;
+  }
+
+  /* Dashboard */
+  .dashboard .card {
+    padding: 24px 16px;
+  }
+
   .pagination {
     display: flex;
     justify-content: center;
@@ -344,6 +334,11 @@ $idUser = $_SESSION['id_user'];
     margin: 0 5px;
     text-decoration: none;
     color: #333;
+    transition: 0.2s;
+  }
+
+  .pagination-link:hover {
+    color: #892641;
   }
 
   .pagination-link.active {
@@ -353,7 +348,7 @@ $idUser = $_SESSION['id_user'];
 
   .view-options {
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
     margin-bottom: 10px;
   }
@@ -452,11 +447,6 @@ $idUser = $_SESSION['id_user'];
 
       <ul class="d-flex align-items-center">
 
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
 
         <li class="nav-item dropdown">
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
@@ -509,13 +499,13 @@ $idUser = $_SESSION['id_user'];
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $username; ?></span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $nama_lengkap; ?></span> </a>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6><?php echo $username; ?></h6>
-              <span><?php echo $idUser; ?></span>
+              <span><?php echo $id_user; ?></span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -524,7 +514,7 @@ $idUser = $_SESSION['id_user'];
             <li>
               <a class="dropdown-item d-flex align-items-center" href="profilUser.php">
                 <i class="bi bi-person"></i>
-                <span>Profile</span>
+                <span>Profil</span>
               </a>
             </li>
             <li>
@@ -568,7 +558,7 @@ $idUser = $_SESSION['id_user'];
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-journal-text"></i><span></span>Kelola Permintaan</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-clipboard-check"></i><span>Kelola Permintaan</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
@@ -586,8 +576,7 @@ $idUser = $_SESSION['id_user'];
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="laporan.php">
-            <i class="bi bi-bar-chart"></i>
-            <span>Laporan</span>
+            <i class="bi bi-journal-text"></i><span>Laporan</span>
           </a>
         </li><!-- End Tables Nav -->
 
@@ -633,7 +622,7 @@ $idUser = $_SESSION['id_user'];
 
 
       </nav>
-      <br>
+
     </div><!-- End Page Title -->
 
     <div class="dropdown">
@@ -680,89 +669,86 @@ $idUser = $_SESSION['id_user'];
       ?>
       <!-- Start Search Bar -->
       <div class="search-bar">
-        <form class="search-form" method="POST" action="#">
+        <form class="search-form d-flex align-items-center" method="POST" action="#">
           <input type="text" name="query" placeholder="Cari barang">
         </form>
         <i class="bi bi-search"></i>
       </div>
+      <!-- End Search Bar -->
     </div>
-    <!-- End Search Bar -->
-    </div>
 
+    <div class="row">
+      <div class="col-12">
+        <div class="card top-selling overflow-auto product-container">
+          <div class="view-options">
+            <label for="view-options-select" class="view-options-label">Show</label>
+            <select id="view-options-select" class="view-options-select" onchange="changeLimit(this.value)">
+              <option value="12">12</option>
+              <option value="24">24</option>
+              <option value="48">48</option>
+              <option value="96">96</option>
+            </select>
+          </div>
 
+          <?php
+          require_once 'koneksi.php';
+          $con = db_connect();
 
+          // Mendapatkan jumlah produk yang akan ditampilkan
+          $limit = isset($_GET['limit']) ? intval($_GET['limit']) : 18;
 
+          // Query untuk mengambil data barang dari tabel tb_barang
+          $query = "SELECT * FROM tb_barang LIMIT $limit";
+          $result = mysqli_query($con, $query);
 
-    <br><br>
+          // Menghitung jumlah card yang sudah ditampilkan
+          $count = 0;
 
-    <div class="product-container">
-      <div class="view-options">
-        <label for="view-options-select" class="view-options-label">Show</label>
-        <select id="view-options-select" class="view-options-select" onchange="changeLimit(this.value)">
-          <option value="12">12</option>
-          <option value="24">24</option>
-          <option value="48">48</option>
-          <option value="96">96</option>
-        </select>
-      </div>
-
-      <?php
-      require_once 'koneksi.php';
-      $con = db_connect();
-
-      // Mendapatkan jumlah produk yang akan ditampilkan
-      $limit = isset($_GET['limit']) ? intval($_GET['limit']) : 18;
-
-      // Query untuk mengambil data barang dari tabel tb_barang
-      $query = "SELECT * FROM tb_barang LIMIT $limit";
-      $result = mysqli_query($con, $query);
-
-      // Menghitung jumlah card yang sudah ditampilkan
-      $count = 0;
-
-      echo '<div class="product-grid">';
-
-      while ($row = mysqli_fetch_assoc($result)) {
-        echo '<div class="product-card">';
-        echo '<div class="product-image">';
-        echo '<img src="' . $row['gambar'] . '" alt="' . $row['nama'] . '">';
-        echo '</div>';
-        echo '<div class="product-title">' . $row['nama'] . '</div>';
-        echo '<form action="tambahCart.php" method="POST">';
-        echo '<input type="hidden" name="username" value="' . $_SESSION['username'] . '">';
-        echo '<input type="hidden" name="id_user" value="' . $_SESSION['id_user'] . '">';
-        echo '<input type="hidden" name="id_barang" value="' . $row['id_barang'] . '">';
-        echo '<input type="hidden" name="nama" value="' . $row['nama'] . '">';
-        echo '<button type="submit" class="product-button">Tambahkan</button>';
-        echo '</form>';
-        echo '</div>';
-
-        $count++;
-
-        // Membuat baris baru setelah 6 kolom terpenuhi
-        if ($count % 6 === 0) {
-          echo '</div>';
           echo '<div class="product-grid">';
-        }
-      }
 
-      echo '</div>';
+          while ($row = mysqli_fetch_assoc($result)) {
+            echo '<div class="product-card">';
+            echo '<div class="product-image">';
+            echo '<img src="' . $row['gambar'] . '" alt="' . $row['nama'] . '">';
+            echo '</div>';
+            echo '<div class="product-title">' . $row['nama'] . '</div>';
+            echo '<form action="tambahCart.php" method="POST">';
+            echo '<input type="hidden" name="username" value="' . $_SESSION['username'] . '">';
+            echo '<input type="hidden" name="id_user" value="' . $_SESSION['id_user'] . '">';
+            echo '<input type="hidden" name="id_barang" value="' . $row['id_barang'] . '">';
+            echo '<input type="hidden" name="nama" value="' . $row['nama'] . '">';
+            echo '<button type="submit" class="product-button">Tambahkan</button>';
+            echo '</form>';
+            echo '</div>';
 
-      // Menampilkan opsi "Next Page"
-      echo '<div class="pagination">';
-      echo '<div class="pagination-wrapper">';
-      echo '<a href="?limit=12" class="pagination-link">1</a>';
-      echo '<a href="?limit=24" class="pagination-link">2</a>';
-      echo '<a href="?limit=48" class="pagination-link">3</a>';
-      echo '<a href="?limit=72" class="pagination-link">4</a>';
-      echo '<a href="?limit=96" class="pagination-link">5</a>';
-      echo '<a href="?limit=all" class="pagination-link active">All</a>';
-      echo '</div>';
-      echo '</div>';
+            $count++;
 
-      // Menutup koneksi
-      db_disconnect($con);
-      ?>
+            // Membuat baris baru setelah 6 kolom terpenuhi
+            if ($count % 6 === 0) {
+              echo '</div>';
+              echo '<div class="product-grid">';
+            }
+          }
+
+          echo '</div>';
+
+          // Menampilkan opsi "Next Page"
+          echo '<div class="pagination">';
+          echo '<div class="pagination-wrapper">';
+          echo '<a href="?limit=12" class="pagination-link">1</a>';
+          echo '<a href="?limit=24" class="pagination-link">2</a>';
+          echo '<a href="?limit=48" class="pagination-link">3</a>';
+          echo '<a href="?limit=72" class="pagination-link">4</a>';
+          echo '<a href="?limit=96" class="pagination-link">5</a>';
+          echo '<a href="?limit=all" class="pagination-link active">All</a>';
+          echo '</div>';
+          echo '</div>';
+
+          // Menutup koneksi
+          db_disconnect($con);
+          ?>
+        </div>
+      </div>
     </div>
 
     </footer><!-- End Footer -->

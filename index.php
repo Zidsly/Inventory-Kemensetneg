@@ -9,47 +9,46 @@ if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['r
 
 // Mendapatkan username dan id_user dari session
 $username = $_SESSION['username'];
-$idUser = $_SESSION['id_user'];
+$id_user = $_SESSION['id_user'];
+$nama_lengkap = $_SESSION['nama_lengkap'];
+$tipe_akun = $_SESSION['tipe_akun'];
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
   <title>BERANDA - SMART</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <meta content="" name="description" />
+  <meta content="" name="keywords" />
 
   <!-- Favicons -->
-  <link href="assets/img/logo2.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/logo2.png" rel="icon" />
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
   <!-- Google Fonts -->
-  <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet" />
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet" />
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
 
   <!-- Template Main CSS File -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/css/style.css" rel="stylesheet" />
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 
 <style>
@@ -106,9 +105,8 @@ $idUser = $_SESSION['id_user'];
   }
 
   .cat-item div {
-    background: #FFFFFF;
-    transition: .5s;
-
+    background: #ffffff;
+    transition: 0.5s;
   }
 
   .cat-item:hover div {
@@ -117,16 +115,13 @@ $idUser = $_SESSION['id_user'];
   }
 
   .cat-item div * {
-    transition: .5s;
+    transition: 0.5s;
   }
 
   .cat-item:hover div * {
     color: #892641 !important;
   }
 </style>
-
-
-
 
 <body>
 
@@ -137,103 +132,27 @@ $idUser = $_SESSION['id_user'];
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo2.png" alt="">
         <span class="htsimpan">SMART<br>
-          <tb class="tbsmart">Sistem Informasi Manajemen Pengelolaan</tb>
+          <tb class="tbsmart">Sistem Manajemen dan Pelayanan Permintaan Barang Persediaan Terpadu</tb>
         </span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Cari barang" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
-
     <nav class="header-nav ms-auto">
 
       <ul class="d-flex align-items-center">
-
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
-
-
-
-        <li class="nav-item dropdown">
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-            <li class="dropdown-header">
-              You have 3 new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Anna Nelson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>6 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>David Muldon</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>8 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="dropdown-footer">
-              <a href="#">Show all messages</a>
-            </li>
-
-          </ul><!-- End Messages Dropdown Items -->
-
-        </li><!-- End Messages Nav -->
 
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $username; ?></span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $nama_lengkap; ?></span> </a>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6> <?php echo $username; ?></h6>
-              <span><?php echo $idUser; ?></span>
+              <span><?php echo $id_user; ?></span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -242,13 +161,12 @@ $idUser = $_SESSION['id_user'];
             <li>
               <a class="dropdown-item d-flex align-items-center" href="profil.html">
                 <i class="bi bi-person"></i>
-                <span>Profile</span>
+                <span>Profil</span>
               </a>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
-
 
             <li>
               <hr class="dropdown-divider">
@@ -272,88 +190,88 @@ $idUser = $_SESSION['id_user'];
   <!-- ======= Sidebar ======= -->
 
   <aside id="sidebar" class="sidebar">
-
     <ul class="sidebar-nav" id="sidebar-nav">
-
       <li class="nav-item">
-        <a class="nav-link " href="index.php">
+        <a class="nav-link" href="index.php">
           <i class="bi bi-grid"></i>
           <span>Beranda</span>
         </a>
-      </li><!-- End Beranda Sidebar -->
+      </li>
+      <!-- End Beranda Sidebar -->
 
-      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-bar-chart"></i><span></span>Kelola Data</span><i class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-          <a href="kelolaKategori.php">
-            <i class="bi bi-circle"></i><span>Kelola Kategori</span>
-          </a>
-        </li>
-        <li>
-          <a href="inputBarangBaru.php">
-            <i class="bi bi-circle"></i><span>Input Barang Baru</span>
-          </a>
-        </li>
-        <li>
-          <a href="inputStok.php">
-            <i class="bi bi-circle"></i><span>Input Stok</span>
-          </a>
-        </li>
-        <li>
-          <a href="kelolaUser.php">
-            <i class="bi bi-circle"></i><span>Kelola User</span>
-          </a>
-        </li>
-      </ul>
-      </li><!-- End Kelola Data Sidebar -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-bar-chart"></i><span>Kelola Data</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="kelolaKategori.php">
+              <i class="bi"></i><span>Kelola Kategori</span>
+            </a>
+          </li>
+          <li>
+            <a href="inputBarangBaru.php">
+              <i class="bi"></i><span>Input Barang Baru</span>
+            </a>
+          </li>
+          <li>
+            <a href="inputStok.php">
+              <i class="bi"></i><span>Input Stok</span>
+            </a>
+          </li>
+          <li>
+            <a href="kelolaUser.php">
+              <i class="bi"></i><span>Kelola User</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!-- End Kelola Data Sidebar -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="kelolaPermintaan.php">
           <i class="bi bi-clipboard-check"></i><span>Kelola Permintaan</span>
         </a>
-      </li><!-- End Kelola Permintaan Data Sidebar -->
+      </li>
+      <!-- End Kelola Permintaan Data Sidebar -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
           <li>
             <a href="laporanUser.php">
-              <i class="bi bi-circle"></i><span>Laporan Permintaan User</span>
+              <i class="bi"></i><span>Laporan Permintaan User</span>
             </a>
           </li>
           <li>
             <a href="laporanMutasi.php">
-              <i class="bi bi-circle"></i><span>Laporan Mutasi Barang Persediaan</span>
+              <i class="bi"></i><span>Laporan Mutasi Barang Persediaan</span>
             </a>
           </li>
           <li>
             <a href="laporanBuku.php">
-              <i class="bi bi-circle"></i><span>Laporan Buku Persediaan</span>
+              <i class="bi"></i><span>Laporan Buku Persediaan</span>
             </a>
           </li>
           <li>
             <a href="laporanPersediaan.php">
-              <i class="bi bi-circle"></i><span>Laporan Persediaan Masuk</span>
+              <i class="bi"></i><span>Laporan Persediaan Masuk</span>
             </a>
           </li>
         </ul>
-      </li><!-- End Laporan Sidebar -->
-
-
+      </li>
+      <!-- End Laporan Sidebar -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="profil.php">
           <i class="bi bi-person"></i>
           <span>Profil</span>
         </a>
-      </li><!-- End Profil Sidebar -->
-
+      </li>
+      <!-- End Profil Sidebar -->
     </ul>
-
   </aside>
   <!-- End Sidebar-->
 

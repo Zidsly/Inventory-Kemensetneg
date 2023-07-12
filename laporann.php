@@ -34,7 +34,7 @@ session_start();
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-  
+
 
   <!-- Template Main CSS File -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -47,20 +47,20 @@ session_start();
   .header {
     background-color: #892641;
   }
-  
+
   .sidebar {
     background-color: #892641;
     top: 10%;
   }
-  
-    .tbsmart{
+
+  .tbsmart {
     font-size: 12px;
     margin-bottom: 0;
     font-weight: 600;
     color: #ffffff;
   }
-  
-  .pengumuman{
+
+  .pengumuman {
     font-size: 40px;
     font-weight: 700;
     color: #fff;
@@ -68,29 +68,31 @@ session_start();
     text-align: center;
     padding-top: 100px;
   }
-  
+
   .c-item {
     height: 360px;
   }
-  
+
   .c-img {
     height: 100%;
     object-fit: cover;
     filter: brightness(0.6);
   }
-  
+
   .img {
-    height: 50%; /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
-    width: auto; /* Menjaga rasio aspek gambar */
+    height: 50%;
+    /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
+    width: auto;
+    /* Menjaga rasio aspek gambar */
   }
-  
+
   .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70vh;
   }
-          
+
   .content {
     text-align: center;
   }
@@ -112,21 +114,17 @@ session_start();
       <a href="indexUser.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo2.png" alt="">
         <span class="htsimpan">SMART<br>
-          <tb class="tbsmart">Sistem Informasi Manajemen Pengelolaan</tb></span>
+          <tb class="tbsmart">Sistem Manajemen dan Pelayanan Permintaan Barang Persediaan Terpadu</tb>
+        </span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
 
     <nav class="header-nav ms-auto">
-      
+
       <ul class="d-flex align-items-center">
 
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
 
         <li class="nav-item dropdown">
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
@@ -208,66 +206,7 @@ session_start();
 
         </li><!-- End Notification Nav -->
 
-        <li class="nav-item dropdown">
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-            <li class="dropdown-header">
-              You have 3 new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Anna Nelson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>6 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>David Muldon</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>8 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="dropdown-footer">
-              <a href="#">Show all messages</a>
-            </li>
-
-          </ul><!-- End Messages Dropdown Items -->
-
-        </li><!-- End Messages Nav -->
 
         <li class="nav-item dropdown pe-3">
 
@@ -288,7 +227,7 @@ session_start();
             <li>
               <a class="dropdown-item d-flex align-items-center" href="profilUser.php">
                 <i class="bi bi-person"></i>
-                <span>Profile</span>
+                <span>Profil</span>
               </a>
             </li>
             <li>
@@ -317,9 +256,9 @@ session_start();
 
 
 
-    <!-- ======= Sidebar ======= -->
+  <!-- ======= Sidebar ======= -->
 
-    <aside id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -358,7 +297,7 @@ session_start();
       <li class="nav-item">
         <a class="nav-link collapsed" href="profilUser.php">
           <i class="bi bi-person"></i>
-          <span>Profile</span>
+          <span>Profil</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
@@ -379,7 +318,7 @@ session_start();
         </ol>
 
 
-    </nav>
+      </nav>
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
@@ -451,13 +390,13 @@ session_start();
             </div><!-- End Top Selling -->
 
           </div>
-        </div><!-- End Left side columns -->
+      </div><!-- End Left side columns -->
 
-        <!-- Right side columns -->
-        <div class="col-lg-4">
+      <!-- Right side columns -->
+      <div class="col-lg-4">
 
-          
-          
+
+
 
       </div>
     </section>
@@ -491,13 +430,11 @@ session_start();
   <script src="assets/js/main.js"></script>
 
   <script>
-    $(document).ready(function () {
-    $('#example').DataTable();
+    $(document).ready(function() {
+      $('#example').DataTable();
     });
   </script>
-  
+
 </body>
 
 </html>
-
-

@@ -3,7 +3,7 @@ require_once 'koneksi.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Mendapatkan nilai input dari form
-  $id_user = $_POST['idUser'];
+  $id_user = $_POST['id_user'];
   $id_barang = $_POST['namaBarang'];
   $tgl_pembelian = $_POST['inputDate'];
   $jumlah_input = $_POST['inputNumber'];
@@ -33,4 +33,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Menutup koneksi database
   db_disconnect($con);
 }
-?>
