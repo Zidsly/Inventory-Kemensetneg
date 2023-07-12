@@ -1,8 +1,15 @@
 <?php
 session_start();
 
-// Setelah session_start(), Anda dapat melanjutkan dengan kode Anda.
-// ...
+// Periksa apakah pengguna masuk atau memiliki peran yang sesuai
+if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['role'] !== 'user')) {
+    header("Location: login.php");
+    exit();
+}
+
+// Mendapatkan username dan id_user dari session
+$username = $_SESSION['username'];
+$idUser = $_SESSION['id_user'];
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +41,7 @@ session_start();
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-  
+
 
   <!-- Template Main CSS File -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -47,19 +54,15 @@ session_start();
   .header {
     background-color: #892641;
   }
-  
-  .sidebar {
-    background-color: #892641;
-    top: 10%;
-  }
-  
-    .tbsmart{
+  .sidebar{
+      background-color: #892641;
+    }
+  .tbsmart{
     font-size: 12px;
     margin-bottom: 0;
     font-weight: 600;
     color: #ffffff;
   }
-  
   .pengumuman{
     font-size: 40px;
     font-weight: 700;
@@ -68,36 +71,28 @@ session_start();
     text-align: center;
     padding-top: 100px;
   }
-  
-  .c-item {
-    height: 360px;
+    .c-item {
+  height: 360px;
   }
-  
   .c-img {
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.6);
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
   }
-  
   .img {
-    height: 50%; /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
-    width: auto; /* Menjaga rasio aspek gambar */
-  }
-  
-  .container {
+  height: 50%; /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
+  width: auto; /* Menjaga rasio aspek gambar */
+    }
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70vh;
-  }
-          
-  .content {
-    text-align: center;
-  }
+    }
 
-  .card {
-    padding-bottom: 8px;
-  }
+.content {
+    text-align: center;
+    }
 </style>
 
 
@@ -109,7 +104,7 @@ session_start();
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="indexUser.php" class="logo d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo2.png" alt="">
         <span class="htsimpan">SMART<br>
           <tb class="tbsmart">Sistem Informasi Manajemen Pengelolaan</tb></span>
@@ -117,9 +112,15 @@ session_start();
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Cari barang" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
-      
+
       <ul class="d-flex align-items-center">
 
         <li class="nav-item d-block d-lg-none">
@@ -129,12 +130,7 @@ session_start();
         </li><!-- End Search Icon-->
 
         <li class="nav-item dropdown">
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bag"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Cart Icon -->
 
-        <li class="nav-item dropdown">
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
             <span class="badge bg-primary badge-number">4</span>
@@ -273,20 +269,20 @@ session_start();
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">User</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $username; ?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Zidan</h6>
-              <span>User</span>
+              <h6><?php echo $username; ?></h6>
+              <span><?php echo $idUser; ?></span>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="profilUser.php">
+              <a class="dropdown-item d-flex align-items-center" href="profil.html">
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
               </a>
@@ -314,8 +310,6 @@ session_start();
     </nav><!-- End Icons Navigation -->
 
   </header><!-- End Header -->
-
-
 
     <!-- ======= Sidebar ======= -->
 
@@ -366,18 +360,15 @@ session_start();
 
   </aside><!-- End Sidebar-->
 
-
-
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Laporan Permintaan User</h1>
+      <h1>Laporan</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="indexUser.php">Laporan</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Laporan</a></li>
           <li class="breadcrumb-item active">Laporan Permintaan User</li>
         </ol>
-
 
     </nav>
     </div><!-- End Page Title -->
@@ -399,51 +390,86 @@ session_start();
                   <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <li class="dropdown-header text-start">
                       <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Hari ini</a></li>
-                    <li><a class="dropdown-item" href="#">Bulan ini</a></li>
-                    <li><a class="dropdown-item" href="#">Tahun ini</a></li>
+                      <li><a class="dropdown-item" href="?tgl_minta=hari_ini">Hari ini</a></li>
+                    <li><a class="dropdown-item" href="?tgl_minta=bulan_ini">Bulan ini</a></li>
+                    <li><a class="dropdown-item" href="?tgl_minta=tahun_ini">Tahun ini</a></li>
                   </ul>
                 </div>
 
                 <div class="card-body pb-0">
                   <h5 class="card-title">Laporan Permintaan User <span>| Hari ini</span></h5>
 
-                  <table id="example" class="table table-striped" style="width:100%">
-                    <thead>
-                      <tr>
-                        <th scope="col">Nomor Transaksi</th>
-                        <th scope="col">Tanggal Transaksi</th>
-                        <th scope="col">Kode Barang</th>
-                        <th scope="col">Nama Barang</th>
-                        <th scope="col">Jumlah</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th>123200</th>
-                        <td>20-06-2023</td>
-                        <td>000008</td>
-                        <td>Spidol</td>
-                        <td>5</td>
-                      </tr>
-                      <tr>
-                        <th>123204</th>
-                        <td>19-06-2023</td>
-                        <td>000013</td>
-                        <td>Lakban Bening</td>
-                        <td>6</td>
-                      </tr>
-                      <tr>
-                        <th>123210</th>
-                        <td>18-06-2023</td>
-                        <td>000017</td>
-                        <td>Label Bagasi</td>
-                        <td>2</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                      <!-- Koneksi ke database -->
+                        <?php
+                        require_once 'koneksi.php';
+                        $con = db_connect();
+                        ?>
+
+                        <!-- Tabel Data -->
+                        <table id="example" class="table table-striped" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>ID Transaksi</th>
+                              <th>Pemesan</th>
+                              <th>Tanggal Minta</th>
+                              <th>Tanggal Ambil</th>
+                              <th>Kode Barang</th>
+                              <th>Nama Barang</th>
+                              <th>Jumlah Minta</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+
+                              // Mengambil nilai parameter tgl_minta dari URL
+                              $tglMinta = isset($_GET['tgl_minta']) ? $_GET['tgl_minta'] : 'hari_ini';
+
+                              // Mengecek jika tgl_minta tidak ada atau bernilai 'hari_ini', maka default ke hari ini
+                              if (!$tglMinta || $tglMinta == 'hari_ini') {
+                                $tglMinta = 'hari_ini';
+                                $tglFilter = "DATE(tb_order.tgl_minta) = CURDATE()";
+                              } else if ($tglMinta == 'bulan_ini') {
+                                $tglFilter = "MONTH(tb_order.tgl_minta) = MONTH(CURDATE())";
+                              } else if ($tglMinta == 'tahun_ini') {
+                                $tglFilter = "YEAR(tb_order.tgl_minta) = YEAR(CURDATE())";
+                              }
+
+                              // Query untuk mendapatkan data dari tabel
+                              $query = "SELECT tb_order.id_transaksi, tb_order.tgl_minta, tb_order.tgl_ambil, tb_user.nama_lengkap, 
+                              GROUP_CONCAT(tb_barang.kode_barang) AS kode_barang,
+                              GROUP_CONCAT(tb_barang.nama) AS nama_barang,
+                              GROUP_CONCAT(tb_order_detail.jumlah_minta) AS jumlah_minta
+                              FROM tb_order
+                              JOIN tb_order_detail ON tb_order.id_transaksi = tb_order_detail.id_transaksi
+                              JOIN tb_barang ON tb_order_detail.id_barang = tb_barang.id_barang
+                              JOIN tb_user ON tb_order.id_user = tb_user.id_user
+                              GROUP BY tb_order.id_transaksi, tb_user.nama_lengkap";
+
+
+                              $result = mysqli_query($con, $query);
+
+                              // Iterasi dan tampilkan data dalam tabel
+                              while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>";
+                                echo "<td>" . $row['id_transaksi'] . "</td>";
+                                echo "<td>" . $row['nama_lengkap'] . "</td>";
+                                echo "<td>" . $row['tgl_minta'] . "</td>";
+                                echo "<td>" . $row['tgl_ambil'] . "</td>";
+                                echo "<td>" . $row['kode_barang'] . "</td>";
+                                echo "<td>" . $row['nama_barang'] . "</td>";
+                                echo "<td>" . $row['jumlah_minta'] . "</td>";
+                                echo "</tr>";
+                              }
+                            ?>
+                          </tbody>
+                        </table>
+
+                        <!-- Tutup koneksi ke database -->
+                        <?php
+                        db_disconnect($con);
+                        ?>
+
+
 
                 </div>
 
@@ -453,23 +479,20 @@ session_start();
           </div>
         </div><!-- End Left side columns -->
 
-        <!-- Right side columns -->
-        <div class="col-lg-4">
-
-          
-          
 
       </div>
     </section>
 
   </main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
     <div class="copyright">
-      <strong>SMART</strong> <span>Sistem Informasi Manajemen Pengelolaan</span>
+      <strong>  SMART - </strong> <span> Sistem Informasi Manajemen Pengelolaan</span>
     </div>
-
+    <div class="credits">
+      Made by <a>Tim Efektif</a>
+    </div>
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

@@ -1,15 +1,8 @@
 <?php
 session_start();
 
-// Periksa apakah pengguna masuk atau memiliki peran yang sesuai
-if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['role'] !== 'supervisor')) {
-    header("Location: login.php");
-    exit();
-}
-
-// Mendapatkan username dan id_user dari session
-$username = $_SESSION['username'];
-$idUser = $_SESSION['id_user'];
+// Setelah session_start(), Anda dapat melanjutkan dengan kode Anda.
+// ...
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +34,7 @@ $idUser = $_SESSION['id_user'];
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-
+  
 
   <!-- Template Main CSS File -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -54,15 +47,19 @@ $idUser = $_SESSION['id_user'];
   .header {
     background-color: #892641;
   }
-  .sidebar{
-      background-color: #892641;
-    }
-  .tbsmart{
+  
+  .sidebar {
+    background-color: #892641;
+    top: 10%;
+  }
+  
+    .tbsmart{
     font-size: 12px;
     margin-bottom: 0;
     font-weight: 600;
     color: #ffffff;
   }
+  
   .pengumuman{
     font-size: 40px;
     font-weight: 700;
@@ -71,28 +68,36 @@ $idUser = $_SESSION['id_user'];
     text-align: center;
     padding-top: 100px;
   }
-    .c-item {
-  height: 360px;
+  
+  .c-item {
+    height: 360px;
   }
+  
   .c-img {
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.6);
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
   }
+  
   .img {
-  height: 50%; /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
-  width: auto; /* Menjaga rasio aspek gambar */
-    }
-.container {
+    height: 50%; /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
+    width: auto; /* Menjaga rasio aspek gambar */
+  }
+  
+  .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70vh;
-    }
-
-.content {
+  }
+          
+  .content {
     text-align: center;
-    }
+  }
+
+  .card {
+    padding-bottom: 8px;
+  }
 </style>
 
 
@@ -104,7 +109,7 @@ $idUser = $_SESSION['id_user'];
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="indexUser.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo2.png" alt="">
         <span class="htsimpan">SMART<br>
           <tb class="tbsmart">Sistem Informasi Manajemen Pengelolaan</tb></span>
@@ -112,15 +117,9 @@ $idUser = $_SESSION['id_user'];
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Cari barang" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
-
+      
       <ul class="d-flex align-items-center">
 
         <li class="nav-item d-block d-lg-none">
@@ -130,7 +129,12 @@ $idUser = $_SESSION['id_user'];
         </li><!-- End Search Icon-->
 
         <li class="nav-item dropdown">
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bag"></i>
+            <span class="badge bg-primary badge-number">4</span>
+          </a><!-- End Cart Icon -->
 
+        <li class="nav-item dropdown">
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
             <span class="badge bg-primary badge-number">4</span>
@@ -269,20 +273,20 @@ $idUser = $_SESSION['id_user'];
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $username; ?></span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">User</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6><?php echo $username; ?></h6>
-              <span><?php echo $idUser; ?></span>
+              <h6>Zidan</h6>
+              <span>User</span>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="profil.html">
+              <a class="dropdown-item d-flex align-items-center" href="profilUser.php">
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
               </a>
@@ -311,108 +315,58 @@ $idUser = $_SESSION['id_user'];
 
   </header><!-- End Header -->
 
-<!-- ======= Sidebar ======= -->
-
-<aside id="sidebar" class="sidebar">
-
-<ul class="sidebar-nav" id="sidebar-nav">
-
-  <li class="nav-item">
-    <a class="nav-link " href="index.php">
-      <i class="bi bi-grid"></i>
-      <span>Beranda</span>
-    </a>
-  </li><!-- End Beranda Sidebar -->
-
-  <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-    <i class="bi bi-bar-chart"></i><span></span>Kelola Data</span><i class="bi bi-chevron-down ms-auto"></i>
-  </a>
-  <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-    <li>
-      <a href="kelolaKategori.php">
-        <i class="bi bi-circle"></i><span>Kelola Kategori</span>
-      </a>
-    </li>
-    <li>
-      <a href="inputBarangBaru.php">
-        <i class="bi bi-circle"></i><span>Input Barang Baru</span>
-      </a>
-    </li>
-    <li>
-      <a href="inputStok.php">
-        <i class="bi bi-circle"></i><span>Input Stok</span>
-      </a>
-    </li>
-    <li>
-      <a href="kelolaUser.php">
-        <i class="bi bi-circle"></i><span>Kelola User</span>
-      </a>
-    </li>
-  </ul>
-</li><!-- End Kelola Data Sidebar -->
 
 
-  <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Kelola Permintaan</span><i class="bi bi-chevron-down ms-auto"></i>
+    <!-- ======= Sidebar ======= -->
+
+    <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="indexUser.php">
+          <i class="bi bi-grid"></i>
+          <span>Beranda</span>
         </a>
-        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span></span>Permintaan Barang</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="kelolaPermintaan.php">
-              <i class="bi bi-circle"></i><span>Cek Permintaan</span>
+            <a href="permintaanBarang.php">
+              <i class="bi"></i><span>Buat Permintaan</span>
             </a>
           </li>
           <li>
-            <a href="kelolaPermintaan2.php">
-              <i class="bi bi-circle"></i><span>Cek Stok Barang</span>
+            <a href="statusPermintaan.php">
+              <i class="bi"></i><span>Status Permintaan</span>
             </a>
           </li>
         </ul>
-      </li>
+      </li><!-- End Tables Nav -->
 
-  <!-- End Kelola Permintaan Data Sidebar -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="laporan.php">
+          <i class="bi bi-bar-chart"></i>
+          <span>Laporan</span>
+        </a>
+      </li><!-- End Tables Nav -->
 
-  <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-journal-text"></i><span>Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-    <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-      <li>
-        <a href="laporanUser.php">
-          <i class="bi bi-circle"></i><span>Laporan Permintaan User</span>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="profilUser.php">
+          <i class="bi bi-person"></i>
+          <span>Profile</span>
         </a>
-      </li>
-      <li>
-        <a href="laporanMutasi.php">
-          <i class="bi bi-circle"></i><span>Laporan Mutasi Barang Persediaan</span>
-        </a>
-      </li>
-      <li>
-        <a href="laporanBuku.php">
-          <i class="bi bi-circle"></i><span>Laporan Buku Persediaan</span>
-        </a>
-      </li>
-      <li>
-        <a href="laporanPersediaan.php">
-          <i class="bi bi-circle"></i><span>Laporan Persediaan Masuk</span>
-        </a>
-      </li>
+      </li><!-- End Profile Page Nav -->
+
     </ul>
-  </li><!-- End Laporan Sidebar -->
+
+  </aside><!-- End Sidebar-->
 
 
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="profil.php">
-      <i class="bi bi-person"></i>
-      <span>Profil</span>
-    </a>
-  </li><!-- End Profil Sidebar -->
-
-</ul>
-
-</aside>
-<!-- End Sidebar-->
 
   <main id="main" class="main">
 
@@ -420,7 +374,7 @@ $idUser = $_SESSION['id_user'];
       <h1>Laporan Permintaan User</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Laporan</a></li>
+          <li class="breadcrumb-item"><a href="indexUser.php">Laporan</a></li>
           <li class="breadcrumb-item active">Laporan Permintaan User</li>
         </ol>
 
@@ -445,86 +399,51 @@ $idUser = $_SESSION['id_user'];
                   <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <li class="dropdown-header text-start">
                       <h6>Filter</h6>
-                      <li><a class="dropdown-item" href="?tgl_minta=hari_ini">Hari ini</a></li>
-                    <li><a class="dropdown-item" href="?tgl_minta=bulan_ini">Bulan ini</a></li>
-                    <li><a class="dropdown-item" href="?tgl_minta=tahun_ini">Tahun ini</a></li>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Hari ini</a></li>
+                    <li><a class="dropdown-item" href="#">Bulan ini</a></li>
+                    <li><a class="dropdown-item" href="#">Tahun ini</a></li>
                   </ul>
                 </div>
 
                 <div class="card-body pb-0">
                   <h5 class="card-title">Laporan Permintaan User <span>| Hari ini</span></h5>
 
-                      <!-- Koneksi ke database -->
-                        <?php
-                        require_once 'koneksi.php';
-                        $con = db_connect();
-                        ?>
-
-                        <!-- Tabel Data -->
-                        <table id="example" class="table table-striped" style="width:100%">
-                          <thead>
-                            <tr>
-                              <th>ID Transaksi</th>
-                              <th>Pemesan</th>
-                              <th>Tanggal Minta</th>
-                              <th>Tanggal Ambil</th>
-                              <th>Kode Barang</th>
-                              <th>Nama Barang</th>
-                              <th>Jumlah Minta</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <?php
-
-                              // Mengambil nilai parameter tgl_minta dari URL
-                              $tglMinta = isset($_GET['tgl_minta']) ? $_GET['tgl_minta'] : 'hari_ini';
-
-                              // Mengecek jika tgl_minta tidak ada atau bernilai 'hari_ini', maka default ke hari ini
-                              if (!$tglMinta || $tglMinta == 'hari_ini') {
-                                $tglMinta = 'hari_ini';
-                                $tglFilter = "DATE(tb_order.tgl_minta) = CURDATE()";
-                              } else if ($tglMinta == 'bulan_ini') {
-                                $tglFilter = "MONTH(tb_order.tgl_minta) = MONTH(CURDATE())";
-                              } else if ($tglMinta == 'tahun_ini') {
-                                $tglFilter = "YEAR(tb_order.tgl_minta) = YEAR(CURDATE())";
-                              }
-
-                              // Query untuk mendapatkan data dari tabel
-                              $query = "SELECT tb_order.id_transaksi, tb_order.tgl_minta, tb_order.tgl_ambil, tb_user.nama_lengkap, 
-                              GROUP_CONCAT(tb_barang.kode_barang) AS kode_barang,
-                              GROUP_CONCAT(tb_barang.nama) AS nama_barang,
-                              GROUP_CONCAT(tb_order_detail.jumlah_minta) AS jumlah_minta
-                              FROM tb_order
-                              JOIN tb_order_detail ON tb_order.id_transaksi = tb_order_detail.id_transaksi
-                              JOIN tb_barang ON tb_order_detail.id_barang = tb_barang.id_barang
-                              JOIN tb_user ON tb_order.id_user = tb_user.id_user
-                              GROUP BY tb_order.id_transaksi, tb_user.nama_lengkap";
-
-
-                              $result = mysqli_query($con, $query);
-
-                              // Iterasi dan tampilkan data dalam tabel
-                              while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<tr>";
-                                echo "<td>" . $row['id_transaksi'] . "</td>";
-                                echo "<td>" . $row['nama_lengkap'] . "</td>";
-                                echo "<td>" . $row['tgl_minta'] . "</td>";
-                                echo "<td>" . $row['tgl_ambil'] . "</td>";
-                                echo "<td>" . $row['kode_barang'] . "</td>";
-                                echo "<td>" . $row['nama_barang'] . "</td>";
-                                echo "<td>" . $row['jumlah_minta'] . "</td>";
-                                echo "</tr>";
-                              }
-                            ?>
-                          </tbody>
-                        </table>
-
-                        <!-- Tutup koneksi ke database -->
-                        <?php
-                        db_disconnect($con);
-                        ?>
-
-
+                  <table id="example" class="table table-striped" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nomor Transaksi</th>
+                        <th scope="col">Tanggal Transaksi</th>
+                        <th scope="col">Kode Barang</th>
+                        <th scope="col">Nama Barang</th>
+                        <th scope="col">Jumlah</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>123200</th>
+                        <td>20-06-2023</td>
+                        <td>000008</td>
+                        <td>Spidol</td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <th>123204</th>
+                        <td>19-06-2023</td>
+                        <td>000013</td>
+                        <td>Lakban Bening</td>
+                        <td>6</td>
+                      </tr>
+                      <tr>
+                        <th>123210</th>
+                        <td>18-06-2023</td>
+                        <td>000017</td>
+                        <td>Label Bagasi</td>
+                        <td>2</td>
+                      </tr>
+                    </tbody>
+                  </table>
 
                 </div>
 
@@ -534,20 +453,23 @@ $idUser = $_SESSION['id_user'];
           </div>
         </div><!-- End Left side columns -->
 
+        <!-- Right side columns -->
+        <div class="col-lg-4">
+
+          
+          
 
       </div>
     </section>
 
   </main><!-- End #main -->
 
-<!-- ======= Footer ======= -->
-<footer id="footer" class="footer">
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
     <div class="copyright">
-      <strong>  SMART - </strong> <span> Sistem Informasi Manajemen Pengelolaan</span>
+      <strong>SMART</strong> <span>Sistem Informasi Manajemen Pengelolaan</span>
     </div>
-    <div class="credits">
-      Made by <a>Tim Efektif</a>
-    </div>
+
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
