@@ -552,26 +552,23 @@ session_start();
     if (currentValue > 1) {
       jumlahInput.value = currentValue - 1;
     }
-    });
 
     tambahBtn.addEvedocument.addEventListener('DOMContentLoaded', function() {
-          var kurangBtn = document.querySelector('.btn-kurang-'.$cartItem["id_barang"]
-              ');
-              var tambahBtn = document.querySelector('.btn-tambah-'.$cartItem["id_barang"].
-                  ');
-                  var jumlahInput = document.querySelector('input[name="jumlah_minta['.$cartItem["id_barang"].
-                    ']"]');
+      var kurangBtn = document.querySelector('.btn-kurang-'.$cartItem["id_barang"]);
+      var tambahBtn = document.querySelector('.btn-tambah-'.$cartItem["id_barang"]);
+      var jumlahInput = document.querySelector('input[name="jumlah_minta"]'.$cartItem["id_barang"]);
 
-                  // Set nilai awal form control menjadi 1
-                  jumlahInput.value = 1;
+      // Set nilai awal form control menjadi 1
+      jumlahInput.value = 1;
 
-                  kurangBtn.addEventListener('click', function() {
-                    var currentValue = parseInt(jumlahInput.value);
-                    ntListener('click', function() {
-                      var currentValue = parseInt(jumlahInput.value);
-                      jumlahInput.value = currentValue + 1;
-                    });
-                  });
+      kurangBtn.addEventListener('click', function() {
+        var currentValue = parseInt(jumlahInput.value);
+        ntListener('click', function() {
+          var currentValue = parseInt(jumlahInput.value);
+          jumlahInput.value = currentValue + 1;
+        });
+      });
+    });
   </script>
 </body>
 
