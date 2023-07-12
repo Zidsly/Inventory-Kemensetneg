@@ -4,9 +4,18 @@ session_start();
 // Periksa apakah pengguna masuk atau memiliki peran yang sesuai
 if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['role'] !== 'user')) {
     header("Location: login.php");
-    exit();
+    exit();
 }
 
+
+// Mendapatkan username dan id_user dari session
+$username = $_SESSION['username'];
+$id_user = $_SESSION['id_user'];
+$nama_lengkap = $_SESSION['nama_lengkap'];
+$tipe_akun = $_SESSION['tipe_akun']
+
+// Lanjutkan dengan konten halaman indexUser.php
+// ...
 ?>
 
 <!DOCTYPE html>
@@ -101,7 +110,7 @@ if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['r
                 class="rounded-circle"
               />
               <span class="d-none d-md-block dropdown-toggle ps-2"
-                >Admin</span
+                ><?php echo $nama_lengkap;?></span
               > </a
             ><!-- End Profile Iamge Icon -->
 
@@ -109,8 +118,8 @@ if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['r
               class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
             >
               <li class="dropdown-header">
-                <h6>Kevin</h6>
-                <span>User</span>
+                <h6><?php echo $username;?></h6>
+                <span><?php echo $tipe_akun;?></span>
               </li>
               <li>
                 <hr class="dropdown-divider" />
@@ -244,20 +253,20 @@ if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['r
                     <h5 class="card-title">Profile Details</h5>
 
                     <div class="row">
-                      <div class="col-lg-3 col-md-4 label">Nama</div>
-                      <div class="col-lg-9 col-md-8">(nama)</div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-lg-3 col-md-4 label">Email</div>
-                      <div class="col-lg-9 col-md-8">(email)</div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-lg-3 col-md-4 label">Username</div>
-                      <div class="col-lg-9 col-md-8">(username)</div>
-                    </div>
+                    <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $nama_lengkap;?></div>
                   </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Email</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $id_user;?></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Username</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $username;?></div>
+                  </div>
+                </div>
 
                   <div
                     class="tab-pane fade profile-edit pt-3"
@@ -269,7 +278,7 @@ if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['r
                         <label
                           for="nama"
                           class="col-md-4 col-lg-3 col-form-label"
-                          >Nama</label
+                          >Nama Lengkap</label
                         >
                         <div class="col-md-8 col-lg-9">
                           <input
@@ -277,7 +286,7 @@ if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['r
                             type="text"
                             class="form-control"
                             id="nama"
-                            value="Kevin Anderson"
+                            value="<?php echo $nama_lengkap;?>"
                           />
                         </div>
                       </div>
@@ -294,24 +303,7 @@ if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['r
                             type="text"
                             class="form-control"
                             id="username"
-                            value="Kevin Anderson"
-                          />
-                        </div>
-                      </div>
-
-                      <div class="row mb-3">
-                        <label
-                          for="Email"
-                          class="col-md-4 col-lg-3 col-form-label"
-                          >Email</label
-                        >
-                        <div class="col-md-8 col-lg-9">
-                          <input
-                            name="email"
-                            type="email"
-                            class="form-control"
-                            id="Email"
-                            value="kevin@gmail.com"
+                            value="<?php echo $username;?>"
                           />
                         </div>
                       </div>
@@ -334,7 +326,7 @@ if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['r
                         <label
                           for="currentPassword"
                           class="col-md-4 col-lg-3 col-form-label"
-                          >Current Password</label
+                          >Password lama</label
                         >
                         <div class="col-md-8 col-lg-9">
                           <input
@@ -350,7 +342,7 @@ if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['r
                         <label
                           for="newPassword"
                           class="col-md-4 col-lg-3 col-form-label"
-                          >New Password</label
+                          >Password Baru</label
                         >
                         <div class="col-md-8 col-lg-9">
                           <input
@@ -366,7 +358,7 @@ if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['r
                         <label
                           for="renewPassword"
                           class="col-md-4 col-lg-3 col-form-label"
-                          >Re-enter New Password</label
+                          >Ulangi Password Baru</label
                         >
                         <div class="col-md-8 col-lg-9">
                           <input

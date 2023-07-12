@@ -20,6 +20,7 @@ if ($hasil) {
             $_SESSION['username'] = $username;
             $_SESSION['masuk'] = true;
             $_SESSION['id_user'] = $data['id_user']; // untuk menyimpan id_user pada session
+            $_SESSION['nama_lengkap'] = $data['nama_lengkap']; // untuk menyimpan id_user pada session
 
             // Cek tipe_akun pengguna
             $tipeAkun = $data['tipe_akun'];

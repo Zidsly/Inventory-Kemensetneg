@@ -1,8 +1,20 @@
 <?php
 session_start();
 
-// Setelah session_start(), Anda dapat melanjutkan dengan kode Anda.
-// ...
+// Periksa apakah pengguna masuk atau memiliki peran yang sesuai
+if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['role'] !== 'user')) {
+    header("Location: login.php");
+    exit();
+}
+
+
+// Mendapatkan username dan id_user dari session
+$username = $_SESSION['username'];
+$idUser = $_SESSION['id_user'];
+$namaLengkap = $_SESSION['nama_lengkap'];
+
+// Lanjutkan dengan konten halaman indexUser.php
+// ...
 ?>
 
 
@@ -363,17 +375,17 @@ session_start();
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
-                    <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $username;?></div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8">Kevin@gmail.com</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $userID;?></div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Username</div>
-                    <div class="col-lg-9 col-md-8">kevin12</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $nama_lengkap;?></div>
                   </div>
                 </div>
 
