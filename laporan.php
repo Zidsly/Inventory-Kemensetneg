@@ -265,7 +265,7 @@ $idUser = $_SESSION['id_user'];
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="permintaanBarang.php">
-              <i class="bi"></i><span>Buat Permintaan</span>
+              <i class="bi"></i><span>Keranjang Permintaan</span>
             </a>
           </li>
           <li>
@@ -426,7 +426,7 @@ $idUser = $_SESSION['id_user'];
 <!-- ======= Footer ======= -->
 <footer id="footer" class="footer">
     <div class="copyright">
-      <strong>  SMART - </strong> <span> Sistem Informasi Manajemen Pengelolaan</span>
+      <strong>  SMART - </strong> <span>Sistem Manajemen dan Pelayanan Permintaan Barang Persediaan Terpadu</span>
     </div>
     <div class="credits">
       Made by <a>Tim Efektif</a>

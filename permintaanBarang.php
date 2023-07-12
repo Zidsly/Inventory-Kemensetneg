@@ -386,7 +386,7 @@ session_start();
       <li class="nav-item">
         <a class="nav-link " href="indexUser.php">
           <i class="bi bi-grid"></i>
-          <span>Beranda</span>
+          <span>Buat Permintaan</span>
         </a>
       </li><!-- End Beranda Sidebar -->
 
@@ -397,7 +397,7 @@ session_start();
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="permintaanBarang.php">
-              <i class="bi"></i><span>Buat Permintaan</span>
+              <i class="bi"></i><span>Keranjang Permintaan</span>
             </a>
           </li>
           <li>

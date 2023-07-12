@@ -23,7 +23,7 @@ $idUser = $_SESSION['id_user'];
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>BERANDA - SMART</title>
+  <title>Buat Permintaan - SMART</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -67,6 +67,7 @@ $idUser = $_SESSION['id_user'];
 
   .tbsmart {
     font-size: 12px;
+    font-family: "Inter", sans-serif;
     margin-bottom: 0;
     font-weight: 600;
     color: #ffffff;
@@ -271,7 +272,6 @@ $idUser = $_SESSION['id_user'];
     border: none
   }
 
-
   .product-container {
     max-height: 600px;
     /* Atur tinggi maksimum sesuai kebutuhan */
@@ -442,7 +442,7 @@ $idUser = $_SESSION['id_user'];
       <a href="indexUser.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo2.png" alt="">
         <span class="htsimpan">SMART<br>
-          <tb class="tbsmart">Sistem Informasi Manajemen Pengelolaan</tb>
+          <tb class="tbsmart">Sistem Manajemen dan Pelayanan Permintaan Barang Persediaan Terpadu</tb>
         </span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -562,7 +562,7 @@ $idUser = $_SESSION['id_user'];
         <li class="nav-item">
           <a class="nav-link " href="indexUser.php">
             <i class="bi bi-grid"></i>
-            <span>Beranda</span>
+            <span>Buat Permintaan</span>
           </a>
         </li><!-- End Dashboard Nav -->
 
@@ -573,7 +573,7 @@ $idUser = $_SESSION['id_user'];
           <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
               <a href="permintaanBarang.php">
-                <i class="bi"></i><span>Buat Permintaan</span>
+                <i class="bi"></i><span>Keranjang Permintaan</span>
               </a>
             </li>
             <li>
@@ -607,11 +607,11 @@ $idUser = $_SESSION['id_user'];
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Beranda</h1>
+      <h1>Buat Permintaan</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="indexUser.php">Home</a></li>
-          <li class="breadcrumb-item active">Beranda</li>
+          <li class="breadcrumb-item active">Buat Permintaan</li>
         </ol>
 
 
