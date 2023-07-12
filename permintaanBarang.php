@@ -608,7 +608,7 @@ echo '                </table>';
 echo '';
 echo '                <div class="row">';
 echo '                  <div class="col-md d-flex justify-content-start">';
-echo '                    <a href="index.html" class="btn btn-danger rounded-pill px-4 me-0 me-xl-3">Kembali</a>';
+echo '                    <a href="indexUser.php" class="btn btn-danger rounded-pill px-4 me-0 me-xl-3">Kembali</a>';
 echo '<button type="submit" name="pesan" class="btn btn-primary rounded-pill px-4 me-3">Pesan</button>';
 
 
