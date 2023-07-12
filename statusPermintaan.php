@@ -367,13 +367,13 @@ $idUser = $_SESSION['id_user'];
 
   <!-- End #main -->
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
     <div class="copyright">
-      SMART <strong><span>Sistem Informasi Manajemen Pengelolaan</span></strong>
+      <strong>  SMART - </strong> <span>Sistem Manajemen dan Pelayanan Permintaan Barang Persediaan Terpadu</span>
     </div>
     <div class="credits">
-      Made by <a href="https://bootstrapmade.com/">Tim Efektif</a>
+      Made by <a>Tim Efektif</a>
     </div>
   </footer><!-- End Footer -->
 

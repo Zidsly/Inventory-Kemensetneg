@@ -195,7 +195,6 @@ $tipe_akun = $_SESSION['tipe_akun']
       </ul>
     </aside>
     <!-- End Sidebar-->
-
     <main id="main" class="main">
       <div class="pagetitle">
         <h1>Profil</h1>
@@ -207,7 +206,6 @@ $tipe_akun = $_SESSION['tipe_akun']
         </nav>
       </div>
       <!-- End Page Title -->
-
       <section class="section profile">
         <div class="row">
           <div class="col-xl-11">
