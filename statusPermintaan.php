@@ -357,10 +357,16 @@ $idUser = $_SESSION['id_user'];
 
   </aside>
   <!-- End Sidebar-->
-
-
   <main id="main" class="main">
-
+    <div class="pagetitle">
+    <h1>Status Permintaan</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="indexUser.php">Status</a></li>
+          <li class="breadcrumb-item active">Status Permintaan</li>
+        </ol>
+      </nav>
+    </div>
       <!-- Card Data permintaan -->
       <section class="section">
         <div class="row">
@@ -374,7 +380,6 @@ $idUser = $_SESSION['id_user'];
                   <thead>
                     <tr>
                       <th>Id Transaksi</th>
-                      <th>Pemesan</th>
                       <th>Tanggal</th>
                       <th>Nama Barang</th>
                       <th>Jumlah</th>
@@ -388,7 +393,7 @@ $idUser = $_SESSION['id_user'];
                     require_once 'koneksi.php';
                     $con = db_connect();
 
-                    $query = "SELECT tb_order.id_transaksi, tb_user.nama_lengkap, GROUP_CONCAT(tb_barang.nama SEPARATOR '<br>') AS nama, tb_order.tgl_minta, GROUP_CONCAT(tb_order_detail.jumlah_minta SEPARATOR '<br>') AS jumlah_minta, tb_order.status
+                    $query = "SELECT tb_order.id_transaksi, GROUP_CONCAT(tb_barang.nama SEPARATOR '<br>') AS nama, tb_order.tgl_minta, GROUP_CONCAT(tb_order_detail.jumlah_minta SEPARATOR '<br>') AS jumlah_minta, tb_order.status
                     FROM tb_order
                     JOIN tb_user ON tb_order.id_user = tb_user.id_user
                     JOIN tb_order_detail ON tb_order.id_transaksi = tb_order_detail.id_transaksi
@@ -402,7 +407,6 @@ $idUser = $_SESSION['id_user'];
                     while ($row = mysqli_fetch_assoc($result)) {
                       echo "<tr>";
                       echo "<td>" . $row['id_transaksi'] . "</td>";
-                      echo "<td>" . $row['nama_lengkap'] . "</td>";
                       echo "<td>" . $row['tgl_minta'] . "</td>";
                       echo "<td>" . $row['nama'] . "</td>";
                       echo "<td>" . $row['jumlah_minta'] . "</td>";
