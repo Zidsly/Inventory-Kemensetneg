@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2023 at 09:17 AM
+-- Generation Time: Jul 12, 2023 at 02:45 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -43,7 +43,9 @@ CREATE TABLE `tb_barang` (
 --
 
 INSERT INTO `tb_barang` (`id_barang`, `kode_barang`, `id_kategori`, `nama_kategori`, `nama`, `deskripsi`, `gambar`, `tgl_masuk`) VALUES
-(15, 1, 5000, 'Barang Konsumsi', 'Ballpoint Balliner Merah', '', 0x6173736574732f696d672f62616c6c7061696e74206d657261682e6a7067, '2023-07-10');
+(15, 1, 5000, 'Barang Konsumsi', 'Ballpoint Balliner Merah', '', 0x6173736574732f696d672f62616c6c7061696e74206d657261682e6a7067, '2023-07-10'),
+(16, 2, 5001, 'Barang Konsumsi', 'Binder Clip Kenko 107', '', 0x6173736574732f696d672f322e6a706567, '2023-07-12'),
+(17, 3, 5003, 'Barang Konsumsi', 'Penghapus Pensil Staedler', '', 0x6173736574732f696d672f612e6a7067, '2023-07-12');
 
 -- --------------------------------------------------------
 
@@ -128,41 +130,41 @@ CREATE TABLE `tb_kategori` (
 --
 
 INSERT INTO `tb_kategori` (`id_kategori`, `nama_kategori`, `kode_kategori`, `nama_sub_kategori`, `kode_sub_kategori`) VALUES
-(5000, 'Barang Konsumsi', 117111, 'Alat Tulis', 1010301001),
-(5001, 'Barang Konsumsi', 117111, 'Penjepit Kertas', 1010301003),
-(5003, 'Barang Konsumsi', 117111, 'Penghapus/Korektor', 1010301004),
-(5004, 'Barang Konsumsi', 117111, 'Buku Tulis', 1010301005),
-(5005, 'Barang Konsumsi', 117111, 'Ordner Dan Map', 1010301006),
-(5006, 'Barang Konsumsi', 117111, 'Penggaris', 1010301007),
-(5007, 'Barang Konsumsi', 117111, 'Cutter', 1010301008),
-(5008, 'Barang Konsumsi', 117111, 'Pita Mesin Ketik', 1010301009),
-(5009, 'Barang Konsumsi', 117111, 'Alat Perekat', 1010301010),
-(5010, 'Barang Konsumsi', 117111, 'Alat Tulis Kantor Lainnya', 1010301999),
-(5011, 'Barang Konsumsi', 117111, 'Kertas HVS', 1010302001),
-(5012, 'Barang Konsumsi', 117111, 'Berbagai Kertas', 1010302002),
-(5013, 'Barang Konsumsi', 117111, 'Amplop', 1010302004),
-(5014, 'Barang Konsumsi', 117111, 'Kop Surat', 1010302005),
-(5015, 'Barang Konsumsi', 117111, 'Plat Cetak', 1010303003),
-(5016, 'Barang Konsumsi', 117111, 'Film Cetak', 1010303006),
-(5017, 'Barang Konsumsi', 117111, 'USB/Flash Disk', 1010304006),
-(5018, 'Barang Konsumsi', 117111, 'Mouse', 1010304010),
-(5019, 'Barang Konsumsi', 117111, 'Bahan Komputer Lainnya', 1010304999),
-(5020, 'Barang Konsumsi', 117111, 'Kabel Listrik', 1010306001),
-(5021, 'Barang Konsumsi', 117111, 'Lampu Listrik', 1010306002),
-(5022, 'Barang Konsumsi', 117111, 'Stop Kontak', 1010306003),
-(5023, 'Barang Konsumsi', 117111, 'Batu Baterai', 1010306010),
-(5024, 'Barang Konsumsi', 117111, 'Alat Listrik Lainnya', 1010306999),
-(5025, 'Barang Konsumsi', 117111, 'Perlengkapan Lapangan', 1010307007),
-(5026, 'Barang Konsumsi', 117111, 'Meterai', 1010309001),
-(5027, 'Barang Konsumsi', 117111, 'Alat Penunjang Kedokteran', 1010310001),
-(5028, 'Barang Konsumsi', 117111, 'Alat Penunjang Kegiatan Kantor', 1010310999),
-(5029, 'Barang Konsumsi', 117111, 'Bahan Penunjang Kegiatan Kantor', 1010311999),
-(5030, 'Barang Konsumsi', 117111, 'Obat Lainnya', 1010314999),
-(5031, 'Bahan untuk Pemeliharaan', 117113, 'Pengharum Ruangan', 1010305012),
+(5000, 'Konsumsi', 117111, 'Alat Tulis', 1010301001),
+(5001, 'Konsumsi', 117111, 'Penjepit Kertas', 1010301003),
+(5003, 'Konsumsi', 117111, 'Penghapus/Korektor', 1010301004),
+(5004, 'Konsumsi', 117111, 'Buku Tulis', 1010301005),
+(5005, 'Konsumsi', 117111, 'Ordner Dan Map', 1010301006),
+(5006, 'Konsumsi', 117111, 'Penggaris', 1010301007),
+(5007, 'Konsumsi', 117111, 'Cutter', 1010301008),
+(5008, 'Konsumsi', 117111, 'Pita Mesin Ketik', 1010301009),
+(5009, 'Konsumsi', 117111, 'Alat Perekat', 1010301010),
+(5010, 'Konsumsi', 117111, 'Alat Tulis Kantor Lainnya', 1010301999),
+(5011, 'Konsumsi', 117111, 'Kertas HVS', 1010302001),
+(5012, 'Konsumsi', 117111, 'Berbagai Kertas', 1010302002),
+(5013, 'Konsumsi', 117111, 'Amplop', 1010302004),
+(5014, 'Konsumsi', 117111, 'Kop Surat', 1010302005),
+(5015, 'Konsumsi', 117111, 'Plat Cetak', 1010303003),
+(5016, 'Konsumsi', 117111, 'Film Cetak', 1010303006),
+(5017, 'Konsumsi', 117111, 'USB/Flash Disk', 1010304006),
+(5018, 'Konsumsi', 117111, 'Mouse', 1010304010),
+(5019, 'Konsumsi', 117111, 'Bahan Komputer Lainnya', 1010304999),
+(5020, 'Konsumsi', 117111, 'Kabel Listrik', 1010306001),
+(5021, 'Konsumsi', 117111, 'Lampu Listrik', 1010306002),
+(5022, 'Konsumsi', 117111, 'Stop Kontak', 1010306003),
+(5023, 'Konsumsi', 117111, 'Batu Baterai', 1010306010),
+(5024, 'Konsumsi', 117111, 'Alat Listrik Lainnya', 1010306999),
+(5025, 'Konsumsi', 117111, 'Perlengkapan Lapangan', 1010307007),
+(5026, 'Konsumsi', 117111, 'Meterai', 1010309001),
+(5027, 'Konsumsi', 117111, 'Alat Penunjang Kedokteran', 1010310001),
+(5028, 'Konsumsi', 117111, 'Alat Penunjang Kegiatan Kantor', 1010310999),
+(5029, 'Konsumsi', 117111, 'Bahan Penunjang Kegiatan Kantor', 1010311999),
+(5030, 'Konsumsi', 117111, 'Obat Lainnya', 1010314999),
+(5031, 'Pemeliharaan', 117113, 'Pengharum Ruangan', 1010305012),
 (5033, 'Bahan Baku', 117131, 'Bahan Kimia Cair', 1010102002),
 (5034, 'Suku Cadang', 117114, 'Alat Studio dan Komunikasi', 1010206999),
-(5035, 'Persediaan Berjaga', 117191, 'Cadangan Pangan', 1010601002),
-(5036, 'Persediaan Lainnya', 117199, 'Obat Lainnya', 1010401999);
+(5035, 'Penjagaan', 117191, 'Cadangan Pangan', 1010601002),
+(5036, 'Lainnya', 117199, 'Obat Lainnya', 1010401999);
 
 -- --------------------------------------------------------
 
@@ -305,7 +307,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_barang`
 --
 ALTER TABLE `tb_barang`
-  MODIFY `id_barang` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_barang` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tb_cek_stok`
