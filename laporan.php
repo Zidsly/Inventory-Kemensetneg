@@ -54,15 +54,19 @@ $idUser = $_SESSION['id_user'];
   .header {
     background-color: #892641;
   }
-  .sidebar{
-      background-color: #892641;
-    }
-  .tbsmart{
+  
+  .sidebar {
+    background-color: #892641;
+    top: 10%;
+  }
+  
+    .tbsmart{
     font-size: 12px;
     margin-bottom: 0;
     font-weight: 600;
     color: #ffffff;
   }
+  
   .pengumuman{
     font-size: 40px;
     font-weight: 700;
@@ -71,26 +75,30 @@ $idUser = $_SESSION['id_user'];
     text-align: center;
     padding-top: 100px;
   }
-    .c-item {
-  height: 360px;
+  
+  .c-item {
+    height: 360px;
   }
+  
   .c-img {
   height: 100%;
   object-fit: cover;
   filter: brightness(0.6);
   }
+  
   .img {
-  height: 50%; /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
-  width: auto; /* Menjaga rasio aspek gambar */
-    }
-.container {
+    height: 50%; /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
+    width: auto; /* Menjaga rasio aspek gambar */
+  }
+  
+  .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70vh;
-    }
-
-.content {
+  }
+          
+  .content {
     text-align: center;
     }
 </style>
@@ -107,7 +115,8 @@ $idUser = $_SESSION['id_user'];
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo2.png" alt="">
         <span class="htsimpan">SMART<br>
-          <tb class="tbsmart">Sistem Informasi Manajemen Pengelolaan</tb></span>
+          <tb class="tbsmart">Sistem Informasi Manajemen Pengelolaan</tb>
+        </span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -131,6 +140,7 @@ $idUser = $_SESSION['id_user'];
 
         <li class="nav-item dropdown">
 
+        <li class="nav-item dropdown">
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
             <span class="badge bg-primary badge-number">4</span>
@@ -311,9 +321,9 @@ $idUser = $_SESSION['id_user'];
 
   </header><!-- End Header -->
 
-    <!-- ======= Sidebar ======= -->
+  <!-- ======= Sidebar ======= -->
 
-    <aside id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -369,6 +379,7 @@ $idUser = $_SESSION['id_user'];
           <li class="breadcrumb-item"><a href="index.html">Laporan</a></li>
           <li class="breadcrumb-item active">Laporan Permintaan User</li>
         </ol>
+
 
     </nav>
     </div><!-- End Page Title -->
@@ -479,6 +490,11 @@ $idUser = $_SESSION['id_user'];
           </div>
         </div><!-- End Left side columns -->
 
+        <!-- Right side columns -->
+        <div class="col-lg-4">
+
+          
+          
 
       </div>
     </section>
@@ -514,13 +530,11 @@ $idUser = $_SESSION['id_user'];
   <script src="assets/js/main.js"></script>
 
   <script>
-    $(document).ready(function () {
-    $('#example').DataTable();
+    $(document).ready(function() {
+      $('#example').DataTable();
     });
   </script>
-  
+
 </body>
 
 </html>
-
-
