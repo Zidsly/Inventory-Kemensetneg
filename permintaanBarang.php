@@ -33,7 +33,7 @@ session_start();
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-  
+
 
   <!-- Template Main CSS File -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -44,8 +44,7 @@ session_start();
 </head>
 
 <style>
-
-.products{
+  .products {
     width: 50%;
     align-self: center;
     height: 10%;
@@ -53,8 +52,9 @@ session_start();
     justify-content: center;
     flex-wrap: wrap;
     gap: 40px;
-}
-.product{
+  }
+
+  .product {
     position: relative;
     background-color: var(--sectionBack);
     width: 350px;
@@ -66,45 +66,53 @@ session_start();
     padding: 20px 20px 40px;
     border-radius: 10px;
     transition: .3s;
-}
-.product:hover{
+  }
+
+  .product:hover {
     transform: translateY(-15px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
-}
-.image{
-    width:100%;
+  }
+
+  .image {
+    width: 100%;
     height: 60%;
     display: grid;
     place-content: center;
-}
-.image img{
+  }
+
+  .image img {
     width: 240px;
-}
-.namePrice{
+  }
+
+  .namePrice {
     width: 100%;
     display: flex;
     justify-content: space-between;
-}
-.namePrice h3{
+  }
+
+  .namePrice h3 {
     font-size: 1;
     text-transform: capitalize;
     color: var(--textColor);
-}
-.namePrice span{
+  }
+
+  .namePrice span {
     font-size: 1.5;
     color: var(--starColor);
-}
-.product p{
+  }
+
+  .product p {
     font-size: 12px;
     line-height: 25px;
-}
+  }
 
-.bay{
+  .bay {
     position: absolute;
     bottom: 20px;
     right: 20px;
-}
-.bay button{
+  }
+
+  .bay button {
     padding: 10px 10px;
     border-radius: 7px;
     border: none;
@@ -114,24 +122,28 @@ session_start();
     text-transform: capitalize;
     cursor: pointer;
     transition: .5s;
-}
-.bay button:hover{
+  }
+
+  .bay button:hover {
     transform: scale(1.1);
-}
+  }
 
   .header {
     background-color: #892641;
   }
-  .sidebar{
-      background-color: #892641;
-    }
-  .tbsmart{
+
+  .sidebar {
+    background-color: #892641;
+  }
+
+  .tbsmart {
     font-size: 12px;
     margin-bottom: 0;
     font-weight: 600;
     color: #ffffff;
   }
-  .pengumuman{
+
+  .pengumuman {
     font-size: 40px;
     font-weight: 700;
     color: #fff;
@@ -139,78 +151,86 @@ session_start();
     text-align: center;
     padding-top: 100px;
   }
-    .c-item {
-  height: 100px;
+
+  .c-item {
+    height: 100px;
   }
+
   .c-img {
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.6);
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
   }
+
   .img {
-  height: 50%; /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
-  width: auto; /* Menjaga rasio aspek gambar */
-}
+    height: 50%;
+    /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
+    width: auto;
+    /* Menjaga rasio aspek gambar */
+  }
 
-.product-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+  .product-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
 
-.product-list li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
+  .product-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
 
-.product-list li img {
-  width: 85px;
-  height: 85px;
-  object-fit: cover;
-  border-radius: 5px;
-  margin-right: 14px;
-}
+  .product-list li img {
+    width: 85px;
+    height: 85px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 14px;
+  }
 
-.product-info h4 {
-  margin: 0;
-  font-size: 18px;
-}
+  .product-info h4 {
+    margin: 0;
+    font-size: 18px;
+  }
 
-.product-info p {
-  margin: 0;
-  font-size: 14px;
-  color: #888;
-}
-.product-number {
-  font-size: 24px;
-  margin-right: 18px;
-  font-weight: bold;
-  color: #892641;
+  .product-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #888;
+  }
 
-}
-.mini-button {
-  padding: 4px 8px;
-  font-size: 12px;
-  border: none;
-  background-color: #eaeaea;
-  cursor: pointer;
-  margin-right: 5px;
-}
+  .product-number {
+    font-size: 24px;
+    margin-right: 18px;
+    font-weight: bold;
+    color: #892641;
 
-.delete-button {
-  padding: 4px 8px;
-  font-size: 12px;
-  border: none;
-  background-color: #ff0000;
-  color: #ffffff;
-  cursor: pointer;
-  margin-right: 5px;
-}
-.product-image img {
-  width: 90px;
-  height: 90px;
-}
+  }
+
+  .mini-button {
+    padding: 4px 8px;
+    font-size: 12px;
+    border: none;
+    background-color: #eaeaea;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+
+  .delete-button {
+    padding: 4px 8px;
+    font-size: 12px;
+    border: none;
+    background-color: #ff0000;
+    color: #ffffff;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+
+  .product-image img {
+    width: 90px;
+    height: 90px;
+  }
 </style>
 
 
@@ -225,7 +245,8 @@ session_start();
       <a href="indexUser.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo2.png" alt="">
         <span class="htsimpan">SMART<br>
-          <tb class="tbsmart">Sistem Informasi Manajemen Pengelolaan</tb></span>
+          <tb class="tbsmart">Sistem Informasi Manajemen Pengelolaan</tb>
+        </span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -238,7 +259,7 @@ session_start();
     </div><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
-      
+
       <ul class="d-flex align-items-center">
 
         <li class="nav-item d-block d-lg-none">
@@ -247,80 +268,7 @@ session_start();
           </a>
         </li><!-- End Search Icon-->
 
-        <li class="nav-item dropdown">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              Notifikasi Terbaru
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Lihat Semua</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Peringatan</h4>
-                <p>Stok barang berkurang</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Stok Habis</h4>
-                <p>Barang persediaan ini di gudang sudah habis</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Barang sudah diambil</h4>
-                <p>Barang telah siap dan sudah diambil dari gudang</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Informasi update</h4>
-                <p>Stok barang ini telah diperbarui</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Lihat semua notifikasi</a>
-            </li>
-
-          </ul><!-- End Notification Dropdown Items -->
-
-        </li><!-- End Notification Nav -->
 
         <li class="nav-item dropdown">
 
@@ -429,20 +377,20 @@ session_start();
 
   </header><!-- End Header -->
 
-<!-- ======= Sidebar ======= -->
+  <!-- ======= Sidebar ======= -->
 
-<aside id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar">
 
-  <ul class="sidebar-nav" id="sidebar-nav">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-    <li class="nav-item">
-      <a class="nav-link " href="indexUser.php">
-        <i class="bi bi-grid"></i>
-        <span>Beranda</span>
-      </a>
-    </li><!-- End Beranda Sidebar -->
+      <li class="nav-item">
+        <a class="nav-link " href="indexUser.php">
+          <i class="bi bi-grid"></i>
+          <span>Beranda</span>
+        </a>
+      </li><!-- End Beranda Sidebar -->
 
-    <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span></span>Kelola Permintaan</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -458,25 +406,25 @@ session_start();
             </a>
           </li>
         </ul>
-    
-    <li class="nav-item">
+
+      <li class="nav-item">
         <a class="nav-link collapsed" href="laporan.php">
           <i class="bi bi-bar-chart"></i>
           <span>Laporan</span>
         </a>
       </li><!-- End Laporan Nav -->
 
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="profil.php">
-        <i class="bi bi-person"></i>
-        <span>Profil</span>
-      </a>
-    </li><!-- End Profil Sidebar -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="profil.php">
+          <i class="bi bi-person"></i>
+          <span>Profil</span>
+        </a>
+      </li><!-- End Profil Sidebar -->
 
-  </ul>
+    </ul>
 
-</aside>
-<!-- End Sidebar-->
+  </aside>
+  <!-- End Sidebar-->
 
 
   <main id="main" class="main">
@@ -488,53 +436,53 @@ session_start();
           <li class="breadcrumb-item"><a href="indexUser.php">Pesan</a></li>
           <li class="breadcrumb-item active">Permintaan Barang</li>
         </ol>
-    </nav>
+      </nav>
     </div><!-- End Page Title -->
-    
-<!-- Daftar Pesanan -->
+
+    <!-- Daftar Pesanan -->
 
 
 
 
-<?php
-require_once 'koneksi.php';
+    <?php
+    require_once 'koneksi.php';
 
-// Pastikan session "cart" telah diatur sebelumnya
-if (!isset($_SESSION["cart"])) {
-    $_SESSION["cart"] = array();
-}
+    // Pastikan session "cart" telah diatur sebelumnya
+    if (!isset($_SESSION["cart"])) {
+      $_SESSION["cart"] = array();
+    }
 
-// Menghubungkan ke database
-$con = db_connect();
+    // Menghubungkan ke database
+    $con = db_connect();
 
-echo '<div class="container">';
-echo '  <div class="row gx-5 justify-content-center bg-white">';
-echo '    <div class="col-md-12 py-4">';
-echo '      <div class="heading">';
-echo '        <h1 class="h5 fw-normal" style="color: #892641;">Keranjang Permintaan</h1>';
-echo '        <hr>';
-echo '      </div>';
-echo '';
-echo '      <div class="row">';
-echo '        <div class="col-md-12">';
-echo '          <div class="row">';
-echo '            <div class="col-md">';
-echo '';
-echo '             <form action="prosesCart.php" method="POST">';
-echo '                <table class="table table-hover table-borderless">';
-echo '                  <thead>';
-echo '                    <tr>';
-echo '                      <th scope="col">No</th>';
-echo '                      <th scope="col" >Id Barang</th>';
-echo '                      <th scope="col" >Gambar</th>';
-echo '                      <th scope="col" >Sub Kategori</th>';
-echo '                      <th scope="col" >Nama Barang</th>';
-echo '                      <th scope="col">Jumlah Barang</th>';
-echo '                    </tr>';
-echo '                  </thead>';
-echo '';
+    echo '<div class="container">';
+    echo '  <div class="row gx-5 justify-content-center bg-white">';
+    echo '    <div class="col-md-12 py-4">';
+    echo '      <div class="heading">';
+    echo '        <h1 class="h5 fw-normal" style="color: #892641;">Keranjang Permintaan</h1>';
+    echo '        <hr>';
+    echo '      </div>';
+    echo '';
+    echo '      <div class="row">';
+    echo '        <div class="col-md-12">';
+    echo '          <div class="row">';
+    echo '            <div class="col-md">';
+    echo '';
+    echo '             <form action="prosesCart.php" method="POST">';
+    echo '                <table class="table table-hover table-borderless">';
+    echo '                  <thead>';
+    echo '                    <tr>';
+    echo '                      <th scope="col">No</th>';
+    echo '                      <th scope="col" >Id Barang</th>';
+    echo '                      <th scope="col" >Gambar</th>';
+    echo '                      <th scope="col" >Sub Kategori</th>';
+    echo '                      <th scope="col" >Nama Barang</th>';
+    echo '                      <th scope="col">Jumlah Barang</th>';
+    echo '                    </tr>';
+    echo '                  </thead>';
+    echo '';
 
- //echo "<div class='card mt-4'>";
+    //echo "<div class='card mt-4'>";
     //echo "<h3 class='card-title'>Cart</h3>";
     //echo "<h5>Username: " . $cartItem["username"] . "</h5>";
     // echo "<p>ID User: " . $cartItem["id_user"] . "</p>";
@@ -544,11 +492,11 @@ echo '';
     $no = 1;
     foreach ($_SESSION["cart"] as $cartItem) {
       if (isset($cartItem["id_barang"])) {
-          $idBarang = $cartItem["id_barang"];
-          $query = "SELECT gambar, nama_kategori FROM tb_barang WHERE id_barang = '$idBarang'";
-          $result = mysqli_query($con, $query);
-          $row = mysqli_fetch_assoc($result);
-    /*
+        $idBarang = $cartItem["id_barang"];
+        $query = "SELECT gambar, nama_kategori FROM tb_barang WHERE id_barang = '$idBarang'";
+        $result = mysqli_query($con, $query);
+        $row = mysqli_fetch_assoc($result);
+        /*
     echo "<div class='product-image'>";
     echo "<img src='$gambar' alt='Gambar Produk'>";
     echo "</div>";
@@ -565,74 +513,74 @@ echo '';
     echo "<br>";
     echo "</div>";
     */
-    if ($row) {
-      $gambar = $row["gambar"];
-      $namaKategori = $row["nama_kategori"];
+        if ($row) {
+          $gambar = $row["gambar"];
+          $namaKategori = $row["nama_kategori"];
 
-      // Tampilkan data produk ke dalam tabel
-      echo '                    <tr>';
-      echo '                      <td scope="row">' . $no . '</td>';
-      echo '                      <td>';
-      echo '                        <p>' . $cartItem["id_barang"] . '</p>';
-      echo '                      </td>';
-      echo '                      <td>';
-      echo '                        <img src="' . $gambar . '" width="50" class="img-fluid rounded-start" alt="Gambar Produk">';
-      echo '                      </td>';
-      echo '                      <td>';
-      echo '                        <p>' . $namaKategori . '</p>';
-      echo '                      </td>';
-      echo '                      <td>';
-      echo '                        <p>' . $cartItem["nama"] . '</p>';
-      echo '                      </td>';
-      echo '                      <td>';
-      echo '                        <div class="d-flex flex-wrap">';
-      echo '                          <button type="button" class="btn btn-primary btn-kurang-1 me-2">-</button>';
-      echo '                          <input type="number" class="form-control" name="jumlah_minta[' . $cartItem["id_barang"] . ']" value="' . $cartItem['jumlah_minta'] . '" style="width: 75px;">';
+          // Tampilkan data produk ke dalam tabel
+          echo '                    <tr>';
+          echo '                      <td scope="row">' . $no . '</td>';
+          echo '                      <td>';
+          echo '                        <p>' . $cartItem["id_barang"] . '</p>';
+          echo '                      </td>';
+          echo '                      <td>';
+          echo '                        <img src="' . $gambar . '" width="50" class="img-fluid rounded-start" alt="Gambar Produk">';
+          echo '                      </td>';
+          echo '                      <td>';
+          echo '                        <p>' . $namaKategori . '</p>';
+          echo '                      </td>';
+          echo '                      <td>';
+          echo '                        <p>' . $cartItem["nama"] . '</p>';
+          echo '                      </td>';
+          echo '                      <td>';
+          echo '                        <div class="d-flex flex-wrap">';
+          echo '                          <button type="button" class="btn btn-primary btn-kurang-1 me-2">-</button>';
+          echo '                          <input type="number" class="form-control" name="jumlah_minta[' . $cartItem["id_barang"] . ']" value="' . $cartItem['jumlah_minta'] . '" style="width: 75px;">';
 
-      //echo '                            <input type="number" class="form-control jumlah-input" name="jumlah_minta_' . $cartItem["id_barang"] . '" value="1" style="width: 75px;">';
-      //echo '                        <input type="number" class="form-control" name="jumlah_minta_' . $cartItem["id_barang"] . '" value="' . $cartItem["jumlah_minta"] . '" style="width: 75px;">';
-      echo '                          <button type="button" class="btn btn-primary btn-tambah-1 mx-2">+</button>';
-      echo '                          <button class="btn btn-danger" type="submit">Batal</button>';
-      echo '                        </div>';
-      echo '                      </td>';
-      echo '                    </tr>';
-      
-      $no++;
-  }
-}
-}
+          //echo '                            <input type="number" class="form-control jumlah-input" name="jumlah_minta_' . $cartItem["id_barang"] . '" value="1" style="width: 75px;">';
+          //echo '                        <input type="number" class="form-control" name="jumlah_minta_' . $cartItem["id_barang"] . '" value="' . $cartItem["jumlah_minta"] . '" style="width: 75px;">';
+          echo '                          <button type="button" class="btn btn-primary btn-tambah-1 mx-2">+</button>';
+          echo '                          <button class="btn btn-danger" type="submit">Batal</button>';
+          echo '                        </div>';
+          echo '                      </td>';
+          echo '                    </tr>';
 
-
-echo '                  </tbody>';
-echo '                </table>';
-echo '';
-echo '                <div class="row">';
-echo '                  <div class="col-md d-flex justify-content-start">';
-echo '                    <a href="indexUser.php" class="btn btn-danger rounded-pill px-4 me-0 me-xl-3">Kembali</a>';
-echo '<button type="submit" name="pesan" class="btn btn-primary rounded-pill px-4 me-3">Pesan</button>';
+          $no++;
+        }
+      }
+    }
 
 
-echo '                  </div>';
-echo '                </div>';
-echo '             </form>';
+    echo '                  </tbody>';
+    echo '                </table>';
+    echo '';
+    echo '                <div class="row">';
+    echo '                  <div class="col-md d-flex justify-content-start">';
+    echo '                    <a href="indexUser.php" class="btn btn-danger rounded-pill px-4 me-0 me-xl-3">Kembali</a>';
+    echo '<button type="submit" name="pesan" class="btn btn-primary rounded-pill px-4 me-3">Pesan</button>';
 
-echo '<br>';
 
-echo '                    <form action="hapusCart.php" method="post">';
-echo '                      <button type="submit" name="hapus_cart" class="btn btn-danger rounded-pill px-4">Hapus Cart</button>';
-echo '                    </form>';
+    echo '                  </div>';
+    echo '                </div>';
+    echo '             </form>';
 
-echo '           </div>';
-echo '          </div>';
-echo '        </div>';
-echo '      </div>';
-echo '    </div>';
-echo '  </div>';
-echo '</div>';
+    echo '<br>';
 
-// Close database connection
-db_disconnect($con);
-?>
+    echo '                    <form action="hapusCart.php" method="post">';
+    echo '                      <button type="submit" name="hapus_cart" class="btn btn-danger rounded-pill px-4">Hapus Cart</button>';
+    echo '                    </form>';
+
+    echo '           </div>';
+    echo '          </div>';
+    echo '        </div>';
+    echo '      </div>';
+    echo '    </div>';
+    echo '  </div>';
+    echo '</div>';
+
+    // Close database connection
+    db_disconnect($con);
+    ?>
   </main>
 
   <!-- End #main -->
@@ -664,27 +612,30 @@ db_disconnect($con);
   <script src="assets/js/main.js"></script>
 
   <script>
-  
-      if (currentValue > 1) {
-        jumlahInput.value = currentValue - 1;
-      }
+    if (currentValue > 1) {
+      jumlahInput.value = currentValue - 1;
+    }
     });
 
     tambahBtn.addEvedocument.addEventListener('DOMContentLoaded', function() {
-    var kurangBtn = document.querySelector('.btn-kurang-' . $cartItem["id_barang"] . ');
-    var tambahBtn = document.querySelector('.btn-tambah-' . $cartItem["id_barang"] . ');
-    var jumlahInput = document.querySelector('input[name="jumlah_minta[' . $cartItem["id_barang"] . ']"]');
+          var kurangBtn = document.querySelector('.btn-kurang-'.$cartItem["id_barang"].
+              ');
+              var tambahBtn = document.querySelector('.btn-tambah-'.$cartItem["id_barang"].
+                  ');
+                  var jumlahInput = document.querySelector('input[name="jumlah_minta['.$cartItem["id_barang"].
+                    ']"]');
 
-    // Set nilai awal form control menjadi 1
-    jumlahInput.value = 1;
+                  // Set nilai awal form control menjadi 1
+                  jumlahInput.value = 1;
 
-    kurangBtn.addEventListener('click', function() {
-      var currentValue = parseInt(jumlahInput.value);ntListener('click', function() {
-      var currentValue = parseInt(jumlahInput.value);
-      jumlahInput.value = currentValue + 1;
-    });
-  });
-</script>
+                  kurangBtn.addEventListener('click', function() {
+                    var currentValue = parseInt(jumlahInput.value);
+                    ntListener('click', function() {
+                      var currentValue = parseInt(jumlahInput.value);
+                      jumlahInput.value = currentValue + 1;
+                    });
+                  });
+  </script>
 </body>
 
 </html>

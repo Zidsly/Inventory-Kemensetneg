@@ -3,8 +3,8 @@ session_start();
 
 // Periksa apakah pengguna masuk atau memiliki peran yang sesuai
 if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['role'] !== 'supervisor' && $_SESSION['role'] !== 'admin')) {
-    header("Location: login.php");
-    exit();
+  header("Location: login.php");
+  exit();
 }
 
 // Mendapatkan username dan id_user dari session
@@ -43,7 +43,7 @@ $idUser = $_SESSION['id_user'];
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-  
+
 
   <!-- Template Main CSS File -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -56,16 +56,19 @@ $idUser = $_SESSION['id_user'];
   .header {
     background-color: #892641;
   }
-  .sidebar{
-      background-color: #892641;
-    }
-  .tbsmart{
+
+  .sidebar {
+    background-color: #892641;
+  }
+
+  .tbsmart {
     font-size: 12px;
     margin-bottom: 0;
     font-weight: 600;
     color: #ffffff;
   }
-  .pengumuman{
+
+  .pengumuman {
     font-size: 40px;
     font-weight: 700;
     color: #fff;
@@ -73,47 +76,53 @@ $idUser = $_SESSION['id_user'];
     text-align: center;
     padding-top: 100px;
   }
+
   .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70vh;
   }
-          
-.content {
+
+  .content {
     text-align: center;
   }
-.c-item {
-  height: 360px;
+
+  .c-item {
+    height: 360px;
   }
+
   .c-img {
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.6);
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
   }
+
   .img {
-  height: 50%; /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
-  width: auto; /* Menjaga rasio aspek gambar */
-}
-.cat-item div {
+    height: 50%;
+    /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
+    width: auto;
+    /* Menjaga rasio aspek gambar */
+  }
+
+  .cat-item div {
     background: #FFFFFF;
     transition: .5s;
-    
-}
 
-.cat-item:hover div {
+  }
+
+  .cat-item:hover div {
     background: gray;
     border-color: transparent;
-}
+  }
 
-.cat-item div * {
+  .cat-item div * {
     transition: .5s;
-}
+  }
 
-.cat-item:hover div * {
+  .cat-item:hover div * {
     color: #892641 !important;
-}
-
+  }
 </style>
 
 
@@ -128,7 +137,8 @@ $idUser = $_SESSION['id_user'];
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo2.png" alt="">
         <span class="htsimpan">SMART<br>
-          <tb class="tbsmart">Sistem Informasi Manajemen Pengelolaan</tb></span>
+          <tb class="tbsmart">Sistem Informasi Manajemen Pengelolaan</tb>
+        </span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -141,7 +151,7 @@ $idUser = $_SESSION['id_user'];
     </div><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
-      
+
       <ul class="d-flex align-items-center">
 
         <li class="nav-item d-block d-lg-none">
@@ -150,80 +160,7 @@ $idUser = $_SESSION['id_user'];
           </a>
         </li><!-- End Search Icon-->
 
-        <li class="nav-item dropdown">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              Notifikasi Terbaru
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Lihat Semua</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Peringatan</h4>
-                <p>Stok barang berkurang</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Stok Habis</h4>
-                <p>Barang persediaan ini di gudang sudah habis</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Barang sudah diambil</h4>
-                <p>Barang telah siap dan sudah diambil dari gudang</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Informasi update</h4>
-                <p>Stok barang ini telah diperbarui</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Lihat semua notifikasi</a>
-            </li>
-
-          </ul><!-- End Notification Dropdown Items -->
-
-        </li><!-- End Notification Nav -->
 
         <li class="nav-item dropdown">
 
@@ -332,93 +269,93 @@ $idUser = $_SESSION['id_user'];
 
   </header><!-- End Header -->
 
- <!-- ======= Sidebar ======= -->
+  <!-- ======= Sidebar ======= -->
 
-<aside id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar">
 
-<ul class="sidebar-nav" id="sidebar-nav">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-  <li class="nav-item">
-    <a class="nav-link " href="index.php">
-      <i class="bi bi-grid"></i>
-      <span>Beranda</span>
-    </a>
-  </li><!-- End Beranda Sidebar -->
-
-  <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-    <i class="bi bi-bar-chart"></i><span></span>Kelola Data</span><i class="bi bi-chevron-down ms-auto"></i>
-  </a>
-  <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-    <li>
-      <a href="kelolaKategori.php">
-        <i class="bi bi-circle"></i><span>Kelola Kategori</span>
-      </a>
-    </li>
-    <li>
-      <a href="inputBarangBaru.php">
-        <i class="bi bi-circle"></i><span>Input Barang Baru</span>
-      </a>
-    </li>
-    <li>
-      <a href="inputStok.php">
-        <i class="bi bi-circle"></i><span>Input Stok</span>
-      </a>
-    </li>
-    <li>
-      <a href="kelolaUser.php">
-        <i class="bi bi-circle"></i><span>Kelola User</span>
-      </a>
-    </li>
-  </ul>
-</li><!-- End Kelola Data Sidebar -->
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="kelolaPermintaan.php">
-      <i class="bi bi-clipboard-check"></i><span>Kelola Permintaan</span>
-    </a>
-  </li><!-- End Kelola Permintaan Data Sidebar -->
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-journal-text"></i><span>Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-    <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-      <li>
-        <a href="laporanUser.php">
-          <i class="bi bi-circle"></i><span>Laporan Permintaan User</span>
+      <li class="nav-item">
+        <a class="nav-link " href="index.php">
+          <i class="bi bi-grid"></i>
+          <span>Beranda</span>
         </a>
-      </li>
-      <li>
-        <a href="laporanMutasi.php">
-          <i class="bi bi-circle"></i><span>Laporan Mutasi Barang Persediaan</span>
+      </li><!-- End Beranda Sidebar -->
+
+      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-bar-chart"></i><span></span>Kelola Data</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="kelolaKategori.php">
+            <i class="bi bi-circle"></i><span>Kelola Kategori</span>
+          </a>
+        </li>
+        <li>
+          <a href="inputBarangBaru.php">
+            <i class="bi bi-circle"></i><span>Input Barang Baru</span>
+          </a>
+        </li>
+        <li>
+          <a href="inputStok.php">
+            <i class="bi bi-circle"></i><span>Input Stok</span>
+          </a>
+        </li>
+        <li>
+          <a href="kelolaUser.php">
+            <i class="bi bi-circle"></i><span>Kelola User</span>
+          </a>
+        </li>
+      </ul>
+      </li><!-- End Kelola Data Sidebar -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="kelolaPermintaan.php">
+          <i class="bi bi-clipboard-check"></i><span>Kelola Permintaan</span>
         </a>
-      </li>
-      <li>
-        <a href="laporanBuku.php">
-          <i class="bi bi-circle"></i><span>Laporan Buku Persediaan</span>
+      </li><!-- End Kelola Permintaan Data Sidebar -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li>
-      <li>
-        <a href="laporanPersediaan.php">
-          <i class="bi bi-circle"></i><span>Laporan Persediaan Masuk</span>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="laporanUser.php">
+              <i class="bi bi-circle"></i><span>Laporan Permintaan User</span>
+            </a>
+          </li>
+          <li>
+            <a href="laporanMutasi.php">
+              <i class="bi bi-circle"></i><span>Laporan Mutasi Barang Persediaan</span>
+            </a>
+          </li>
+          <li>
+            <a href="laporanBuku.php">
+              <i class="bi bi-circle"></i><span>Laporan Buku Persediaan</span>
+            </a>
+          </li>
+          <li>
+            <a href="laporanPersediaan.php">
+              <i class="bi bi-circle"></i><span>Laporan Persediaan Masuk</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Laporan Sidebar -->
+
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="profil.php">
+          <i class="bi bi-person"></i>
+          <span>Profil</span>
         </a>
-      </li>
+      </li><!-- End Profil Sidebar -->
+
     </ul>
-  </li><!-- End Laporan Sidebar -->
 
-
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="profil.php">
-      <i class="bi bi-person"></i>
-      <span>Profil</span>
-    </a>
-  </li><!-- End Profil Sidebar -->
-
-</ul>
-
-</aside>
-<!-- End Sidebar-->
+  </aside>
+  <!-- End Sidebar-->
 
 
   <main id="main" class="main">
@@ -433,7 +370,7 @@ $idUser = $_SESSION['id_user'];
 
 
         <!--Image dahsboard-->
-       
+
 
 
         <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
@@ -442,14 +379,14 @@ $idUser = $_SESSION['id_user'];
             <div class="carousel-caption top-0 mt-4">
               <p class="pengumuman">Harap Mengambil Barang yang Sudah Dipesan</p>
             </div>
-            </div>
           </div>
+        </div>
 
         <!--End Image Dashboard-->
 
 
 
-    </nav>
+      </nav>
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
@@ -525,12 +462,12 @@ $idUser = $_SESSION['id_user'];
             </div><!-- End Top Selling -->
 
           </div>
-        </div><!-- End Left side columns -->
+      </div><!-- End Left side columns -->
 
-        <!-- Right side columns -->
-        <div class="col-lg-4">
+      <!-- Right side columns -->
+      <div class="col-lg-4">
 
-       
+
       </div>
     </section>
 
@@ -565,13 +502,11 @@ $idUser = $_SESSION['id_user'];
   <script src="assets/js/main.js"></script>
 
   <script>
-    $(document).ready(function () {
-    $('#example').DataTable();
+    $(document).ready(function() {
+      $('#example').DataTable();
     });
   </script>
 
 </body>
 
 </html>
-
-

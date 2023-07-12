@@ -3,8 +3,8 @@ session_start();
 
 // Periksa apakah pengguna masuk atau memiliki peran yang sesuai
 if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['role'] !== 'user')) {
-    header("Location: login.php");
-    exit();
+  header("Location: login.php");
+  exit();
 }
 
 
@@ -54,10 +54,12 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   .header {
     background-color: #892641;
   }
-  .sidebar{
+
+  .sidebar {
     background-color: #892641;
   }
-.tbsmart{
+
+  .tbsmart {
     font-size: 12px;
     margin-bottom: 0;
     font-weight: 600;
@@ -70,12 +72,13 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
-    
+
     <div class="d-flex align-items-center justify-content-between">
       <a href="indexUser.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo2.png" alt="">
         <span class="htsimpan">SMART<br>
-          <tb class="tbsmart">Sistem Informasi Manajemen Pengelolaan</tb></span>
+          <tb class="tbsmart">Sistem Informasi Manajemen Pengelolaan</tb>
+        </span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -88,7 +91,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
     </div><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
-      
+
       <ul class="d-flex align-items-center">
 
         <li class="nav-item d-block d-lg-none">
@@ -97,80 +100,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
           </a>
         </li><!-- End Search Icon-->
 
-        <li class="nav-item dropdown">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              Notifikasi Terbaru
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Lihat Semua</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Peringatan</h4>
-                <p>Stok barang berkurang</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Stok Habis</h4>
-                <p>Barang persediaan ini di gudang sudah habis</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Barang sudah diambil</h4>
-                <p>Barang telah siap dan sudah diambil dari gudang</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Informasi update</h4>
-                <p>Stok barang ini telah diperbarui</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Lihat semua notifikasi</a>
-            </li>
-
-          </ul><!-- End Notification Dropdown Items -->
-
-        </li><!-- End Notification Nav -->
 
         <li class="nav-item dropdown">
 
@@ -279,52 +209,52 @@ $namaLengkap = $_SESSION['nama_lengkap'];
 
   </header><!-- End Header -->
 
- <!-- ======= Sidebar ======= -->
+  <!-- ======= Sidebar ======= -->
 
- <aside id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar">
 
-<ul class="sidebar-nav" id="sidebar-nav">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-  <li class="nav-item">
-    <a class="nav-link " href="indexUser.php">
-      <i class="bi bi-grid"></i>
-      <span>Beranda</span>
-    </a>
-  </li><!-- End Dashboard Nav -->
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-journal-text"></i><span></span>Permintaan Barang</span><i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-    <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-      <li>
-        <a href="buatPermintaan.php">
-          <i class="bi"></i><span>Buat Permintaan</span>
+      <li class="nav-item">
+        <a class="nav-link " href="indexUser.php">
+          <i class="bi bi-grid"></i>
+          <span>Beranda</span>
         </a>
-      </li>
-      <li>
-        <a href="statusPermintaan.php">
-          <i class="bi"></i><span>Status Permintaan</span>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span></span>Permintaan Barang</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="buatPermintaan.php">
+              <i class="bi"></i><span>Buat Permintaan</span>
+            </a>
+          </li>
+          <li>
+            <a href="statusPermintaan.php">
+              <i class="bi"></i><span>Status Permintaan</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Tables Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="laporan.php">
+          <i class="bi bi-bar-chart"></i>
+          <span>Laporan</span>
+        </a>
+      </li><!-- End Tables Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="profilUser.php">
+          <i class="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
     </ul>
-  </li><!-- End Tables Nav -->
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="laporan.php">
-      <i class="bi bi-bar-chart"></i>
-      <span>Laporan</span>
-    </a>
-  </li><!-- End Tables Nav -->
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="profilUser.php">
-      <i class="bi bi-person"></i>
-      <span>Profile</span>
-    </a>
-  </li><!-- End Profile Page Nav -->
-
-</ul>
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
@@ -336,7 +266,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
           <li class="breadcrumb-item"><a href="indexUser.php">Profil</a></li>
           <li class="breadcrumb-item active">Admin</li>
         </ol>
-    </nav>
+      </nav>
     </div><!-- End Page Title -->
 
 
@@ -370,22 +300,22 @@ $namaLengkap = $_SESSION['nama_lengkap'];
               <div class="tab-content pt-2">
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                  
+
                   <h5 class="card-title">Profile Details</h5>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $username;?></div>
+                    <div class="col-lg-9 col-md-8"><?php echo $username; ?></div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $userID;?></div>
+                    <div class="col-lg-9 col-md-8"><?php echo $userID; ?></div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Username</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $nama_lengkap;?></div>
+                    <div class="col-lg-9 col-md-8"><?php echo $nama_lengkap; ?></div>
                   </div>
                 </div>
 
@@ -424,7 +354,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
 
                 <div class="tab-pane fade pt-3" id="profile-settings">
 
-                  
+
 
                 </div>
 
@@ -463,47 +393,47 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                 <div class="tab-pane fade pt-3" id="buatUser">
                   <!-- Form Buat Akun -->
                   <form action="buatAkun.php" method="POST">
-                  <div class="row mb-3">
-                        <label for="username" class="col-md-4 col-lg-3 col-form-label">Username</label>
-                        <div class="col-md-8 col-lg-9">
-                            <input name="username" type="text" class="form-control" id="username">
-                        </div>
+                    <div class="row mb-3">
+                      <label for="username" class="col-md-4 col-lg-3 col-form-label">Username</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="username" type="text" class="form-control" id="username">
+                      </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="nama" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
-                        <div class="col-md-8 col-lg-9">
-                            <input name="nama_lengkap" type="text" class="form-control" id="nama">
-                        </div>
+                      <label for="nama" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="nama_lengkap" type="text" class="form-control" id="nama">
+                      </div>
                     </div>
-                
+
                     <div class="row mb-3">
-                        <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                        <div class="col-md-8 col-lg-9">
-                            <input name="email" type="email" class="form-control" id="email">
-                        </div>
+                      <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="email" type="email" class="form-control" id="email">
+                      </div>
                     </div>
-                
+
                     <div class="row mb-3">
-                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Password</label>
-                        <div class="col-md-8 col-lg-9">
-                            <input name="password" type="password" class="form-control" id="newPassword">
-                        </div>
+                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Password</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="password" type="password" class="form-control" id="newPassword">
+                      </div>
                     </div>
-                
+
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Buat Akun</button>
+                      <button type="submit" class="btn btn-primary">Buat Akun</button>
                     </div>
-                
-                </form>
 
-              </div><!-- End Bordered Tabs -->
+                  </form>
 
+                </div><!-- End Bordered Tabs -->
+
+              </div>
             </div>
-          </div>
 
+          </div>
         </div>
-      </div>
     </section>
 
   </main><!-- End #main -->
