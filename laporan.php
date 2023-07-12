@@ -345,7 +345,6 @@ $idUser = $_SESSION['id_user'];
                           <thead>
                             <tr>
                               <th>ID Transaksi</th>
-                              <th>Pemesan</th>
                               <th>Tanggal Minta</th>
                               <th>Tanggal Ambil</th>
                               <th>Kode Barang</th>
@@ -387,7 +386,6 @@ $idUser = $_SESSION['id_user'];
                               while ($row = mysqli_fetch_assoc($result)) {
                                 echo "<tr>";
                                 echo "<td>" . $row['id_transaksi'] . "</td>";
-                                echo "<td>" . $row['nama_lengkap'] . "</td>";
                                 echo "<td>" . $row['tgl_minta'] . "</td>";
                                 echo "<td>" . $row['tgl_ambil'] . "</td>";
                                 echo "<td>" . $row['kode_barang'] . "</td>";
