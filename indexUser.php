@@ -459,188 +459,51 @@ $idUser = $_SESSION['id_user'];
         </li><!-- End Search Icon-->
 
         <li class="nav-item dropdown">
-    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-      <i class="bi bi-bag"></i>
-      <span class="badge bg-primary badge-number">4</span>
-    </a><!-- End Cart Icon -->
-    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-      <form>
-        <ul class="product-list">
-          <li>
-            <span class="product-number">1</span>
-            <img src="assets/img/spidol.jpg" alt="Product 1">
-            <div class="product-info">
-              <h6>Spidol</h6>
-              <div class="col-sm-4">
-              <input type="number" class="form-control" id="spidolCount" name="spidolCount" value="2">
-              </div>
-              <button class="delete-button" onclick="deleteProduct('spidol')">Delete</button>
-            </div>
-          </li>
-          <li>
-            <span class="product-number">2</span>
-            <img src="assets/img/hvs.png" alt="Product 2">
-            <div class="product-info">
-              <h6>Kertas HVS</h6>
-              <div class="col-sm-4">
-              <input type="number" class="form-control" id="hvsCount" name="hvsCount" value="5">
-              </div>
-              <button class="delete-button" onclick="deleteProduct('hvs')">Delete</button>
-            </div>
-          </li>
-          <li>
-            <span class="product-number">3</span>
-            <img src="assets/img/b100.png" alt="Product 3">
-            <div class="product-info">
-              <h6>Mouse Logitech B100</h6>
-              <div class="col-sm-4">
-              <input type="number" class="form-control" id="mouseCount" name="mouseCount" value="3">
-              </div>
-              <button class="delete-button" onclick="deleteProduct('mouse')">Delete</button>
-            </div>
-          </li>
-        </ul>
-        <button type="button" class="btn btn-success" onclick="submitForm()">Pesan</button>
-      </form>
-    </ul><!-- End Cart Dropdown Items -->
-  </li>
-
-
-        <li class="nav-item dropdown">
-
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
+            <i class="bi bi-bag"></i>
             <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
-
+          </a><!-- End Cart Icon -->
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              Notifikasi Terbaru
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Lihat Semua</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Peringatan</h4>
-                <p>Stok barang berkurang</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Stok Habis</h4>
-                <p>Barang persediaan ini di gudang sudah habis</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Barang sudah diambil</h4>
-                <p>Barang telah siap dan sudah diambil dari gudang</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Informasi update</h4>
-                <p>Stok barang ini telah diperbarui</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Lihat semua notifikasi</a>
-            </li>
-
-          </ul><!-- End Notification Dropdown Items -->
-
-        </li><!-- End Notification Nav -->
-
-        <li class="nav-item dropdown">
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-            <li class="dropdown-header">
-              You have 3 new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Anna Nelson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>6 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>David Muldon</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>8 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="dropdown-footer">
-              <a href="#">Show all messages</a>
-            </li>
-
-          </ul><!-- End Messages Dropdown Items -->
-
-        </li><!-- End Messages Nav -->
+            <form>
+              <ul class="product-list">
+                <li>
+                  <span class="product-number">1</span>
+                  <img src="assets/img/spidol.jpg" alt="Product 1">
+                  <div class="product-info">
+                    <h6>Spidol</h6>
+                    <div class="col-sm-4">
+                      <input type="number" class="form-control" id="spidolCount" name="spidolCount" value="2">
+                    </div>
+                    <button class="delete-button" onclick="deleteProduct('spidol')">Delete</button>
+                  </div>
+                </li>
+                <li>
+                  <span class="product-number">2</span>
+                  <img src="assets/img/hvs.png" alt="Product 2">
+                  <div class="product-info">
+                    <h6>Kertas HVS</h6>
+                    <div class="col-sm-4">
+                      <input type="number" class="form-control" id="hvsCount" name="hvsCount" value="5">
+                    </div>
+                    <button class="delete-button" onclick="deleteProduct('hvs')">Delete</button>
+                  </div>
+                </li>
+                <li>
+                  <span class="product-number">3</span>
+                  <img src="assets/img/b100.png" alt="Product 3">
+                  <div class="product-info">
+                    <h6>Mouse Logitech B100</h6>
+                    <div class="col-sm-4">
+                      <input type="number" class="form-control" id="mouseCount" name="mouseCount" value="3">
+                    </div>
+                    <button class="delete-button" onclick="deleteProduct('mouse')">Delete</button>
+                  </div>
+                </li>
+              </ul>
+              <button type="button" class="btn btn-success" onclick="submitForm()">Pesan</button>
+            </form>
+          </ul><!-- End Cart Dropdown Items -->
+        </li>
 
         <li class="nav-item dropdown pe-3">
 
