@@ -447,52 +447,11 @@ $tipe_akun = $_SESSION['tipe_akun'];
 
       <ul class="d-flex align-items-center">
 
-
         <li class="nav-item dropdown">
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+          <a class="nav-link nav-icon" href="permintaanBarang.php">
             <i class="bi bi-bag"></i>
-            <span class="badge bg-primary badge-number">4</span>
+            <span class="badge bg-primary badge-number"></span>
           </a><!-- End Cart Icon -->
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <form>
-              <ul class="product-list">
-                <li>
-                  <span class="product-number">1</span>
-                  <img src="assets/img/spidol.jpg" alt="Product 1">
-                  <div class="product-info">
-                    <h6>Spidol</h6>
-                    <div class="col-sm-4">
-                      <input type="number" class="form-control" id="spidolCount" name="spidolCount" value="2">
-                    </div>
-                    <button class="delete-button" onclick="deleteProduct('spidol')">Delete</button>
-                  </div>
-                </li>
-                <li>
-                  <span class="product-number">2</span>
-                  <img src="assets/img/hvs.png" alt="Product 2">
-                  <div class="product-info">
-                    <h6>Kertas HVS</h6>
-                    <div class="col-sm-4">
-                      <input type="number" class="form-control" id="hvsCount" name="hvsCount" value="5">
-                    </div>
-                    <button class="delete-button" onclick="deleteProduct('hvs')">Delete</button>
-                  </div>
-                </li>
-                <li>
-                  <span class="product-number">3</span>
-                  <img src="assets/img/b100.png" alt="Product 3">
-                  <div class="product-info">
-                    <h6>Mouse Logitech B100</h6>
-                    <div class="col-sm-4">
-                      <input type="number" class="form-control" id="mouseCount" name="mouseCount" value="3">
-                    </div>
-                    <button class="delete-button" onclick="deleteProduct('mouse')">Delete</button>
-                  </div>
-                </li>
-              </ul>
-              <button type="button" class="btn btn-success" onclick="submitForm()">Pesan</button>
-            </form>
-          </ul><!-- End Cart Dropdown Items -->
         </li>
 
         <li class="nav-item dropdown pe-3">
@@ -550,7 +509,7 @@ $tipe_akun = $_SESSION['tipe_akun'];
       <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-          <a class="nav-link " href="indexUser.php">
+          <a class="nav-link" href="indexUser.php">
             <i class="bi bi-grid"></i>
             <span>Buat Permintaan</span>
           </a>

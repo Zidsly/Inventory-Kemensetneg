@@ -124,10 +124,12 @@ $tipe_akun = $_SESSION['tipe_akun'];
 
       <ul class="d-flex align-items-center">
 
-
-
-
-
+        <li class="nav-item dropdown">
+          <a class="nav-link nav-icon" href="permintaanBarang.php">
+            <i class="bi bi-bag"></i>
+            <span class="badge bg-primary badge-number"></span>
+          </a><!-- End Cart Icon -->
+        </li>
 
         <li class="nav-item dropdown pe-3">
 
