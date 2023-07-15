@@ -285,7 +285,7 @@ session_start();
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="userProfil.php">
+              <a class="dropdown-item d-flex align-items-center" href="userprofilUser.php">
                 <i class="bi bi-person"></i>
                 <span>Profil</span>
               </a>
@@ -352,7 +352,7 @@ session_start();
       </li><!-- End Laporan Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="profil.php">
+        <a class="nav-link collapsed" href="profilUser.php">
           <i class="bi bi-person"></i>
           <span>Profil</span>
         </a>

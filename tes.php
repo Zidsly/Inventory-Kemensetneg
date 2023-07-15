@@ -411,7 +411,7 @@ $tipe_akun = $_SESSION['tipe_akun'];
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="profil.html">
+              <a class="dropdown-item d-flex align-items-center" href="profilUser.php">
                 <i class="bi bi-person"></i>
                 <span>Profil</span>
               </a>
@@ -517,7 +517,7 @@ $tipe_akun = $_SESSION['tipe_akun'];
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="profil.html">
+        <a class="nav-link collapsed" href="profilUser.php">
           <i class="bi bi-person"></i>
           <span>Profil</span>
         </a>

@@ -262,6 +262,7 @@ $tipe_akun = $_SESSION['tipe_akun'];
 
   .search-bar {
     position: relative;
+    align-items: center;
   }
 
   .search-bar input {
@@ -564,9 +565,6 @@ $tipe_akun = $_SESSION['tipe_akun'];
 
 
         <!--Image dahsboard-->
-
-
-
         <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner opacity-75 c-item">
             <img src="assets/img/gudang6.jpg" class="d-block w-100 c-img" alt="Slide 3">
@@ -575,13 +573,17 @@ $tipe_akun = $_SESSION['tipe_akun'];
             </div>
           </div>
         </div>
-
         <!--End Image Dashboard-->
-
-
-
+        
+        <!-- Start Search Bar -->
+        <div class="search-bar">
+          <form class="search-form d-flex align-items-center" method="POST" action="#">
+            <input type="text" name="query" placeholder="Cari barang">
+          </form>
+          <i class="bi bi-search"></i>
+        </div>
+        <!-- End Search Bar -->
       </nav>
-
     </div><!-- End Page Title -->
 
     <div class="dropdown">
@@ -626,14 +628,7 @@ $tipe_akun = $_SESSION['tipe_akun'];
       // Memutus koneksi dari database
       db_disconnect($conn);
       ?>
-      <!-- Start Search Bar -->
-      <div class="search-bar">
-        <form class="search-form d-flex align-items-center" method="POST" action="#">
-          <input type="text" name="query" placeholder="Cari barang">
-        </form>
-        <i class="bi bi-search"></i>
-      </div>
-      <!-- End Search Bar -->
+
     </div>
 
     <div class="row">
