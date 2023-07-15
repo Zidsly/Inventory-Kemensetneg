@@ -127,7 +127,6 @@ $tipe_akun = $_SESSION['tipe_akun'];
   }
 
   .dropdown {
-    display: inline-block;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -261,57 +260,37 @@ $tipe_akun = $_SESSION['tipe_akun'];
   }
 
   .search-bar {
-    position: relative;
+    display: flex;
+    justify-content: space-around;
     align-items: center;
+    height: 64px;
+    margin-top: 12px;
+  }
+
+  .search-bar form {
+    margin: 0;
+    height: 100%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .search-bar input {
-    height: 40px;
-    width: 50px;
-    background: #892641;
+    height: 100%;
+    width: 100%;
+    background: #fff;
     border: 1px solid #892641;
-    border-radius: 50px;
+    border-radius: 36px;
     box-sizing: border-box;
     font-size: 14px;
     color: #892641;
-    outline: none;
     padding-left: 16px;
-    transition: 0.5s;
   }
 
   .search-bar input::placeholder {
-    opacity: 0;
-    color: #892641;
-  }
-
-  .search-bar:hover input {
-    width: 300px;
-    background: #fff;
-    border-radius: 24px;
-    z-index: 2;
-  }
-
-  .search-bar:hover .dropdown-btn {
-    display: none;
-  }
-
-  .search-bar:hover input::placeholder {
     opacity: 100;
-  }
-
-  .search-bar i {
-    position: absolute;
-    top: 50%;
-    right: 5px;
-    transform: translate(-50%, -50%);
-    font-size: 20px;
-    color: #fff;
-    transition: 0.2s;
-  }
-
-  .search-bar:hover i {
     color: #892641;
-    z-index: 3;
   }
 
   /* Dashboard */
@@ -578,9 +557,8 @@ $tipe_akun = $_SESSION['tipe_akun'];
         <!-- Start Search Bar -->
         <div class="search-bar">
           <form class="search-form d-flex align-items-center" method="POST" action="#">
-            <input type="text" name="query" placeholder="Cari barang">
+            <input type="text" name="query" placeholder="Cari barang...">
           </form>
-          <i class="bi bi-search"></i>
         </div>
         <!-- End Search Bar -->
       </nav>
