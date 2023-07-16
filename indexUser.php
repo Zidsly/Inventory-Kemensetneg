@@ -557,7 +557,7 @@ $tipe_akun = $_SESSION['tipe_akun'];
         <!-- Start Search Bar -->
         <div class="search-bar">
           <form class="search-form d-flex align-items-center" method="POST" action="#">
-            <input type="text" name="query" placeholder="Cari barang...">
+            <input type="text" name="query" placeholder="Cari barang disini...">
           </form>
         </div>
         <!-- End Search Bar -->
@@ -682,9 +682,16 @@ $tipe_akun = $_SESSION['tipe_akun'];
         </div>
       </div>
     </div>
-
-    </footer><!-- End Footer -->
-
+  </main>
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      <strong> SMART - </strong> <span>Sistem Manajemen dan Pelayanan Permintaan Barang Persediaan Terpadu</span>
+    </div>
+    <div class="credits">
+      Made by <a>Tim Efektif</a>
+    </div>
+  </footer><!-- End Footer -->
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
