@@ -1,7 +1,20 @@
 <?php
 session_start();
 
-// Setelah session_start(), Anda dapat melanjutkan dengan kode Anda.
+// Periksa apakah pengguna masuk atau memiliki peran yang sesuai
+if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['role'] !== 'user')) {
+  header("Location: login.php");
+  exit();
+}
+
+
+// Mendapatkan username dan id_user dari session
+$username = $_SESSION['username'];
+$id_user = $_SESSION['id_user'];
+$nama_lengkap = $_SESSION['nama_lengkap'];
+$tipe_akun = $_SESSION['tipe_akun'];
+
+// Lanjutkan dengan konten halaman indexUser.php
 // ...
 ?>
 
@@ -40,16 +53,10 @@ session_start();
   <link href="assets/css/style.css" rel="stylesheet" />
   <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 
-  <!-- =======================================================
-  * Template Name: NiceAdmin
-  * Updated: May 30 2023 with Bootstrap v5.3.0
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <style>
+
   .products {
     width: 50%;
     align-self: center;
@@ -272,13 +279,13 @@ session_start();
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">User</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $nama_lengkap; ?></span> </a>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Zidan</h6>
-              <span>User</span>
+              <h6><?php echo $username; ?></h6>
+              <span><?php echo $id_user; ?></span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -305,13 +312,10 @@ session_start();
                 <span>Sign Out</span>
               </a>
             </li>
-
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
-
       </ul>
     </nav><!-- End Icons Navigation -->
-
   </header><!-- End Header -->
 
   <!-- ======= Sidebar ======= -->

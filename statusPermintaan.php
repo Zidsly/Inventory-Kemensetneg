@@ -243,18 +243,15 @@ $tipe_akun = $_SESSION['tipe_akun'];
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Permintaan</h5>
-
               <!--Tabel Data Kategori-->
               <table id="example" class="table table-striped" style="width:100%">
                 <thead>
                   <tr>
-                    <th>Id Transaksi</th>
+                    <th>Kode Transaksi</th>
                     <th>Tanggal</th>
                     <th>Nama Barang</th>
                     <th>Jumlah</th>
                     <th>Status</th>
-                    <th>Ready</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -282,7 +279,6 @@ $tipe_akun = $_SESSION['tipe_akun'];
                     echo "<td>" . $row['jumlah_minta'] . "</td>";
                     echo "<td>" . $row['status'] . "</td>";
                     echo "<td>";
-                    echo "<button type='button' class='btn btn-warning btn-ready' data-id='" . $row['id_transaksi'] . "'><i class='bi bi-check-circle'></i></button>";
                     echo "</td>";
                     echo "</tr>";
                   }
@@ -330,7 +326,7 @@ $tipe_akun = $_SESSION['tipe_akun'];
   <script src="assets/js/main.js"></script>
 
   <script>
-    $(document).ready(function() {
+  /*  $(document).ready(function() {
       $('#example').DataTable();
       $('#example2').DataTable();
       $('#example3').DataTable();
@@ -386,7 +382,7 @@ $tipe_akun = $_SESSION['tipe_akun'];
         });
       });
 
-    });
+    });*/
   </script>
 
 </body>
