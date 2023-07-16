@@ -389,7 +389,7 @@ session_start();
     // Menghubungkan ke database
     $con = db_connect();
 
-    echo '<div class="container">';
+    echo '<div class="card-body pb-0">';
     echo '  <div class="row gx-5 justify-content-center bg-white">';
     echo '    <div class="col-md-12 py-4">';
     echo '      <div class="heading">';

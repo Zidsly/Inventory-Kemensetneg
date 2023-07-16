@@ -283,7 +283,7 @@ $tipe_akun = $_SESSION['tipe_akun'];
     border: 1px solid #892641;
     border-radius: 36px;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 16px;
     color: #892641;
     padding-left: 16px;
   }
@@ -556,8 +556,44 @@ $tipe_akun = $_SESSION['tipe_akun'];
         
         <!-- Start Search Bar -->
         <div class="search-bar">
+          <?php
+          // Menghubungkan ke database
+          require 'koneksi.php';
+          $conn = db_connect();
+
+          if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Mendapatkan kata kunci pencarian dari form
+            $searchQuery = $_POST['query'];
+        
+            // Menghindari serangan SQL injection
+            $searchQuery = mysqli_real_escape_string($conn, $searchQuery);
+        
+            // Mengeksekusi query SQL untuk mencari barang berdasarkan nama
+            $sql = "SELECT * FROM tb_barang WHERE nama LIKE '%$searchQuery%'";
+            $result = mysqli_query($conn, $sql);
+        
+            if ($result) {
+                // Jika query berhasil dieksekusi
+                if (mysqli_num_rows($result) > 0) {
+                    // Jika ada hasil pencarian, tampilkan barangnya
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo $row['nama'] . "<br>";
+                        // Tampilkan informasi lainnya mengenai barang sesuai kebutuhan
+                    }
+                } else {
+                    echo "Tidak ada barang yang ditemukan.";
+                }
+            } else {
+                echo "Terjadi kesalahan dalam melakukan pencarian.";
+            }
+        
+          // Memutus koneksi dari database
+          db_disconnect($conn);
+        }
+          ?>
           <form class="search-form d-flex align-items-center" method="POST" action="#">
             <input type="text" name="query" placeholder="Cari barang disini...">
+            <button type="submit" name="pesan" class="btn btn-primary rounded-pill px-4 me-3" style="height: 100%;">Cari</button>';          
           </form>
         </div>
         <!-- End Search Bar -->
@@ -566,9 +602,6 @@ $tipe_akun = $_SESSION['tipe_akun'];
 
     <div class="dropdown">
       <?php
-      // Menghubungkan ke database
-      require 'koneksi.php';
-      $conn = db_connect();
 
       // Ambil data dari tabel tb_kategori
       $sql = "SELECT nama_kategori FROM tb_kategori";
