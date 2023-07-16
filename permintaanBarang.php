@@ -378,9 +378,6 @@ session_start();
 
     <!-- Daftar Pesanan -->
 
-
-
-
     <?php
     require_once 'koneksi.php';
 
@@ -400,6 +397,11 @@ session_start();
     echo '        <hr>';
     echo '      </div>';
     echo '';
+
+    echo '                    <form action="hapusCart.php" method="post">';
+    echo '                      <button type="submit" name="hapus_cart" class="btn btn-danger rounded-pill px-4 float-end">Kosongkan Keranjang</button>';
+    echo '                    </form>';
+
     echo '      <div class="row">';
     echo '        <div class="col-md-12">';
     echo '          <div class="row">';
@@ -471,12 +473,12 @@ session_start();
           echo '                      </td>';
           echo '                      <td>';
           echo '                        <div class="d-flex flex-wrap">';
-          echo '                          <button type="button" class="btn btn-primary btn-kurang-1 me-2">-</button>';
+          //echo '                          <button type="button" class="btn btn-primary btn-kurang-1 me-2">-</button>';
           echo '                          <input type="number" class="form-control" name="jumlah_minta[' . $cartItem["id_barang"] . ']" value="' . $cartItem['jumlah_minta'] . '" style="width: 75px;">';
 
           //echo '                            <input type="number" class="form-control jumlah-input" name="jumlah_minta_' . $cartItem["id_barang"] . '" value="1" style="width: 75px;">';
           //echo '                        <input type="number" class="form-control" name="jumlah_minta_' . $cartItem["id_barang"] . '" value="' . $cartItem["jumlah_minta"] . '" style="width: 75px;">';
-          echo '                          <button type="button" class="btn btn-primary btn-tambah-1 mx-2">+</button>';
+          //echo '                          <button type="button" class="btn btn-primary btn-tambah-1 mx-2">+</button>';
           echo '                          <button class="btn btn-danger" type="submit">Batal</button>';
           echo '                        </div>';
           echo '                      </td>';
@@ -502,10 +504,6 @@ session_start();
     echo '             </form>';
 
     echo '<br>';
-
-    echo '                    <form action="hapusCart.php" method="post">';
-    echo '                      <button type="submit" name="hapus_cart" class="btn btn-danger rounded-pill px-4">Hapus Cart</button>';
-    echo '                    </form>';
 
     echo '           </div>';
     echo '          </div>';
