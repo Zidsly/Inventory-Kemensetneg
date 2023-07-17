@@ -12,6 +12,7 @@ $username = $_SESSION['username'];
 $id_user = $_SESSION['id_user'];
 $nama_lengkap = $_SESSION['nama_lengkap'];
 $tipe_akun = $_SESSION['tipe_akun'];
+
 ?>
 
 <!DOCTYPE html>
