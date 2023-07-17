@@ -266,7 +266,9 @@ $tipe_akun = $_SESSION['tipe_akun'];
                     JOIN tb_order_detail ON tb_order.id_transaksi = tb_order_detail.id_transaksi
                     JOIN tb_barang ON tb_order_detail.id_barang = tb_barang.id_barang
                     WHERE tb_user.username = '$username'
-                    GROUP BY tb_order.id_transaksi";
+                    GROUP BY tb_order.id_transaksi
+                    ORDER BY tb_order.id_transaksi DESC";
+
 
                   $result = mysqli_query($con, $query);
 

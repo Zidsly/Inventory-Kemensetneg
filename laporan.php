@@ -257,7 +257,6 @@ $tipe_akun = $_SESSION['tipe_akun'];
             <!-- Riwayat Pengambilan -->
             <div class="col-12">
               <div class="card top-selling overflow-auto">
-
                 <div class="filter">
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                   <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -308,9 +307,9 @@ $tipe_akun = $_SESSION['tipe_akun'];
 
                       // Query untuk mendapatkan data dari tabel
                       $query = "SELECT tb_order.id_transaksi, tb_order.tgl_minta, tb_order.tgl_ambil, tb_user.nama_lengkap, 
-                              GROUP_CONCAT(tb_barang.kode_barang) AS kode_barang,
-                              GROUP_CONCAT(tb_barang.nama) AS nama_barang,
-                              GROUP_CONCAT(tb_order_detail.jumlah_minta) AS jumlah_minta
+                              GROUP_CONCAT(tb_barang.kode_barang SEPARATOR '<br>') AS kode_barang,
+                              GROUP_CONCAT(tb_barang.nama SEPARATOR '<br>') AS nama_barang,
+                              GROUP_CONCAT(tb_order_detail.jumlah_minta SEPARATOR '<br>') AS jumlah_minta
                               FROM tb_order
                               JOIN tb_order_detail ON tb_order.id_transaksi = tb_order_detail.id_transaksi
                               JOIN tb_barang ON tb_order_detail.id_barang = tb_barang.id_barang
@@ -339,26 +338,16 @@ $tipe_akun = $_SESSION['tipe_akun'];
                   <?php
                   db_disconnect($con);
                   ?>
-
-
-
                 </div>
-
               </div>
             </div><!-- End Top Selling -->
-
           </div>
       </div><!-- End Left side columns -->
 
       <!-- Right side columns -->
       <div class="col-lg-4">
-
-
-
-
       </div>
     </section>
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
