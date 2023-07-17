@@ -326,6 +326,7 @@ $tipe_akun = $_SESSION['tipe_akun'];
   <script src="assets/js/main.js"></script>
 
   <script>
+
   /*  $(document).ready(function() {
       $('#example').DataTable();
       $('#example2').DataTable();
