@@ -261,9 +261,9 @@ $tipe_akun = $_SESSION['tipe_akun'];
 
   .search-bar {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
-    height: 64px;
+    height: 48px;
     margin-top: 12px;
   }
 
@@ -273,12 +273,12 @@ $tipe_akun = $_SESSION['tipe_akun'];
     width: 90%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
   }
 
   .search-bar input {
     height: 100%;
-    width: 100%;
+    width: 85%;
     background: #fff;
     border: 1px solid #892641;
     border-radius: 36px;
@@ -553,7 +553,7 @@ $tipe_akun = $_SESSION['tipe_akun'];
           </div>
         </div>
         <!--End Image Dashboard-->
-        
+
         <!-- Start Search Bar -->
         <div class="search-bar">
           <?php
@@ -564,36 +564,36 @@ $tipe_akun = $_SESSION['tipe_akun'];
           if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Mendapatkan kata kunci pencarian dari form
             $searchQuery = $_POST['query'];
-        
+
             // Menghindari serangan SQL injection
             $searchQuery = mysqli_real_escape_string($conn, $searchQuery);
-        
+
             // Mengeksekusi query SQL untuk mencari barang berdasarkan nama
             $sql = "SELECT * FROM tb_barang WHERE nama LIKE '%$searchQuery%'";
             $result = mysqli_query($conn, $sql);
-        
+
             if ($result) {
-                // Jika query berhasil dieksekusi
-                if (mysqli_num_rows($result) > 0) {
-                    // Jika ada hasil pencarian, tampilkan barangnya
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo $row['nama'] . "<br>";
-                        // Tampilkan informasi lainnya mengenai barang sesuai kebutuhan
-                    }
-                } else {
-                    echo "Tidak ada barang yang ditemukan.";
+              // Jika query berhasil dieksekusi
+              if (mysqli_num_rows($result) > 0) {
+                // Jika ada hasil pencarian, tampilkan barangnya
+                while ($row = mysqli_fetch_assoc($result)) {
+                  echo $row['nama'] . "<br>";
+                  // Tampilkan informasi lainnya mengenai barang sesuai kebutuhan
                 }
+              } else {
+                echo "Tidak ada barang yang ditemukan.";
+              }
             } else {
-                echo "Terjadi kesalahan dalam melakukan pencarian.";
+              echo "Terjadi kesalahan dalam melakukan pencarian.";
             }
-        
-          // Memutus koneksi dari database
-          db_disconnect($conn);
-        }
+
+            // Memutus koneksi dari database
+            db_disconnect($conn);
+          }
           ?>
           <form class="search-form d-flex align-items-center" method="POST" action="#">
             <input type="text" name="query" placeholder="Cari barang disini...">
-            <button type="submit" name="pesan" class="btn btn-primary rounded-pill px-4 me-3" style="height: 100%;">Cari</button>';          
+            <button type="submit" name="pesan" class="btn btn-primary rounded-pill px-4 me-3" style="height: 100%;">Cari</button>
           </form>
         </div>
         <!-- End Search Bar -->
@@ -725,57 +725,57 @@ $tipe_akun = $_SESSION['tipe_akun'];
       Made by <a>Tim Efektif</a>
     </div>
   </footer><!-- End Footer -->
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/chart.js/chart.umd.js"></script>
-    <script src="assets/vendor/echarts/echarts.min.js"></script>
-    <script src="assets/vendor/quill/quill.min.js"></script>
-    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.min.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script>
-      $(document).ready(function() {
-        $('#example').DataTable();
+  <script>
+    $(document).ready(function() {
+      $('#example').DataTable();
+    });
+
+    // Tampilkan dropdown content saat tombol dropdown di klik
+    var dropdownButtons = document.querySelectorAll('.dropdown-btn');
+    dropdownButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        var dropdownContentId = button.getAttribute('data');
+        var dropdownContent = document.getElementById(dropdownContentId);
+        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
       });
+    });
 
-      // Tampilkan dropdown content saat tombol dropdown di klik
-      var dropdownButtons = document.querySelectorAll('.dropdown-btn');
-      dropdownButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-          var dropdownContentId = button.getAttribute('data');
-          var dropdownContent = document.getElementById(dropdownContentId);
-          dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-        });
-      });
-
-      // Sembunyikan dropdown content saat klik di luar dropdown
-      window.addEventListener('click', function(event) {
-        if (!event.target.matches('.dropdown-btn')) {
-          var dropdowns = document.getElementsByClassName('dropdown-content');
-          for (var i = 0; i < dropdowns.length; i++) {
-            var dropdown = dropdowns[i];
-            if (dropdown.style.display === 'block') {
-              dropdown.style.display = 'none';
-            }
+    // Sembunyikan dropdown content saat klik di luar dropdown
+    window.addEventListener('click', function(event) {
+      if (!event.target.matches('.dropdown-btn')) {
+        var dropdowns = document.getElementsByClassName('dropdown-content');
+        for (var i = 0; i < dropdowns.length; i++) {
+          var dropdown = dropdowns[i];
+          if (dropdown.style.display === 'block') {
+            dropdown.style.display = 'none';
           }
         }
-      });
-
-      function changeLimit(limit) {
-        window.location.href = "?limit=" + limit;
       }
-    </script>
+    });
+
+    function changeLimit(limit) {
+      window.location.href = "?limit=" + limit;
+    }
+  </script>
 
 </body>
 
