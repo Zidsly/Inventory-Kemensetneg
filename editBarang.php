@@ -10,9 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $editStokMinimal = mysqli_real_escape_string($koneksi, $_POST['editStokMinimal']);
     $originalNama = mysqli_real_escape_string($koneksi, $_POST['originalNama']);
     $originalKodeBarang = mysqli_real_escape_string($koneksi, $_POST['originalKodeBarang']);
+    $idBarang = mysqli_real_escape_string($koneksi, $_POST['idBarang']);
 
     // Update data barang berdasarkan kode barang
-    $query = "UPDATE tb_barang SET nama = '$editNama', kode_barang = '$editKodeBarang', deskripsi = '$editDeskripsi', stok_minimal = '$editStokMinimal' WHERE kode_barang = '$originalKodeBarang'";
+    $query = "UPDATE tb_barang SET nama = '$editNama', kode_barang = '$editKodeBarang', deskripsi = '$editDeskripsi', stok_minimal = '$editStokMinimal' WHERE id_barang = '$idBarang'";
     $result = mysqli_query($koneksi, $query);
 
     if ($result) {

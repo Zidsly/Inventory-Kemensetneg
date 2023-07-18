@@ -509,6 +509,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
             <input type="hidden" id="originalStokMinimal" name="originalStokMinimal">
         </div>
         <br>
+        <input type="hidden" id="idBarang" name="idBarang">
         <button type="submit" class="btn btn-primary">Simpan</button>
     </div>
 </div>
@@ -556,7 +557,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                             echo "<td>$kodeBarang</td>";
                             echo "<td>$deskripsi</td>";
                             echo "<td>$stokMinimal</td>";
-                            echo "<td><button type='button' class='btn btn-primary' onclick='editFormPopup(\"$nama\", \"$kodeBarang\", \"$deskripsi\", \"$stokMinimal\")'>Edit</button></td>";
+                            echo "<td><button type='button' class='btn btn-primary' onclick='editFormPopup(\"$nama\", \"$kodeBarang\", \"$deskripsi\", \"$stokMinimal\", \"$idBarang\")'>Edit</button></td>";
                             echo "<td><button type='button' class='btn btn-danger' onclick='hapusBarang(\"$idBarang\")'>Hapus</button></td>";
                             echo "</tr>";
                         }
@@ -626,7 +627,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
       document.getElementById("namaKategori").value = namaKategori;
     }
 
-    function editFormPopup(nama, kodeBarang, deskripsi, stokMinimal) {
+    function editFormPopup(nama, kodeBarang, deskripsi, stokMinimal, idBarang) {
             document.getElementById("editNama").value = nama;
             document.getElementById("editKodeBarang").value = kodeBarang;
             document.getElementById("editDeskripsi").value = deskripsi;
@@ -636,6 +637,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
             document.getElementById("originalKodeBarang").value = kodeBarang;
             document.getElementById("originalDeskripsi").value = deskripsi;
             document.getElementById("originalStokMinimal").value = stokMinimal;
+            document.getElementById("idBarang").value = idBarang;
 
             var popup = document.querySelector('.editFormPopup-container');
             popup.style.display = 'block';
