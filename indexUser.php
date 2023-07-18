@@ -191,7 +191,7 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
 
   .product-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 20px;
   }
 
