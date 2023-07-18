@@ -7,7 +7,6 @@ if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['r
   exit();
 }
 
-
 // Mendapatkan username dan id_user dari session
 $username = $_SESSION['username'];
 $id_user = $_SESSION['id_user'];
@@ -17,8 +16,6 @@ $nip = $_SESSION['nip'];
 // Lanjutkan dengan konten halaman indexUser.php
 // ...
 ?>
-
-<br>
 
 <!DOCTYPE html>
 
