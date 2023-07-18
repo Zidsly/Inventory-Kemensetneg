@@ -12,12 +12,13 @@ if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['r
 $username = $_SESSION['username'];
 $id_user = $_SESSION['id_user'];
 $nama_lengkap = $_SESSION['nama_lengkap'];
-$tipe_akun = $_SESSION['tipe_akun'];
 
 
 // Lanjutkan dengan konten halaman indexUser.php
 // ...
 ?>
+
+<br>
 
 
 <!DOCTYPE html>

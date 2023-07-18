@@ -12,11 +12,12 @@ if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['r
 $username = $_SESSION['username'];
 $id_user = $_SESSION['id_user'];
 $nama_lengkap = $_SESSION['nama_lengkap'];
-$tipe_akun = $_SESSION['tipe_akun'];
 
 // Lanjutkan dengan konten halaman indexUser.php
 // ...
 ?>
+
+<br>
 
 <!DOCTYPE html>
 
@@ -82,7 +83,7 @@ $tipe_akun = $_SESSION['tipe_akun'];
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div>
     <!-- End Logo -->
-   
+
     <nav class="header-nav ms-auto">
 
       <ul class="d-flex align-items-center">
