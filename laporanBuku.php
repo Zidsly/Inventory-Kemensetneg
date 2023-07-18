@@ -357,10 +357,27 @@ $namaLengkap = $_SESSION['nama_lengkap'];
           <div class="row">
 
 
+          <?php
+            require_once 'koneksi.php';
+            $con = db_connect();
+
+            // Mendapatkan data kategori
+            $queryKategori = "SELECT DISTINCT nama_kategori FROM tb_kategori";
+            $resultKategori = mysqli_query($con, $queryKategori);
+
+            // Mendapatkan data sub kategori
+            $querySubKategori = "SELECT nama_sub_kategori FROM tb_kategori";
+            $resultSubKategori = mysqli_query($con, $querySubKategori);
+
+            // Mendapatkan data nama barang
+            $queryNamaBarang = "SELECT nama FROM tb_barang";
+            $resultNamaBarang = mysqli_query($con, $queryNamaBarang);
+            ?>
+
             <!-- Riwayat Pengambilan -->
             <div class="col-12">
               <div class="card top-selling overflow-auto">
-                
+
 
                 <div class="filter">
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -381,34 +398,34 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                     <label for="kategori" class="col-sm-2 col-form-label">Kategori Barang</label>
                     <div class="col-sm-10">
                       <select class="form-select" name="kategori" id="kategori" required>
-                          <option value="">Pilih Kategori</option>
-                          <option value="Alat Tulis Kantor">Barang Konsumsi</option>
-                          <option value="Bahan Kimia">Bahan untuk Pemeliharaan</option>
-                          <option value="Perlengkapan Kantor">Bahan baku</option>
+                        <option value="">Pilih Kategori</option>
+                        <?php while ($row = mysqli_fetch_assoc($resultKategori)) : ?>
+                          <option value="<?php echo $row['nama_kategori']; ?>"><?php echo $row['nama_kategori']; ?></option>
+                        <?php endwhile; ?>
                       </select>
                     </div>
                   </div>
-  
+
                   <div class="row mb-3">
-                    <label for="kategori" class="col-sm-2 col-form-label">sub Kategori</label>
+                    <label for="sub_kategori" class="col-sm-2 col-form-label">Sub Kategori</label>
                     <div class="col-sm-10">
-                      <select class="form-select" name="kategori" id="kategori" required>
-                          <option value="">Pilih Sub Kategori</option>
-                          <option value="Alat Tulis Kantor">Penjepit Kertas</option>
-                          <option value="Bahan Kimia">Penghapus</option>
-                          <option value="Perlengkapan Kantor">Buku Tulis</option>
+                      <select class="form-select" name="sub_kategori" id="sub_kategori" required>
+                        <option value="">Pilih Sub Kategori</option>
+                        <?php while ($row = mysqli_fetch_assoc($resultSubKategori)) : ?>
+                          <option value="<?php echo $row['nama_sub_kategori']; ?>"><?php echo $row['nama_sub_kategori']; ?></option>
+                        <?php endwhile; ?>
                       </select>
                     </div>
                   </div>
-                  
+
                   <div class="row mb-3">
-                    <label for="kategori" class="col-sm-2 col-form-label">Nama Barang</label>
+                    <label for="nama_barang" class="col-sm-2 col-form-label">Nama Barang</label>
                     <div class="col-sm-10">
-                      <select class="form-select" name="kategori" id="kategori" required>
-                          <option value="">Buku Tulis</option>
-                          <option value="Alat Tulis Kantor">Pulpen</option>
-                          <option value="Bahan Kimia">Pensil</option>
-                          <option value="Perlengkapan Kantor">Kertas A4</option>
+                      <select class="form-select" name="nama" id="nama" required>
+                        <option value="">Pilih Nama Barang</option>
+                        <?php while ($row = mysqli_fetch_assoc($resultNamaBarang)) : ?>
+                          <option value="<?php echo $row['nama']; ?>"><?php echo $row['nama']; ?></option>
+                        <?php endwhile; ?>
                       </select>
                     </div>
                   </div>

@@ -96,10 +96,6 @@ $namaLengkap = $_SESSION['nama_lengkap'];
 .content {
   text-align: center;
 }
-.table-bordered{
-  color: white;
-  border-color: #892641;
-}
 .editFormPopup-container {
     display: none;
     position: fixed;
@@ -620,30 +616,30 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                 console.log("Nilai Nama Kategori yang Dipilih:", selectedValue);
             });
 
-function getKategori() {
-  var dropdown = document.getElementById("namaSubKategori");
-  var selectedOption = dropdown.options[dropdown.selectedIndex];
-  var idKategori = selectedOption.value;
-  var namaKategori = selectedOption.getAttribute("data-nama-kategori");
+    function getKategori() {
+      var dropdown = document.getElementById("namaSubKategori");
+      var selectedOption = dropdown.options[dropdown.selectedIndex];
+      var idKategori = selectedOption.value;
+      var namaKategori = selectedOption.getAttribute("data-nama-kategori");
 
-  document.getElementById("idKategori").value = idKategori;
-  document.getElementById("namaKategori").value = namaKategori;
-}
-
-function editFormPopup(nama, kodeBarang, deskripsi, stokMinimal) {
-        document.getElementById("editNama").value = nama;
-        document.getElementById("editKodeBarang").value = kodeBarang;
-        document.getElementById("editDeskripsi").value = deskripsi;
-        document.getElementById("editStokMinimal").value = stokMinimal;
-
-        document.getElementById("originalNama").value = nama;
-        document.getElementById("originalKodeBarang").value = kodeBarang;
-        document.getElementById("originalDeskripsi").value = deskripsi;
-        document.getElementById("originalStokMinimal").value = stokMinimal;
-
-        var popup = document.querySelector('.editFormPopup-container');
-        popup.style.display = 'block';
+      document.getElementById("idKategori").value = idKategori;
+      document.getElementById("namaKategori").value = namaKategori;
     }
+
+    function editFormPopup(nama, kodeBarang, deskripsi, stokMinimal) {
+            document.getElementById("editNama").value = nama;
+            document.getElementById("editKodeBarang").value = kodeBarang;
+            document.getElementById("editDeskripsi").value = deskripsi;
+            document.getElementById("editStokMinimal").value = stokMinimal;
+
+            document.getElementById("originalNama").value = nama;
+            document.getElementById("originalKodeBarang").value = kodeBarang;
+            document.getElementById("originalDeskripsi").value = deskripsi;
+            document.getElementById("originalStokMinimal").value = stokMinimal;
+
+            var popup = document.querySelector('.editFormPopup-container');
+            popup.style.display = 'block';
+        }
 
     function closeEditFormPopup() {
         var popup = document.querySelector('.editFormPopup-container');
@@ -669,10 +665,10 @@ function editFormPopup(nama, kodeBarang, deskripsi, stokMinimal) {
         }
     }
 
-</script>
-
-
   </script>
+
+
+
 
 </body>
 

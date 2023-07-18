@@ -359,11 +359,11 @@ $namaLengkap = $_SESSION['nama_lengkap'];
             $con = db_connect();
 
             // Mendapatkan data kategori
-            $queryKategori = "SELECT * FROM tb_kategori";
+            $queryKategori = "SELECT DISTINCT nama_kategori FROM tb_kategori";
             $resultKategori = mysqli_query($con, $queryKategori);
 
             // Mendapatkan data sub kategori
-            $querySubKategori = "SELECT DISTINCT nama_sub_kategori FROM tb_kategori";
+            $querySubKategori = "SELECT nama_sub_kategori FROM tb_kategori";
             $resultSubKategori = mysqli_query($con, $querySubKategori);
 
             // Mendapatkan data nama barang
@@ -384,7 +384,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                       <select class="form-select" name="kategori" id="kategori" required>
                         <option value="">Pilih Kategori</option>
                         <?php while ($row = mysqli_fetch_assoc($resultKategori)) : ?>
-                          <option value="<?php echo $row['id_kategori']; ?>"><?php echo $row['nama_kategori']; ?></option>
+                          <option value="<?php echo $row['nama_kategori']; ?>"><?php echo $row['nama_kategori']; ?></option>
                         <?php endwhile; ?>
                       </select>
                     </div>
