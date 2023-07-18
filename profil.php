@@ -2,23 +2,18 @@
 session_start();
 
 // Periksa apakah pengguna masuk atau memiliki peran yang sesuai
-if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['role'] !== 'user')) {
-  header("Location: login.php");
-  exit();
+if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['role'] !== 'supervisor' && $_SESSION['role'] !== 'admin')) {
+    header("Location: login.php");
+    exit();
 }
-
 
 // Mendapatkan username dan id_user dari session
 $username = $_SESSION['username'];
-$id_user = $_SESSION['id_user'];
-$nama_lengkap = $_SESSION['nama_lengkap'];
-$tipe_akun = $_SESSION['tipe_akun'];
+$idUser = $_SESSION['id_user'];
 $namaLengkap = $_SESSION['nama_lengkap'];
-
-// Lanjutkan dengan konten halaman indexUser.php
-// ...
 ?>
 
+<br>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,12 +51,10 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   .header {
     background-color: #892641;
   }
-
-  .sidebar {
+  .sidebar{
     background-color: #892641;
   }
-
-  .tbsmart {
+.tbsmart{
     font-size: 12px;
     margin-bottom: 0;
     font-weight: 600;
@@ -76,15 +69,13 @@ $namaLengkap = $_SESSION['nama_lengkap'];
 
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="indexUser.php" class="logo d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo2.png" alt="">
         <span class="htsimpan">SMART<br>
-          <tb class="tbsmart">Sistem Manajemen dan Pelayanan Permintaan Barang Persediaan Terpadu</tb>
-        </span>
+          <tb class="tbsmart">Sistem Manajemen dan Pelayanan Permintaan Barang Persediaan Terpadu</tb></span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
-
 
 
     <nav class="header-nav ms-auto">
@@ -92,30 +83,94 @@ $namaLengkap = $_SESSION['nama_lengkap'];
       <ul class="d-flex align-items-center">
 
 
+      <?php
+      require_once 'koneksi.php';
+      require_once 'notif_functions.php';
+
+      // Create a database connection
+      $con = db_connect();
+
+      // Mengambil notifikasi dari fungsi-fungsi
+      $barangHampirHabis = getBarangHampirHabis($con);
+      $barangStokMinimal = getBarangStokMinimal($con);
+
+      // Menghitung jumlah notifikasi
+      $totalNotifikasi = count($barangHampirHabis) + count($barangStokMinimal);
+      ?>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+          <i class="bi bi-bell"></i>
+          <span class="badge bg-primary badge-number"><?php echo $totalNotifikasi; ?></span>
+        </a><!-- End Notification Icon -->
+
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+          <li class="dropdown-header">
+            Notifikasi Terbaru
+            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Lihat Semua</span></a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+
+          <?php
+          $counter = 1;
+          foreach ($barangHampirHabis as $notif) {
+              echo '<li class="notification-item">';
+              echo '<i class="bi bi-exclamation-circle text-warning"></i>';
+              echo '<div>';
+              echo '<h4>Peringatan</h4>';
+              echo "<p>$notif</p>";
+              echo '</div>';
+              echo '</li>';
+              echo '<li><hr class="dropdown-divider"></li>';
+              $counter++;
+          }
+
+          foreach ($barangStokMinimal as $notif) {
+              echo '<li class="notification-item">';
+              echo '<i class="bi bi-x-circle text-danger"></i>';
+              echo '<div>';
+              echo '<h4>Stok sudah mencapai batas minimal</h4>';
+              echo "<p>$notif</p>";
+              echo '</div>';
+              echo '</li>';
+              echo '<li><hr class="dropdown-divider"></li>';
+              $counter++;
+          }
+          ?>
 
 
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li class="dropdown-footer">
+            <a href="#">Lihat semua notifikasi</a>
+          </li>
+        </ul><!-- End Notification Dropdown Items -->
+      </li><!-- End Notification Nav -->
 
 
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $username; ?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Admin Supervisor</h6>
-              <span>Web Designer</span>
+              <h6><?php echo $username; ?></h6>
+              <span><?php echo $idUser; ?></span>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="profilUser.php">
+              <a class="dropdown-item d-flex align-items-center" href="profil.php">
                 <i class="bi bi-person"></i>
-                <span>Profil</span>
+                <span>Profile</span>
               </a>
             </li>
             <li>
@@ -142,53 +197,114 @@ $namaLengkap = $_SESSION['nama_lengkap'];
 
   </header><!-- End Header -->
 
-  <!-- ======= Sidebar ======= -->
+   <!-- ======= Sidebar ======= -->
 
-  <aside id="sidebar" class="sidebar">
+<aside id="sidebar" class="sidebar">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+<ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link " href="indexUser.php">
-          <i class="bi bi-grid"></i>
-          <span>Beranda</span>
+  <li class="nav-item">
+    <a class="nav-link " href="index.php">
+      <i class="bi bi-grid"></i>
+      <span>Beranda</span>
+    </a>
+  </li><!-- End Beranda Sidebar -->
+
+  <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+    <i class="bi bi-bar-chart"></i><span></span>Kelola Data</span><i class="bi bi-chevron-down ms-auto"></i>
+  </a>
+  <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <li>
+      <a href="kelolaKategori.php">
+        <i class="bi bi-circle"></i><span>Kelola Kategori</span>
+      </a>
+    </li>
+    <li>
+      <a href="inputBarangBaru.php">
+        <i class="bi bi-circle"></i><span>Input Barang Baru</span>
+      </a>
+    </li>
+    <li>
+      <a href="inputStok.php">
+        <i class="bi bi-circle"></i><span>Input Stok</span>
+      </a>
+    </li>
+    <li>
+      <a href="kelolaUser.php">
+        <i class="bi bi-circle"></i><span>Kelola User</span>
+      </a>
+    </li>
+  </ul>
+</li><!-- End Kelola Data Sidebar -->
+
+
+  <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Kelola Permintaan</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li><!-- End Dashboard Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span></span>Permintaan Barang</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="buatPermintaan.php">
-              <i class="bi"></i><span>Buat Permintaan</span>
+            <a href="kelolaPermintaan.php">
+              <i class="bi bi-circle"></i><span>Cek Permintaan</span>
             </a>
           </li>
           <li>
-            <a href="statusPermintaan.php">
-              <i class="bi"></i><span>Status Permintaan</span>
+          <li>
+            <a href="kelolaPermintaan3.php">
+              <i class="bi bi-circle"></i><span>Permintaan Selesai</span>
+            </a>
+          </li>
+          <li>
+            <a href="kelolaPermintaan2.php">
+              <i class="bi bi-circle"></i><span>Cek Stok Barang</span>
             </a>
           </li>
         </ul>
-      </li><!-- End Tables Nav -->
+      </li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="laporan.php">
-          <i class="bi bi-bar-chart"></i>
-          <span>Laporan</span>
+  <!-- End Kelola Permintaan Data Sidebar -->
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-journal-text"></i><span>Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="laporanUser.php">
+          <i class="bi bi-circle"></i><span>Laporan Permintaan User</span>
         </a>
-      </li><!-- End Tables Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="profilUser.php">
-          <i class="bi bi-person"></i>
-          <span>Profil</span>
+      </li>
+      <li>
+        <a href="laporanMutasi.php">
+          <i class="bi bi-circle"></i><span>Laporan Mutasi Barang Persediaan</span>
         </a>
-      </li><!-- End Profile Page Nav -->
-
+      </li>
+      <li>
+        <a href="laporanBuku.php">
+          <i class="bi bi-circle"></i><span>Laporan Buku Persediaan</span>
+        </a>
+      </li>
+      <li>
+        <a href="laporanPersediaan.php">
+          <i class="bi bi-circle"></i><span>Laporan Persediaan Masuk</span>
+        </a>
+      </li>
     </ul>
-  </aside><!-- End Sidebar-->
+  </li><!-- End Laporan Sidebar -->
+
+
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="profil.php">
+      <i class="bi bi-person"></i>
+      <span>Profil</span>
+    </a>
+  </li><!-- End Profil Sidebar -->
+
+</ul>
+
+</aside>
+<!-- End Sidebar-->
 
   <main id="main" class="main">
 
@@ -196,10 +312,10 @@ $namaLengkap = $_SESSION['nama_lengkap'];
       <h1>Profil</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="indexUser.php">Profil</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Profil</a></li>
           <li class="breadcrumb-item active">Admin</li>
         </ol>
-      </nav>
+    </nav>
     </div><!-- End Page Title -->
 
 
@@ -225,32 +341,30 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Ganti Password</button>
                 </li>
 
-                <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#buatUser">Buat Akun User</button>
-                </li>
 
               </ul>
               <div class="tab-content pt-2">
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-
+                  
                   <h5 class="card-title">Profile Details</h5>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $username; ?></div>
+                    <div class="col-lg-9 col-md-8"><?php echo $namaLengkap; ?></div>
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $userID; ?></div>
+                    <div class="col-lg-3 col-md-4 label">Id</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $idUser; ?></div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Username</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $nama_lengkap; ?></div>
+                    <div class="col-lg-9 col-md-8"><?php echo $username; ?></div>
                   </div>
                 </div>
+
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
@@ -288,12 +402,11 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                 <div class="tab-pane fade pt-3" id="profile-settings">
 
 
-
                 </div>
 
                 <div class="tab-pane fade pt-3" id="profile-change-password">
                   <!-- Change Password Form -->
-                  <form>
+                  <form >
 
                     <div class="row mb-3">
                       <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
@@ -323,58 +436,20 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                 </div>
 
 
-                <div class="tab-pane fade pt-3" id="buatUser">
-                  <!-- Form Buat Akun -->
-                  <form action="buatAkun.php" method="POST">
-                    <div class="row mb-3">
-                      <label for="username" class="col-md-4 col-lg-3 col-form-label">Username</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="username" type="text" class="form-control" id="username">
-                      </div>
-                    </div>
 
-                    <div class="row mb-3">
-                      <label for="nama" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="nama_lengkap" type="text" class="form-control" id="nama">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="email">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="password" type="password" class="form-control" id="newPassword">
-                      </div>
-                    </div>
-
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Buat Akun</button>
-                    </div>
-
-                  </form>
-
-                </div><!-- End Bordered Tabs -->
-
-              </div>
             </div>
-
           </div>
+
         </div>
+      </div>
     </section>
 
   </main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
     <div class="copyright">
-      SMART <strong><span>Sistem Informasi Manajemen Pengelolaan</span></strong>
+      <strong>  SMART - </strong> <span>Sistem Manajemen dan Pelayanan Permintaan Barang Persediaan Terpadu</span>
     </div>
     <div class="credits">
       Made by <a>Tim Efektif</a>

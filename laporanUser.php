@@ -22,7 +22,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>INPUT STOK - SMART</title>
+  <title>Lap.Permintaan User - SMART</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -44,14 +44,13 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-  
+
 
   <!-- Template Main CSS File -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
 
 <style>
@@ -86,51 +85,19 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   .img {
   height: 50%; /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
   width: auto; /* Menjaga rasio aspek gambar */
-}
+    }
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70vh;
-}        
-.content {
-  text-align: center;
-  
-}
-.editKategoriPopup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-}
-                
-.editKategoriPopup-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    width: 600px;
-}
-                
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    }
 
-.table-bordered{
-  color: white;
-  border-color: #892641;
-}
+.content {
+    text-align: center;
+    }
 </style>
+
 
 
 
@@ -148,9 +115,11 @@ $namaLengkap = $_SESSION['nama_lengkap'];
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
+
     <nav class="header-nav ms-auto">
 
       <ul class="d-flex align-items-center">
+
 
       <?php
       require_once 'koneksi.php';
@@ -219,6 +188,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
         </ul><!-- End Notification Dropdown Items -->
       </li><!-- End Notification Nav -->
 
+
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -236,7 +206,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="profil.php">
+              <a class="dropdown-item d-flex align-items-center" href="profil.php
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
               </a>
@@ -374,132 +344,118 @@ $namaLengkap = $_SESSION['nama_lengkap'];
 </aside>
 <!-- End Sidebar-->
 
-
-
   <main id="main" class="main">
 
-    <div class="pagetitle">
-      <h1>Input Stok</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Kelola</a></li>
-          <li class="breadcrumb-item active">Input Stok</li>
-        </ol>
-    </nav>
-    </div><!-- End Page Title -->
+    <section class="section dashboard">
+      <div class="row">
 
-          <div class="card mt-4">
-            <div class="card-body">
-              <h5 class="card-title">Tambah Stok</h5>
-              <!-- Form Tambah Stok -->
+        <!-- Left side columns -->
+        <class="col-lg-8">
+          <div class="row">
 
 
-                <!-- Form untuk tambah stok -->
+            <!-- Riwayat Pengambilan -->
+            <div class="col-12">
+              <div class="card top-selling overflow-auto">
 
-                <div class="row mb-3">
-                <label for="namaKategori" class="col-sm-2 col-form-label">Nama Kategori</label>
-                <div class="col-sm-10">
-                  <select class="form-select" id="namaKategori" name="nama_kategori" onchange="loadSubKategori()">
-                    <option value="">Pilih Kategori</option>
-                      <?php
-                      require_once 'koneksi.php';
-                      $con = db_connect();
-
-                      $query = "SELECT DISTINCT nama_kategori FROM tb_kategori";
-                      $result = mysqli_query($con, $query);
-
-                      $kategoriArray = array(); // Array untuk menyimpan nama_kategori
-
-                      while ($row = mysqli_fetch_assoc($result)) {
-                          $kategoriArray[] = $row['nama_kategori'];
-                      }
-
-                      foreach ($kategoriArray as $kategori) {
-                          echo "<option value='" . $kategori . "'>" . $kategori . "</option>";
-                      }
-
-                      db_disconnect($con);
-                      ?>
-                  </select>
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                      <li><a class="dropdown-item" href="?tgl_minta=hari_ini">Hari ini</a></li>
+                    <li><a class="dropdown-item" href="?tgl_minta=bulan_ini">Bulan ini</a></li>
+                    <li><a class="dropdown-item" href="?tgl_minta=tahun_ini">Tahun ini</a></li>
+                  </ul>
                 </div>
-              </div>
 
-              <form action="prosesTambahStok.php" method="post">
-              <input type="hidden" name="idUser" value="<?php echo $idUser; ?>">
+                <div class="card-body pb-0">
+                  <h5 class="card-title">Laporan Permintaan User <span>| Hari ini</span></h5>
+
+                      <!-- Koneksi ke database -->
+                        <?php
+                        require_once 'koneksi.php';
+                        $con = db_connect();
+                        ?>
+
+                        <!-- Tabel Data -->
+                        <table id="example" class="table table-striped" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>ID Transaksi</th>
+                              <th>Pemesan</th>
+                              <th>Tanggal Minta</th>
+                              <th>Tanggal Ambil</th>
+                              <th>Kode Barang</th>
+                              <th>Nama Barang</th>
+                              <th>Jumlah Permintaan</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+
+                              // Mengambil nilai parameter tgl_minta dari URL
+                              $tglMinta = isset($_GET['tgl_minta']) ? $_GET['tgl_minta'] : 'hari_ini';
+
+                              // Mengecek jika tgl_minta tidak ada atau bernilai 'hari_ini', maka default ke hari ini
+                              if (!$tglMinta || $tglMinta == 'hari_ini') {
+                                $tglMinta = 'hari_ini';
+                                $tglFilter = "DATE(tb_order.tgl_minta) = CURDATE()";
+                              } else if ($tglMinta == 'bulan_ini') {
+                                $tglFilter = "MONTH(tb_order.tgl_minta) = MONTH(CURDATE())";
+                              } else if ($tglMinta == 'tahun_ini') {
+                                $tglFilter = "YEAR(tb_order.tgl_minta) = YEAR(CURDATE())";
+                              }
+
+                              // Query untuk mendapatkan data dari tabel
+                              $query = "SELECT tb_order.id_transaksi, tb_order.tgl_minta, tb_order.tgl_ambil, tb_user.nama_lengkap, 
+                              GROUP_CONCAT(tb_barang.kode_barang) AS kode_barang,
+                              GROUP_CONCAT(tb_barang.nama) AS nama_barang,
+                              GROUP_CONCAT(tb_order_detail.jumlah_minta) AS jumlah_minta
+                              FROM tb_order
+                              JOIN tb_order_detail ON tb_order.id_transaksi = tb_order_detail.id_transaksi
+                              JOIN tb_barang ON tb_order_detail.id_barang = tb_barang.id_barang
+                              JOIN tb_user ON tb_order.id_user = tb_user.id_user
+                              GROUP BY tb_order.id_transaksi, tb_user.nama_lengkap
+                              ORDER BY tb_order.id_transaksi DESC";
 
 
-              <div class="row mb-3">
-                <label for="namaSubKategori" class="col-sm-2 col-form-label">Nama Sub Kategori</label>
-                <div class="col-sm-10">
-                <select class="form-select" id="namaSubKategori" name="namaSubKategori" >
-                  <option value="">Pilih Sub Kategori</option>
-                                        <?php
-                      require_once 'koneksi.php';
-                      $con = db_connect();
+                              $result = mysqli_query($con, $query);
 
-                      $query = "SELECT DISTINCT nama_sub_kategori, id_kategori FROM tb_kategori";
-                      $result = mysqli_query($con, $query);
+                              // Iterasi dan tampilkan data dalam tabel
+                              while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>";
+                                echo "<td>" . $row['id_transaksi'] . "</td>";
+                                echo "<td>" . $row['nama_lengkap'] . "</td>";
+                                echo "<td>" . $row['tgl_minta'] . "</td>";
+                                echo "<td>" . $row['tgl_ambil'] . "</td>";
+                                echo "<td>" . $row['kode_barang'] . "</td>";
+                                echo "<td>" . $row['nama_barang'] . "</td>";
+                                echo "<td>" . $row['jumlah_minta'] . "</td>";
+                                echo "</tr>";
+                              }
+                            ?>
+                          </tbody>
+                        </table>
 
-                      while ($row = mysqli_fetch_assoc($result)) {
-                          echo "<option value='" . $row['id_kategori'] . "'>" . $row['nama_sub_kategori'] . "</option>";
-                      }
+                        <!-- Tutup koneksi ke database -->
+                        <?php
+                        db_disconnect($con);
+                        ?>
 
-                      db_disconnect($con);
-                      ?>
-                </select>
+
+
                 </div>
+
               </div>
+            </div><!-- End Top Selling -->
 
-            <input type="hidden" name="idUser" value="<?php echo $idUser; ?>">
-
-              <div class="row mb-3">
-    <label for="namaBarang" class="col-sm-2 col-form-label">Nama Barang</label>
-    <div class="col-sm-10">
-      <select class="form-select" id="namaBarang" name="namaBarang">
-        <option value="">Pilih Nama Barang</option>
-        <?php
-        require_once 'koneksi.php';
-        $con = db_connect();
-
-        $query = "SELECT DISTINCT id_barang, nama FROM tb_barang";
-        $result = mysqli_query($con, $query);
-
-        while ($row = mysqli_fetch_assoc($result)) {
-          echo "<option value='" . $row['id_barang'] . "'>" . $row['nama'] . "</option>";
-        }
-
-        db_disconnect($con);
-        ?>
-      </select>
-    </div>
-  </div>
-  <input type="hidden" name="idBarang" id="idBarang" value="">
-
-<div class="row mb-3">
-  <label for="inputDate" class="col-sm-2 col-form-label">Tanggal Pembelian</label>
-  <div class="col-sm-10">
-    <input type="date" class="form-control" id="inputDate" name="inputDate">
-  </div>
-</div>
-
-<div class="row mb-3">
-  <label for="inputNumber" class="col-sm-2 col-form-label">Jumlah Masuk</label>
-  <div class="col-sm-10">
-    <input type="number" class="form-control" id="inputNumber" name="inputNumber">
-  </div>
-</div>
+          </div>
+        </div><!-- End Left side columns -->
 
 
-    <div class="row mb-3">
-        <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Input</button>
-        </div>
-        </div>
-        </form>
-         <!-- End Form Tambah Stok -->
-        </div>
-   </div>
-
+      </div>
+    </section>
 
   </main><!-- End #main -->
 
@@ -528,27 +484,15 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
-
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <script>
     $(document).ready(function () {
     $('#example').DataTable();
     });
-
-  // Mendapatkan elemen select "Nama Barang"
-  var selectBarang = document.getElementById("namaBarang");
-
-  // Mendapatkan nilai id_barang terpilih saat opsi berubah
-  selectBarang.addEventListener("change", function() {
-    var selectedOption = selectBarang.options[selectBarang.selectedIndex];
-    var idBarang = selectedOption.value;
-    document.getElementById("idBarang").value = idBarang;
-  });
   </script>
-
+  
 </body>
 
 </html>

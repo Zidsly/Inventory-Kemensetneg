@@ -2,7 +2,7 @@
 session_start();
 
 // Periksa apakah pengguna masuk atau memiliki peran yang sesuai
-if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['role'] !== 'supervisor')) {
+if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['role'] !== 'supervisor' && $_SESSION['role'] !== 'admin')) {
     header("Location: login.php");
     exit();
 }
@@ -22,7 +22,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>INPUT STOK - SMART</title>
+  <title>KELOLA PERMINTAAN - SMART</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -67,70 +67,8 @@ $namaLengkap = $_SESSION['nama_lengkap'];
     font-weight: 600;
     color: #ffffff;
   }
-  .pengumuman{
-    font-size: 40px;
-    font-weight: 700;
-    color: #fff;
-    font-family: "Nunito", sans-serif;
-    text-align: center;
-    padding-top: 100px;
-  }
-    .c-item {
-  height: 360px;
-  }
-  .c-img {
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.6);
-  }
-  .img {
-  height: 50%; /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
-  width: auto; /* Menjaga rasio aspek gambar */
-}
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70vh;
-}        
-.content {
-  text-align: center;
-  
-}
-.editKategoriPopup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-}
-                
-.editKategoriPopup-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    width: 600px;
-}
-                
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-}
-
-.table-bordered{
-  color: white;
-  border-color: #892641;
-}
 </style>
+
 
 
 
@@ -148,9 +86,10 @@ $namaLengkap = $_SESSION['nama_lengkap'];
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <nav class="header-nav ms-auto">
 
+    <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
+
 
       <?php
       require_once 'koneksi.php';
@@ -218,6 +157,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
           </li>
         </ul><!-- End Notification Dropdown Items -->
       </li><!-- End Notification Nav -->
+
 
         <li class="nav-item dropdown pe-3">
 
@@ -378,130 +318,71 @@ $namaLengkap = $_SESSION['nama_lengkap'];
 
   <main id="main" class="main">
 
-    <div class="pagetitle">
-      <h1>Input Stok</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Kelola</a></li>
-          <li class="breadcrumb-item active">Input Stok</li>
-        </ol>
-    </nav>
-    </div><!-- End Page Title -->
+      <!-- Card Data permintaan -->
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Permintaan Masuk</h5>
 
-          <div class="card mt-4">
-            <div class="card-body">
-              <h5 class="card-title">Tambah Stok</h5>
-              <!-- Form Tambah Stok -->
+                <!--Tabel Data Kategori-->
+                <table id="example" class="table table-striped" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th>Id Transaksi</th>
+                      <th>Pemesan</th>
+                      <th>Tanggal</th>
+                      <th>Nama Barang</th>
+                      <th>Jumlah</th>
+                      <th>Status</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    // Koneksi ke database
+                    require_once 'koneksi.php';
+                    $con = db_connect();
 
+                    $query = "SELECT tb_order.id_transaksi, tb_user.nama_lengkap, GROUP_CONCAT(tb_barang.nama SEPARATOR '<br>') AS nama, tb_order.tgl_minta, GROUP_CONCAT(tb_order_detail.jumlah_minta SEPARATOR '<br>') AS jumlah_minta, tb_order.status
+                    FROM tb_order
+                    JOIN tb_user ON tb_order.id_user = tb_user.id_user
+                    JOIN tb_order_detail ON tb_order.id_transaksi = tb_order_detail.id_transaksi
+                    JOIN tb_barang ON tb_order_detail.id_barang = tb_barang.id_barang
+                    WHERE tb_order.status = 'Menunggu'
+                    GROUP BY tb_order.id_transaksi";
 
-                <!-- Form untuk tambah stok -->
+                    $result = mysqli_query($con, $query);
 
-                <div class="row mb-3">
-                <label for="namaKategori" class="col-sm-2 col-form-label">Nama Kategori</label>
-                <div class="col-sm-10">
-                  <select class="form-select" id="namaKategori" name="nama_kategori" onchange="loadSubKategori()">
-                    <option value="">Pilih Kategori</option>
-                      <?php
-                      require_once 'koneksi.php';
-                      $con = db_connect();
-
-                      $query = "SELECT DISTINCT nama_kategori FROM tb_kategori";
-                      $result = mysqli_query($con, $query);
-
-                      $kategoriArray = array(); // Array untuk menyimpan nama_kategori
-
-                      while ($row = mysqli_fetch_assoc($result)) {
-                          $kategoriArray[] = $row['nama_kategori'];
-                      }
-
-                      foreach ($kategoriArray as $kategori) {
-                          echo "<option value='" . $kategori . "'>" . $kategori . "</option>";
-                      }
-
-                      db_disconnect($con);
-                      ?>
-                  </select>
-                </div>
+                    // Iterasi dan tampilkan data dalam tabel
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      echo "<tr>";
+                      echo "<td>" . $row['id_transaksi'] . "</td>";
+                      echo "<td>" . $row['nama_lengkap'] . "</td>";
+                      echo "<td>" . $row['tgl_minta'] . "</td>";
+                      echo "<td>" . $row['nama'] . "</td>";
+                      echo "<td>" . $row['jumlah_minta'] . "</td>";
+                      echo "<td class='badge bg-warning p-2 ms-2' style='border-radius: 0; color: white;'>" . $row['status'] . "</td>";
+                      echo "<td>";
+                      echo "<button type='button' class='btn btn-warning btn-ready' data-id='" . $row['id_transaksi'] . "'><i class='bi bi-check-circle'></i></button>";
+                      echo "</td>";
+                      echo "</tr>";
+                    }
+                    // Tutup koneksi ke database
+                    db_disconnect($con);
+                    ?>
+                  </tbody>
+                </table>
               </div>
-
-              <form action="prosesTambahStok.php" method="post">
-              <input type="hidden" name="idUser" value="<?php echo $idUser; ?>">
-
-
-              <div class="row mb-3">
-                <label for="namaSubKategori" class="col-sm-2 col-form-label">Nama Sub Kategori</label>
-                <div class="col-sm-10">
-                <select class="form-select" id="namaSubKategori" name="namaSubKategori" >
-                  <option value="">Pilih Sub Kategori</option>
-                                        <?php
-                      require_once 'koneksi.php';
-                      $con = db_connect();
-
-                      $query = "SELECT DISTINCT nama_sub_kategori, id_kategori FROM tb_kategori";
-                      $result = mysqli_query($con, $query);
-
-                      while ($row = mysqli_fetch_assoc($result)) {
-                          echo "<option value='" . $row['id_kategori'] . "'>" . $row['nama_sub_kategori'] . "</option>";
-                      }
-
-                      db_disconnect($con);
-                      ?>
-                </select>
-                </div>
-              </div>
-
-            <input type="hidden" name="idUser" value="<?php echo $idUser; ?>">
-
-              <div class="row mb-3">
-    <label for="namaBarang" class="col-sm-2 col-form-label">Nama Barang</label>
-    <div class="col-sm-10">
-      <select class="form-select" id="namaBarang" name="namaBarang">
-        <option value="">Pilih Nama Barang</option>
-        <?php
-        require_once 'koneksi.php';
-        $con = db_connect();
-
-        $query = "SELECT DISTINCT id_barang, nama FROM tb_barang";
-        $result = mysqli_query($con, $query);
-
-        while ($row = mysqli_fetch_assoc($result)) {
-          echo "<option value='" . $row['id_barang'] . "'>" . $row['nama'] . "</option>";
-        }
-
-        db_disconnect($con);
-        ?>
-      </select>
-    </div>
-  </div>
-  <input type="hidden" name="idBarang" id="idBarang" value="">
-
-<div class="row mb-3">
-  <label for="inputDate" class="col-sm-2 col-form-label">Tanggal Pembelian</label>
-  <div class="col-sm-10">
-    <input type="date" class="form-control" id="inputDate" name="inputDate">
-  </div>
-</div>
-
-<div class="row mb-3">
-  <label for="inputNumber" class="col-sm-2 col-form-label">Jumlah Masuk</label>
-  <div class="col-sm-10">
-    <input type="number" class="form-control" id="inputNumber" name="inputNumber">
-  </div>
-</div>
-
-
-    <div class="row mb-3">
-        <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Input</button>
+            </div>
+          </div>
         </div>
-        </div>
-        </form>
-         <!-- End Form Tambah Stok -->
-        </div>
-   </div>
+      </section>
 
+  </main>
 
-  </main><!-- End #main -->
+  <!-- End #main -->
 
 <!-- ======= Footer ======= -->
 <footer id="footer" class="footer">
@@ -528,25 +409,68 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
-
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <script>
     $(document).ready(function () {
     $('#example').DataTable();
+    $('#example2').DataTable();
     });
 
-  // Mendapatkan elemen select "Nama Barang"
-  var selectBarang = document.getElementById("namaBarang");
+    document.addEventListener('DOMContentLoaded', function() {
+    var readyButtons = document.querySelectorAll('.btn-ready');
+    var selesaiButtons = document.querySelectorAll('.btn-selesai');
 
-  // Mendapatkan nilai id_barang terpilih saat opsi berubah
-  selectBarang.addEventListener("change", function() {
-    var selectedOption = selectBarang.options[selectBarang.selectedIndex];
-    var idBarang = selectedOption.value;
-    document.getElementById("idBarang").value = idBarang;
+    readyButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        var idTransaksi = this.getAttribute('data-id');
+
+        // Kirim permintaan AJAX untuk mengubah status menjadi 'Siap Diambil'
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'updateStatus.php');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            // Status berhasil diubah, lakukan tindakan lain jika diperlukan
+            alert('Status berhasil diubah menjadi Siap Diambil');
+            location.reload(); // Melakukan refresh halaman
+            // Refresh halaman atau lakukan tindakan lainnya
+          } else {
+            // Gagal mengubah status, tampilkan pesan error atau lakukan tindakan lain jika diperlukan
+            alert('Terjadi kesalahan saat mengubah status');
+          }
+        };
+        xhr.send('id_transaksi=' + encodeURIComponent(idTransaksi));
+      });
+    });
+
+    selesaiButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        var idTransaksi = this.getAttribute('data-id');
+
+        // Kirim permintaan AJAX untuk mengubah status menjadi 'Selesai'
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'updateStatus2.php');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            // Status berhasil diubah, lakukan tindakan lain jika diperlukan
+            alert('Status berhasil diubah menjadi Selesai');
+            location.reload(); // Melakukan refresh halaman
+            // Refresh halaman atau lakukan tindakan lainnya
+          } else {
+            // Gagal mengubah status, tampilkan pesan error atau lakukan tindakan lain jika diperlukan
+            alert('Terjadi kesalahan saat mengubah status');
+          }
+        };
+        xhr.send('id_transaksi=' + encodeURIComponent(idTransaksi));
+      });
+    });
+
+
   });
+
   </script>
 
 </body>

@@ -14,6 +14,7 @@ $id_user = $_SESSION['id_user'];
 $nama_lengkap = $_SESSION['nama_lengkap'];
 $tipe_akun = $_SESSION['tipe_akun'];
 
+
 // Lanjutkan dengan konten halaman indexUser.php
 // ...
 ?>
@@ -436,7 +437,7 @@ $tipe_akun = $_SESSION['tipe_akun'];
     foreach ($_SESSION["cart"] as $cartItem) {
       if (isset($cartItem["id_barang"])) {
         $idBarang = $cartItem["id_barang"];
-        $query = "SELECT gambar, nama_kategori FROM tb_barang WHERE id_barang = '$idBarang'";
+        $query = "SELECT gambar, nama_sub_kategori FROM tb_barang WHERE id_barang = '$idBarang'";
         $result = mysqli_query($con, $query);
         $row = mysqli_fetch_assoc($result);
         /*
@@ -458,7 +459,7 @@ $tipe_akun = $_SESSION['tipe_akun'];
     */
         if ($row) {
           $gambar = $row["gambar"];
-          $namaKategori = $row["nama_kategori"];
+          $namaKategori = $row["nama_sub_kategori"];
 
           // Tampilkan data produk ke dalam tabel
           echo '                    <tr>';
@@ -483,7 +484,6 @@ $tipe_akun = $_SESSION['tipe_akun'];
           //echo '                            <input type="number" class="form-control jumlah-input" name="jumlah_minta_' . $cartItem["id_barang"] . '" value="1" style="width: 75px;">';
           //echo '                        <input type="number" class="form-control" name="jumlah_minta_' . $cartItem["id_barang"] . '" value="' . $cartItem["jumlah_minta"] . '" style="width: 75px;">';
           //echo '                          <button type="button" class="btn btn-primary btn-tambah-1 mx-2">+</button>';
-          echo '                          <button class="btn btn-danger" type="submit">Batal</button>';
           echo '                        </div>';
           echo '                      </td>';
           echo '                    </tr>';

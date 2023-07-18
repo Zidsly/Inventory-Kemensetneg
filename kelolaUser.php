@@ -3,19 +3,17 @@ session_start();
 
 // Periksa apakah pengguna masuk atau memiliki peran yang sesuai
 if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['role'] !== 'supervisor')) {
-  header("Location: login.php");
-  exit();
+    header("Location: login.php");
+    exit();
 }
 
 // Mendapatkan username dan id_user dari session
 $username = $_SESSION['username'];
-$id_user = $_SESSION['id_user'];
-$nama_lengkap = $_SESSION['nama_lengkap'];
-$tipe_akun = $_SESSION['tipe_akun'];
+$idUser = $_SESSION['id_user'];
+$namaLengkap = $_SESSION['nama_lengkap'];
 ?>
 
-
-
+<br>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,19 +58,16 @@ $tipe_akun = $_SESSION['tipe_akun'];
   .header {
     background-color: #892641;
   }
-
-  .sidebar {
-    background-color: #892641;
+  .sidebar{
+      background-color: #892641;
   }
-
-  .tbsmart {
+  .tbsmart{
     font-size: 12px;
     margin-bottom: 0;
     font-weight: 600;
     color: #ffffff;
   }
-
-  .pengumuman {
+  .pengumuman{
     font-size: 40px;
     font-weight: 700;
     color: #fff;
@@ -80,37 +75,29 @@ $tipe_akun = $_SESSION['tipe_akun'];
     text-align: center;
     padding-top: 100px;
   }
-
-  .c-item {
-    height: 360px;
+    .c-item {
+  height: 360px;
   }
-
   .c-img {
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.6);
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
   }
-
   .img {
-    height: 50%;
-    /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
-    width: auto;
-    /* Menjaga rasio aspek gambar */
-  }
+  height: 50%; /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
+  width: auto; /* Menjaga rasio aspek gambar */
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+.content {
+  text-align: center;
 
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70vh;
-  }
-
-  .content {
-    text-align: center;
-
-  }
-
-  .editKategoriPopup {
+}
+.editKategoriPopup {
     display: none;
     position: fixed;
     top: 0;
@@ -119,9 +106,9 @@ $tipe_akun = $_SESSION['tipe_akun'];
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
-  }
+}
 
-  .editKategoriPopup-content {
+.editKategoriPopup-content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -130,81 +117,80 @@ $tipe_akun = $_SESSION['tipe_akun'];
     padding: 20px;
     border-radius: 5px;
     width: 600px;
-  }
+}
 
-  .close {
+.close {
     position: absolute;
     top: 10px;
     right: 10px;
     cursor: pointer;
-  }
+}
 
-  .table-bordered {
-    color: white;
-    border-color: #892641;
-  }
+.table-bordered{
+  color: white;
+  border-color: #892641;
+}
+.popup-card {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  max-width: 90%;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
 
-  .popup-card {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    max-width: 90%;
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  }
+.popup-card .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
 
-  .popup-card .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-  }
+.popup-card h2 {
+  margin-top: 0;
+}
 
-  .popup-card h2 {
-    margin-top: 0;
-  }
+.popup-card form label {
+  display: block;
+  margin-bottom: 5px;
+}
 
-  .popup-card form label {
-    display: block;
-    margin-bottom: 5px;
-  }
+.popup-card form input[type="text"],
+.popup-card form input[type="email"],
+.popup-card form input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 
-  .popup-card form input[type="text"],
-  .popup-card form input[type="email"],
-  .popup-card form input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
+.popup-card form input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-  .popup-card form input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  .popup-overlay {
-    display: none;
-    position: fixed;
-    z-index: 9998;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
+.popup-overlay {
+  display: none;
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 </style>
 
 
@@ -218,8 +204,7 @@ $tipe_akun = $_SESSION['tipe_akun'];
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo2.png" alt="">
         <span class="htsimpan">SMART<br>
-          <tb class="tbsmart">Sistem Manajemen dan Pelayanan Permintaan Barang Persediaan Terpadu</tb>
-        </span>
+          <tb class="tbsmart">Sistem Manajemen dan Pelayanan Permintaan Barang Persediaan Terpadu</tb></span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -229,30 +214,94 @@ $tipe_akun = $_SESSION['tipe_akun'];
       <ul class="d-flex align-items-center">
 
 
+      <?php
+      require_once 'koneksi.php';
+      require_once 'notif_functions.php';
+
+      // Create a database connection
+      $con = db_connect();
+
+      // Mengambil notifikasi dari fungsi-fungsi
+      $barangHampirHabis = getBarangHampirHabis($con);
+      $barangStokMinimal = getBarangStokMinimal($con);
+
+      // Menghitung jumlah notifikasi
+      $totalNotifikasi = count($barangHampirHabis) + count($barangStokMinimal);
+      ?>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+          <i class="bi bi-bell"></i>
+          <span class="badge bg-primary badge-number"><?php echo $totalNotifikasi; ?></span>
+        </a><!-- End Notification Icon -->
+
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+          <li class="dropdown-header">
+            Notifikasi Terbaru
+            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Lihat Semua</span></a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+
+          <?php
+          $counter = 1;
+          foreach ($barangHampirHabis as $notif) {
+              echo '<li class="notification-item">';
+              echo '<i class="bi bi-exclamation-circle text-warning"></i>';
+              echo '<div>';
+              echo '<h4>Peringatan</h4>';
+              echo "<p>$notif</p>";
+              echo '</div>';
+              echo '</li>';
+              echo '<li><hr class="dropdown-divider"></li>';
+              $counter++;
+          }
+
+          foreach ($barangStokMinimal as $notif) {
+              echo '<li class="notification-item">';
+              echo '<i class="bi bi-x-circle text-danger"></i>';
+              echo '<div>';
+              echo '<h4>Stok sudah mencapai batas minimal</h4>';
+              echo "<p>$notif</p>";
+              echo '</div>';
+              echo '</li>';
+              echo '<li><hr class="dropdown-divider"></li>';
+              $counter++;
+          }
+          ?>
 
 
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li class="dropdown-footer">
+            <a href="#">Lihat semua notifikasi</a>
+          </li>
+        </ul><!-- End Notification Dropdown Items -->
+      </li><!-- End Notification Nav -->
 
 
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $nama_lengkap; ?></span> </a>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $username; ?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6><?php echo $username; ?></h6>
-              <span><?php echo $id_user; ?></span>
+              <span><?php echo $idUser; ?></span>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="profilUser.php.html">
+              <a class="dropdown-item d-flex align-items-center" href="profil.php">
                 <i class="bi bi-person"></i>
-                <span>Profil</span>
+                <span>Profile</span>
               </a>
             </li>
             <li>
@@ -279,93 +328,115 @@ $tipe_akun = $_SESSION['tipe_akun'];
 
   </header><!-- End Header -->
 
-  <!-- ======= Sidebar ======= -->
+ <!-- ======= Sidebar ======= -->
 
-  <aside id="sidebar" class="sidebar">
-    <ul class="sidebar-nav" id="sidebar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="index.php">
-          <i class="bi bi-grid"></i>
-          <span>Beranda</span>
-        </a>
-      </li>
-      <!-- End Beranda Sidebar -->
+ <aside id="sidebar" class="sidebar">
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-bar-chart"></i><span>Kelola Data</span><i class="bi bi-chevron-down ms-auto"></i>
+<ul class="sidebar-nav" id="sidebar-nav">
+
+  <li class="nav-item">
+    <a class="nav-link " href="index.php">
+      <i class="bi bi-grid"></i>
+      <span>Beranda</span>
+    </a>
+  </li><!-- End Beranda Sidebar -->
+
+  <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+    <i class="bi bi-bar-chart"></i><span></span>Kelola Data</span><i class="bi bi-chevron-down ms-auto"></i>
+  </a>
+  <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <li>
+      <a href="kelolaKategori.php">
+        <i class="bi bi-circle"></i><span>Kelola Kategori</span>
+      </a>
+    </li>
+    <li>
+      <a href="inputBarangBaru.php">
+        <i class="bi bi-circle"></i><span>Input Barang Baru</span>
+      </a>
+    </li>
+    <li>
+      <a href="inputStok.php">
+        <i class="bi bi-circle"></i><span>Input Stok</span>
+      </a>
+    </li>
+    <li>
+      <a href="kelolaUser.php">
+        <i class="bi bi-circle"></i><span>Kelola User</span>
+      </a>
+    </li>
+  </ul>
+</li><!-- End Kelola Data Sidebar -->
+
+
+  <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Kelola Permintaan</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="tables-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="kelolaKategori.php">
-              <i class="bi"></i><span>Kelola Kategori</span>
+            <a href="kelolaPermintaan.php">
+              <i class="bi bi-circle"></i><span>Cek Permintaan</span>
             </a>
           </li>
           <li>
-            <a href="inputBarangBaru.php">
-              <i class="bi"></i><span>Input Barang Baru</span>
+          <li>
+            <a href="kelolaPermintaan3.php">
+              <i class="bi bi-circle"></i><span>Permintaan Selesai</span>
             </a>
           </li>
           <li>
-            <a href="inputStok.php">
-              <i class="bi"></i><span>Input Stok</span>
-            </a>
-          </li>
-          <li>
-            <a href="kelolaUser.php">
-              <i class="bi"></i><span>Kelola User</span>
+            <a href="kelolaPermintaan2.php">
+              <i class="bi bi-circle"></i><span>Cek Stok Barang</span>
             </a>
           </li>
         </ul>
       </li>
-      <!-- End Kelola Data Sidebar -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="kelolaPermintaan.php">
-          <i class="bi bi-clipboard-check"></i><span>Kelola Permintaan</span>
+  <!-- End Kelola Permintaan Data Sidebar -->
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-journal-text"></i><span>Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="laporanUser.php">
+          <i class="bi bi-circle"></i><span>Laporan Permintaan User</span>
         </a>
       </li>
-      <!-- End Kelola Permintaan Data Sidebar -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="laporanUser.php">
-              <i class="bi"></i><span>Laporan Permintaan User</span>
-            </a>
-          </li>
-          <li>
-            <a href="laporanMutasi.php">
-              <i class="bi"></i><span>Laporan Mutasi Barang Persediaan</span>
-            </a>
-          </li>
-          <li>
-            <a href="laporanBuku.php">
-              <i class="bi"></i><span>Laporan Buku Persediaan</span>
-            </a>
-          </li>
-          <li>
-            <a href="laporanPersediaan.php">
-              <i class="bi"></i><span>Laporan Persediaan Masuk</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <!-- End Laporan Sidebar -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="profilUser.php">
-          <i class="bi bi-person"></i>
-          <span>Profil</span>
+      <li>
+        <a href="laporanMutasi.php">
+          <i class="bi bi-circle"></i><span>Laporan Mutasi Barang Persediaan</span>
         </a>
       </li>
-      <!-- End Profil Sidebar -->
+      <li>
+        <a href="laporanBuku.php">
+          <i class="bi bi-circle"></i><span>Laporan Buku Persediaan</span>
+        </a>
+      </li>
+      <li>
+        <a href="laporanPersediaan.php">
+          <i class="bi bi-circle"></i><span>Laporan Persediaan Masuk</span>
+        </a>
+      </li>
     </ul>
-  </aside>
-  <!-- End Sidebar-->
+  </li><!-- End Laporan Sidebar -->
+
+
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="profil.php">
+      <i class="bi bi-person"></i>
+      <span>Profil</span>
+    </a>
+  </li><!-- End Profil Sidebar -->
+
+</ul>
+
+</aside>
+<!-- End Sidebar-->
+
 
   <main id="main" class="main">
 
@@ -376,177 +447,182 @@ $tipe_akun = $_SESSION['tipe_akun'];
           <li class="breadcrumb-item"><a href="index.html">Kelola Data</a></li>
           <li class="breadcrumb-item active">Kelola User</li>
         </ol>
-      </nav>
+    </nav>
     </div><!-- End Page Title -->
+   
 
-
-    <div class="col-lg-8">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Buat Akun Baru</h5>
-
-
-          <form action="buatAkun.php" method="POST">
-            <!-- Form untuk Buat Akun Baru -->
-
-
-            <div class="row mb-3">
-              <label for="username" class="col-sm-2 col-form-label">Username</label>
-              <div class="col-sm-10">
-                <input name="username" type="text" class="form-control" id="username">
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <label for="nama" class="col-sm-2 col-form-label">Nama Lengkap</label>
-              <div class="col-sm-10">
-                <input name="nama_lengkap" type="text" class="form-control" id="nama">
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <label for="email" class="col-sm-2 col-form-label">Email</label>
-              <div class="col-sm-10">
-                <input name="email" type="email" class="form-control" id="email">
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <label for="nip" class="col-sm-2 col-form-label">NIP</label>
-              <div class="col-sm-10">
-                <input name="nip" type="number" class="form-control" id="nip">
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <label for="Password" class="col-sm-2 col-form-label">Password</label>
-              <div class="col-sm-10">
-                <input name="password" type="password" class="form-control" id="Password">
-              </div>
-            </div>
-
-
-            <div class="row mb-3">
-              <label for="tipeAkun" class="col-sm-2 col-form-label">Tipe Akun</label>
-              <div class="col-sm-10">
-                <select class="form-select" name="tipe_akun" id="tipeAkun" required>
-                  <option value="">Pilih Jenis Akun</option>
-                  <option value="supervisor">Admin Supervisor</option>
-                  <option value="admin">Admin Gudang</option>
-                  <option value="user">User</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary">Buat Akun</button>
-            </div>
-
-
-          </form>
-
-
-        </div>
-      </div>
-    </div>
-
-
-
-    <!-- Card -->
-    <section class="section">
-      <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-8">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Tabel Data User</h5>
+              <h5 class="card-title">Buat Akun Baru</h5>
 
 
-              <!--Tabel Data User-->
-              <table id="example" class="table table-striped" style="width:100%">
-                <thead>
-                  <tr>
-                    <th>Username</th>
-                    <th>Nama Lengkap</th>
-                    <th>Email</th>
-                    <th>NIP</th>
-                    <th>Password</th>
-                    <th>Tipe Akun</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  require_once 'koneksi.php';
-                  $con = db_connect();
+              <form action="buatAkun.php" method="POST">
+                <!-- Form untuk Buat Akun Baru -->
 
-                  // Mendapatkan data pengguna dari database
-                  $query = "SELECT username, nama_lengkap, email, nip, password, tipe_akun FROM tb_user";
-                  $result = mysqli_query($con, $query);
 
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    $username = $row['username'];
-                    $nama = $row['nama_lengkap'];
-                    $email = $row['email'];
-                    $nip = $row['nip'];
-                    $password = $row['password'];
-                    $tipeAkun = $row['tipe_akun'];
+                <div class="row mb-3">
+                    <label for="username" class="col-sm-2 col-form-label">Username</label>
+                    <div class="col-sm-10">
+                        <input name="username" type="text" class="form-control" id="username">
+                    </div>
+                </div>
 
-                    echo "<tr>";
-                    echo "<td>$username</td>";
-                    echo "<td>$nama</td>";
-                    echo "<td>$email</td>";
-                    echo "<td>$nip</td>";
-                    echo "<td>$password</td>";
-                    echo "<td>$tipeAkun</td>";
-                    echo "<td><button type='button' class='btn btn-primary' onclick='toggleEditPopup(\"$username\", \"$nama\", \"$email\", \"$nip\", \"$password\", \"$tipeAkun\")'>Edit</button></td>";
-                    echo "<td><button type='button' class='btn btn-danger' onclick='confirmDelete(\"$username\")'>Hapus</button></td>";
-                    echo "</tr>";
-                    echo "</tr>";
-                  }
+                <div class="row mb-3">
+                    <label for="nama" class="col-sm-2 col-form-label">Nama Lengkap</label>
+                    <div class="col-sm-10">
+                        <input name="nama_lengkap" type="text" class="form-control" id="nama">
+                    </div>
+                </div>
 
-                  db_disconnect($con);
-                  ?>
-                </tbody>
-              </table>
+                <div class="row mb-3">
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input name="email" type="email" class="form-control" id="email">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="nip" class="col-sm-2 col-form-label">NIP</label>
+                    <div class="col-sm-10">
+                        <input name="nip" type="number" class="form-control" id="nip">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="Password" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                        <input name="password" type="password" class="form-control" id="Password">
+                    </div>
+                </div>
+
+
+                <div class="row mb-3">
+                    <label for="tipeAkun" class="col-sm-2 col-form-label">Tipe Akun</label>
+                    <div class="col-sm-10">
+                      <select class="form-select" name="tipe_akun" id="tipeAkun" required>
+                          <option value="">Pilih Jenis Akun</option>
+                          <option value="supervisor">Admin Supervisor</option>
+                          <option value="admin">Admin Gudang</option>
+                          <option value="user">User</option>
+                      </select>
+                    </div>
+                  </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Buat Akun</button>
+                </div>
+
+
+              </form>
+
 
             </div>
           </div>
-    </section>
+        </div>
 
 
-    <div class="popup-overlay"></div>
-    <div class="popup-card" id="editPopup">
-      <span class="close" onclick="toggleEditPopup()">&times;</span>
-      <h3>Edit Data Pengguna</h3>
-      <form action="editUser.php" method="POST">
-        <label for="editUsername">Username</label>
-        <input type="text" id="editUsername" name="editUsername">
-        <label for="editNamaLengkap">Nama Lengkap</label>
-        <input type="text" id="editNamaLengkap" name="editNamaLengkap" required>
-        <label for="editEmail">Email</label>
-        <input type="email" id="editEmail" name="editEmail" required>
-        <label for="editNIP">NIP</label>
-        <input type="text" id="editNIP" name="editNIP" required>
-        <label for="editPassword">Password</label>
-        <input type="password" id="editPassword" name="editPassword" required>
-        <label for="editTipeAkun">Tipe Akun</label>
-        <input type="text" id="editTipeAkun" name="editTipeAkun" required>
-        <input type="submit" value="Update">
-      </form>
-    </div>
+
+           <!-- Card -->
+          <section class="section">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Tabel Data User</h5>
+
+                      <!--Tabel Data User-->
+                      <table id="example" class="table table-striped" style="width:100%">
+                        <thead>
+                        <tr>
+                          <th>Username</th>
+                          <th>Nama Lengkap</th>
+                          <th>Email</th>
+                          <th>NIP</th>
+                          <th>Password</th>
+                          <th>Tipe Akun</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                              <?php
+                              require_once 'koneksi.php';
+                              $con = db_connect();
+
+                              // Mendapatkan data pengguna dari database
+                              $query = "SELECT username, nama_lengkap, email, nip, password, tipe_akun FROM tb_user";
+                              $result = mysqli_query($con, $query);
+
+                              while ($row = mysqli_fetch_assoc($result)) {
+                                $username = $row['username'];
+                                $nama = $row['nama_lengkap'];
+                                $email = $row['email'];
+                                $nip = $row['nip'];
+                                $password = $row['password'];
+                                $tipeAkun = $row['tipe_akun'];
+
+                                echo "<tr>";
+                                echo "<td>$username</td>";
+                                echo "<td>$nama</td>";
+                                echo "<td>$email</td>";
+                                echo "<td>$nip</td>";
+                                echo "<td>$password</td>";
+                                echo "<td>$tipeAkun</td>";
+                                echo "<td><button type='button' class='btn btn-primary' onclick='toggleEditPopup(\"$username\", \"$nama\", \"$email\", \"$nip\", \"$password\", \"$tipeAkun\")'>Edit</button></td>";
+                                echo "<td><button type='button' class='btn btn-danger' onclick='confirmDelete(\"$username\")'>Hapus</button></td>";
+                                echo "</tr>";
+                                echo "</tr>";
+                              }
+
+                              db_disconnect($con);
+                              ?>
+                      </tbody>
+                      </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+      <div class="popup-overlay"></div>
+                <div class="popup-card" id="editPopup">
+                  <span class="close" onclick="toggleEditPopup()">&times;</span>
+                  <h3>Edit Data Pengguna</h3>
+                  <form action="editUser.php" method="POST">
+                  <label for="editUsername">Username</label>
+                    <input type="text" id="editUsername" name="editUsername">
+                    <label for="editNamaLengkap">Nama Lengkap</label>
+                    <input type="text" id="editNamaLengkap" name="editNamaLengkap" required>
+                    <label for="editEmail">Email</label>
+                    <input type="email" id="editEmail" name="editEmail" required>
+                    <label for="editNIP">NIP</label>
+                    <input type="text" id="editNIP" name="editNIP" required>
+                    <label for="editPassword">Password</label>
+                    <input type="password" id="editPassword" name="editPassword" required>
+                    <label for="editTipeAkun">Tipe Akun</label>
+                    <select class="form-select" name="editTipeAkun" id="editTipeAkun" required>
+                        <option value="">Pilih Jenis Akun</option>
+                        <option value="supervisor">Admin Supervisor</option>
+                        <option value="admin">Admin Gudang</option>
+                        <option value="user">User</option>
+                    </select>
+                    <br>
+                    <input type="submit" value="Update">
+                  </form>
+                </div>
 
 
 
   </main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
     <div class="copyright">
-      SMART <strong><span>Sistem Informasi Manajemen Pengelolaan</span></strong>
+      <strong>  SMART - </strong> <span>Sistem Manajemen dan Pelayanan Permintaan Barang Persediaan Terpadu</span>
     </div>
     <div class="credits">
-      Made by <a href="https://bootstrapmade.com/">Tim Efektif</a>
+      Made by <a>Tim Efektif</a>
     </div>
   </footer><!-- End Footer -->
 
@@ -569,61 +645,63 @@ $tipe_akun = $_SESSION['tipe_akun'];
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <script>
-    $(document).ready(function() {
-      $('#example').DataTable();
+<script>
+    $(document).ready(function () {
+    $('#example').DataTable();
     });
 
     function confirmDelete(username) {
-      if (confirm("Apakah Anda yakin ingin menghapus pengguna dengan username " + username + "?")) {
-        // Kirim permintaan penghapusan data ke server
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "hapusUser.php", true);
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            // Tanggapi hasil penghapusan data
-            var response = JSON.parse(xhr.responseText);
-            if (response.success) {
-              // Refresh halaman setelah penghapusan berhasil
-              location.reload();
-            } else {
-              // Tampilkan pesan error jika penghapusan gagal
-              alert("Terjadi kesalahan saat menghapus pengguna.");
-            }
-          }
-        };
-        xhr.send("username=" + username);
+  if (confirm("Apakah Anda yakin ingin menghapus pengguna dengan username " + username + "?")) {
+    // Kirim permintaan penghapusan data ke server
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "hapusUser.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        // Tanggapi hasil penghapusan data
+        var response = JSON.parse(xhr.responseText);
+        if (response.success) {
+          // Refresh halaman setelah penghapusan berhasil
+          location.reload();
+        } else {
+          // Tampilkan pesan error jika penghapusan gagal
+          alert("Terjadi kesalahan saat menghapus pengguna.");
+        }
       }
-    }
+    };
+    xhr.send("username=" + username);
+  }
+}
 
-    function toggleEditPopup(username, nama_lengkap, email, nip, password, tipeAkun) {
-      var popup = document.getElementById("editPopup");
-      var overlay = document.querySelector(".popup-overlay");
-      var editUsername = document.getElementById("editUsername");
-      var editNamaLengkap = document.getElementById("editNamaLengkap");
-      var editEmail = document.getElementById("editEmail");
-      var editNIP = document.getElementById("editNIP");
-      var editPassword = document.getElementById("editPassword");
-      var editTipeAkun = document.getElementById("editTipeAkun");
+function toggleEditPopup(username, nama_lengkap, email, nip, password, tipeAkun) {
+  var popup = document.getElementById("editPopup");
+  var overlay = document.querySelector(".popup-overlay");
+  var editUsername = document.getElementById("editUsername");
+  var editNamaLengkap = document.getElementById("editNamaLengkap");
+  var editEmail = document.getElementById("editEmail");
+  var editNIP = document.getElementById("editNIP");
+  var editPassword = document.getElementById("editPassword");
+  var editTipeAkun = document.getElementById("editTipeAkun");
 
-      editUsername.value = username;
-      editNamaLengkap.value = nama_lengkap;
-      editEmail.value = email;
-      editNIP.value = nip;
-      editPassword.value = password;
-      editTipeAkun.value = tipeAkun;
+  editUsername.value = username;
+  editNamaLengkap.value = nama_lengkap;
+  editEmail.value = email;
+  editNIP.value = nip;
+  editPassword.value = password;
+  editTipeAkun.value = tipeAkun;
 
-      if (popup.style.display === "block") {
-        popup.style.display = "none";
-        overlay.style.display = "none";
-      } else {
-        popup.style.display = "block";
-        overlay.style.display = "block";
-      }
-    }
-  </script>
+  if (popup.style.display === "block") {
+    popup.style.display = "none";
+    overlay.style.display = "none";
+  } else {
+    popup.style.display = "block";
+    overlay.style.display = "block";
+  }
+}
+</script>
 
 </body>
 
 </html>
+
+

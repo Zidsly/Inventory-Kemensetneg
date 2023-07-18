@@ -22,7 +22,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>INPUT STOK - SMART</title>
+  <title>Lap.Persediaan Masuk - SMART</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -51,16 +51,15 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
 
 <style>
   .header {
     background-color: #892641;
   }
-  .sidebar{
-      background-color: #892641;
-    }
+.sidebar{
+    background-color: #892641;
+  }
   .tbsmart{
     font-size: 12px;
     margin-bottom: 0;
@@ -86,51 +85,19 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   .img {
   height: 50%; /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
   width: auto; /* Menjaga rasio aspek gambar */
-}
+    }
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70vh;
-}        
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    }
+          
 .content {
-  text-align: center;
-  
-}
-.editKategoriPopup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-}
-                
-.editKategoriPopup-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    width: 600px;
-}
-                
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-}
-
-.table-bordered{
-  color: white;
-  border-color: #892641;
-}
+    text-align: center;
+    }
 </style>
+
 
 
 
@@ -151,6 +118,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
     <nav class="header-nav ms-auto">
 
       <ul class="d-flex align-items-center">
+
 
       <?php
       require_once 'koneksi.php';
@@ -218,6 +186,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
           </li>
         </ul><!-- End Notification Dropdown Items -->
       </li><!-- End Notification Nav -->
+
 
         <li class="nav-item dropdown pe-3">
 
@@ -378,128 +347,121 @@ $namaLengkap = $_SESSION['nama_lengkap'];
 
   <main id="main" class="main">
 
-    <div class="pagetitle">
-      <h1>Input Stok</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Kelola</a></li>
-          <li class="breadcrumb-item active">Input Stok</li>
-        </ol>
-    </nav>
-    </div><!-- End Page Title -->
 
-          <div class="card mt-4">
-            <div class="card-body">
-              <h5 class="card-title">Tambah Stok</h5>
-              <!-- Form Tambah Stok -->
+    <section class="section dashboard">
+      <div class="row">
 
 
-                <!-- Form untuk tambah stok -->
 
-                <div class="row mb-3">
-                <label for="namaKategori" class="col-sm-2 col-form-label">Nama Kategori</label>
-                <div class="col-sm-10">
-                  <select class="form-select" id="namaKategori" name="nama_kategori" onchange="loadSubKategori()">
-                    <option value="">Pilih Kategori</option>
+            <!-- Laporan Persediaan Masuk -->
+            <?php
+            require_once 'koneksi.php';
+            $con = db_connect();
+
+            // Mendapatkan data kategori
+            $queryKategori = "SELECT * FROM tb_kategori";
+            $resultKategori = mysqli_query($con, $queryKategori);
+
+            // Mendapatkan data sub kategori
+            $querySubKategori = "SELECT DISTINCT nama_sub_kategori FROM tb_kategori";
+            $resultSubKategori = mysqli_query($con, $querySubKategori);
+
+            // Mendapatkan data nama barang
+            $queryNamaBarang = "SELECT nama FROM tb_barang";
+            $resultNamaBarang = mysqli_query($con, $queryNamaBarang);
+            ?>
+
+                      <div class="col-12">
+              <div class="card top-selling overflow-auto">
+                <div class="filter">
+                  <!-- Dropdown filter -->
+                </div>
+                <div class="card-body pb-0">
+                  <h5 class="card-title">Laporan Persediaan Masuk <span>| Hari ini</span></h5>
+                  <div class="row mb-3">
+                    <label for="kategori" class="col-sm-2 col-form-label">Kategori Barang</label>
+                    <div class="col-sm-10">
+                      <select class="form-select" name="kategori" id="kategori" required>
+                        <option value="">Pilih Kategori</option>
+                        <?php while ($row = mysqli_fetch_assoc($resultKategori)) : ?>
+                          <option value="<?php echo $row['id_kategori']; ?>"><?php echo $row['nama_kategori']; ?></option>
+                        <?php endwhile; ?>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="sub_kategori" class="col-sm-2 col-form-label">Sub Kategori</label>
+                    <div class="col-sm-10">
+                      <select class="form-select" name="sub_kategori" id="sub_kategori" required>
+                        <option value="">Pilih Sub Kategori</option>
+                        <?php while ($row = mysqli_fetch_assoc($resultSubKategori)) : ?>
+                          <option value="<?php echo $row['nama_sub_kategori']; ?>"><?php echo $row['nama_sub_kategori']; ?></option>
+                        <?php endwhile; ?>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="nama_barang" class="col-sm-2 col-form-label">Nama Barang</label>
+                    <div class="col-sm-10">
+                      <select class="form-select" name="nama" id="nama" required>
+                        <option value="">Pilih Nama Barang</option>
+                        <?php while ($row = mysqli_fetch_assoc($resultNamaBarang)) : ?>
+                          <option value="<?php echo $row['nama']; ?>"><?php echo $row['nama']; ?></option>
+                        <?php endwhile; ?>
+                      </select>
+                    </div>
+                  </div>
+
+        <!--      <button id="btnCari" class="btn btn-primary">Cari</button>  -->
+
+                  <table id="example" class="table table-striped" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>ID Input Stok</th>
+                        <th>Tanggal Pembelian</th>
+                        <th>Nama Barang</th>
+                        <th>Jumlah Input</th>
+                      </tr>
+                    </thead>
+                    <tbody>
                       <?php
+                      // Koneksi ke database
                       require_once 'koneksi.php';
                       $con = db_connect();
 
-                      $query = "SELECT DISTINCT nama_kategori FROM tb_kategori";
+                      // Query untuk mendapatkan data dari tabel
+                      $query = "SELECT tb_input_stok.id_input_stok, tb_input_stok.tgl_pembelian, tb_barang.nama, tb_input_stok.jumlah_input
+                                FROM tb_input_stok
+                                JOIN tb_barang ON tb_input_stok.id_barang = tb_barang.id_barang";
                       $result = mysqli_query($con, $query);
 
-                      $kategoriArray = array(); // Array untuk menyimpan nama_kategori
-
+                      // Iterasi dan tampilkan data dalam tabel
                       while ($row = mysqli_fetch_assoc($result)) {
-                          $kategoriArray[] = $row['nama_kategori'];
+                        echo "<tr>";
+                        echo "<td>" . $row['id_input_stok'] . "</td>";
+                        echo "<td>" . $row['tgl_pembelian'] . "</td>";
+                        echo "<td>" . $row['nama'] . "</td>";
+                        echo "<td>" . $row['jumlah_input'] . "</td>";
+                        echo "</tr>";
                       }
 
-                      foreach ($kategoriArray as $kategori) {
-                          echo "<option value='" . $kategori . "'>" . $kategori . "</option>";
-                      }
-
+                      // Tutup koneksi ke database
                       db_disconnect($con);
                       ?>
-                  </select>
+                    </tbody>
+                  </table>
+
                 </div>
+
               </div>
-
-              <form action="prosesTambahStok.php" method="post">
-              <input type="hidden" name="idUser" value="<?php echo $idUser; ?>">
+            </div><!-- End Laporan Persediaan -->
 
 
-              <div class="row mb-3">
-                <label for="namaSubKategori" class="col-sm-2 col-form-label">Nama Sub Kategori</label>
-                <div class="col-sm-10">
-                <select class="form-select" id="namaSubKategori" name="namaSubKategori" >
-                  <option value="">Pilih Sub Kategori</option>
-                                        <?php
-                      require_once 'koneksi.php';
-                      $con = db_connect();
 
-                      $query = "SELECT DISTINCT nama_sub_kategori, id_kategori FROM tb_kategori";
-                      $result = mysqli_query($con, $query);
-
-                      while ($row = mysqli_fetch_assoc($result)) {
-                          echo "<option value='" . $row['id_kategori'] . "'>" . $row['nama_sub_kategori'] . "</option>";
-                      }
-
-                      db_disconnect($con);
-                      ?>
-                </select>
-                </div>
-              </div>
-
-            <input type="hidden" name="idUser" value="<?php echo $idUser; ?>">
-
-              <div class="row mb-3">
-    <label for="namaBarang" class="col-sm-2 col-form-label">Nama Barang</label>
-    <div class="col-sm-10">
-      <select class="form-select" id="namaBarang" name="namaBarang">
-        <option value="">Pilih Nama Barang</option>
-        <?php
-        require_once 'koneksi.php';
-        $con = db_connect();
-
-        $query = "SELECT DISTINCT id_barang, nama FROM tb_barang";
-        $result = mysqli_query($con, $query);
-
-        while ($row = mysqli_fetch_assoc($result)) {
-          echo "<option value='" . $row['id_barang'] . "'>" . $row['nama'] . "</option>";
-        }
-
-        db_disconnect($con);
-        ?>
-      </select>
-    </div>
-  </div>
-  <input type="hidden" name="idBarang" id="idBarang" value="">
-
-<div class="row mb-3">
-  <label for="inputDate" class="col-sm-2 col-form-label">Tanggal Pembelian</label>
-  <div class="col-sm-10">
-    <input type="date" class="form-control" id="inputDate" name="inputDate">
-  </div>
-</div>
-
-<div class="row mb-3">
-  <label for="inputNumber" class="col-sm-2 col-form-label">Jumlah Masuk</label>
-  <div class="col-sm-10">
-    <input type="number" class="form-control" id="inputNumber" name="inputNumber">
-  </div>
-</div>
-
-
-    <div class="row mb-3">
-        <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Input</button>
-        </div>
-        </div>
-        </form>
-         <!-- End Form Tambah Stok -->
-        </div>
-   </div>
-
+      </div>
+    </section>
 
   </main><!-- End #main -->
 
@@ -528,27 +490,63 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
-
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <script>
     $(document).ready(function () {
     $('#example').DataTable();
     });
 
-  // Mendapatkan elemen select "Nama Barang"
-  var selectBarang = document.getElementById("namaBarang");
+  // Fungsi untuk memfilter dan menampilkan hasil
+  function filterData() {
+    // Ambil nilai dari elemen-elemen filter
+    var kategori = document.getElementById('kategori').value;
+    var subKategori = document.getElementById('subKategori').value;
+    var namaBarang = document.getElementById('namaBarang').value;
 
-  // Mendapatkan nilai id_barang terpilih saat opsi berubah
-  selectBarang.addEventListener("change", function() {
-    var selectedOption = selectBarang.options[selectBarang.selectedIndex];
-    var idBarang = selectedOption.value;
-    document.getElementById("idBarang").value = idBarang;
+    // Buat query berdasarkan nilai filter
+    var query = "SELECT tb_input_stok.id_input_stok, tb_input_stok.tgl_pembelian, tb_barang.nama, tb_input_stok.jumlah_input " +
+                "FROM tb_input_stok " +
+                "JOIN tb_barang ON tb_input_stok.id_barang = tb_barang.id_barang " +
+                "WHERE tb_barang.id_kategori = " + kategori + " " +
+                "AND tb_barang.id_sub_kategori = " + subKategori + " " +
+                "AND tb_barang.nama = '" + namaBarang + "'";
+
+    // Panggil Ajax untuk mengirim query ke server
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'prosesFilterData.php?query=' + encodeURIComponent(query), true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // Tangkap respons dari server (data dalam format JSON)
+        var data = JSON.parse(xhr.responseText);
+        
+        // Tampilkan hasil dalam tabel
+        var tableBody = document.getElementById('tableBody');
+        tableBody.innerHTML = ''; // Bersihkan isi tabel sebelumnya
+
+        // Iterasi dan tambahkan baris baru ke tabel
+        for (var i = 0; i < data.length; i++) {
+          var row = data[i];
+          var newRow = document.createElement('tr');
+          newRow.innerHTML = "<td>" + row.id_input_stok + "</td>" +
+                              "<td>" + row.tgl_pembelian + "</td>" +
+                              "<td>" + row.nama + "</td>" +
+                              "<td>" + row.jumlah_input + "</td>";
+          tableBody.appendChild(newRow);
+        }
+      }
+    };
+    xhr.send();
+  }
+
+  // Event listener untuk tombol Cari
+  document.getElementById('btnCari').addEventListener('click', function() {
+    filterData();
   });
   </script>
 
+  
 </body>
 
 </html>
