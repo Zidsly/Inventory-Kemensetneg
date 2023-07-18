@@ -7,17 +7,15 @@ if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['r
   exit();
 }
 
-
 // Mendapatkan username dan id_user dari session
 $username = $_SESSION['username'];
 $id_user = $_SESSION['id_user'];
 $nama_lengkap = $_SESSION['nama_lengkap'];
+$nip = $_SESSION['nip'];
 
 // Lanjutkan dengan konten halaman indexUser.php
 // ...
 ?>
-
-<br>
 
 <!DOCTYPE html>
 
@@ -233,6 +231,11 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
                     <div class="col-lg-9 col-md-8"><?php echo $nama_lengkap; ?></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">NIP</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $nip; ?></div>
                   </div>
 
                   <div class="row">

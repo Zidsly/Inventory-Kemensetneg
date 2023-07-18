@@ -16,6 +16,7 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
 // Lanjutkan dengan konten halaman indexUser.php
 // ...
 ?>
+<br>
 
 <br>
 
@@ -197,9 +198,11 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
   }
 
   .product-card {
-    text-align: center;
-  }
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
   .product-image {
     height: 150px;
     width: 100%;
@@ -215,23 +218,26 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
   }
 
   .product-title {
+    font-size:14px;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
   }
 
   .product-button {
-    display: inline-block;
-    font-size: 14px;
-    padding: 4px 8px;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-  }
+  display: inline-block;
+  font-size: 14px;
+  padding: 4px 8px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: auto; /* Menempatkan tombol di bagian bawah */
+}
 
   .product-button:hover {
     background-color: #892641;
