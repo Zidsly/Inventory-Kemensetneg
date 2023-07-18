@@ -16,7 +16,6 @@ $namaLengkap = $_SESSION['nama_lengkap'];
 // Lanjutkan dengan konten halaman indexUser.php
 // ...
 ?>
-<br>
 
 <br>
 
