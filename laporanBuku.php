@@ -437,7 +437,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                         <th>Nama Lengkap</th>
                         <th>Pemesan</th>
                         <th>Jumlah Permintaan</th>
-                        <th>Jumlah Stok Akhir</th>
+                        <th>saldo_persediaan</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -447,12 +447,12 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                       $con = db_connect();
 
                       // Query untuk mendapatkan data dari tabel
-                      $query = "SELECT tb_order.tgl_minta, tb_user.nama_lengkap, tb_barang.nama,tb_order_detail.jumlah_minta, tb_cek_stok.jumlah_stok_akhir
+                      $query = "SELECT tb_order.tgl_minta, tb_user.nama_lengkap, tb_barang.nama,tb_order_detail.jumlah_minta, tb_order_detail.saldo_persediaan
                                 FROM tb_order
-                                JOIN tb_user ON tb_order.id_user = tb_user.id_user
                                 JOIN tb_order_detail ON tb_order.id_transaksi = tb_order_detail.id_transaksi
-                                JOIN tb_barang ON tb_barang.nama = tb_barang.nama
-                                JOIN tb_cek_stok ON tb_order_detail.id_barang = tb_cek_stok.id_barang";
+                                JOIN tb_user ON tb_order.id_user = tb_user.id_user
+                                JOIN tb_barang ON tb_barang.id_barang = tb_barang.id_barang";
+
 
                         /*
                        // Query untuk mendapatkan data dari tabel
@@ -474,7 +474,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                         echo "<td>" . $row['nama_lengkap'] . "</td>";
                         echo "<td>" . $row['nama'] . "</td>";
                         echo "<td>" . $row['jumlah_minta'] . "</td>";
-                        echo "<td>" . $row['jumlah_stok_akhir'] . "</td>";
+                        echo "<td>" . $row['saldo_persediaan'] . "</td>";
                         echo "</tr>";
                       }
 
