@@ -92,12 +92,15 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   justify-content: center;
   align-items: center;
   height: 70vh;
-}        
+}
 .content {
   text-align: center;
-  
 }
-.editKategoriPopup {
+.table-bordered{
+  color: white;
+  border-color: #892641;
+}
+.editFormPopup-container {
     display: none;
     position: fixed;
     top: 0;
@@ -107,8 +110,8 @@ $namaLengkap = $_SESSION['nama_lengkap'];
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
 }
-                
-.editKategoriPopup-content {
+
+.editFormPopup-content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -118,7 +121,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
     border-radius: 5px;
     width: 600px;
 }
-                
+
 .close {
     position: absolute;
     top: 10px;
@@ -126,10 +129,6 @@ $namaLengkap = $_SESSION['nama_lengkap'];
     cursor: pointer;
 }
 
-.table-bordered{
-  color: white;
-  border-color: #892641;
-}
 </style>
 
 
@@ -398,89 +397,184 @@ $namaLengkap = $_SESSION['nama_lengkap'];
               <!-- Input Data Barang -->
 
               <form id="inputBarangForm" action="InputBarang.php" method="POST" enctype="multipart/form-data">
-    <div class="row mb-3">
-        <label for="kodeBarang" class="col-sm-2 col-form-label">Kode Barang</label>
-        <div class="col-sm-10">
-            <input class="form-control" type="number" id="kodeBarang" name="kode_barang" required>
-        </div>
-    </div>
+                <div class="row mb-3">
+                    <label for="kodeBarang" class="col-sm-2 col-form-label">Kode Barang</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="number" id="kodeBarang" name="kode_barang" required>
+                    </div>
+                </div>
 
 
 
-    <div class="row mb-3">
-        <label for="namaSubKategori" class="col-sm-2 col-form-label">Nama Sub Kategori</label>
-        <div class="col-sm-10">
-            <select class="form-select" id="namaSubKategori" name="namaSubKategori" onchange="setKategori()">
-                <option value="">Pilih Sub Kategori</option>
-                <?php
-                require_once 'koneksi.php';
-                $con = db_connect();
+                <div class="row mb-3">
+                    <label for="namaSubKategori" class="col-sm-2 col-form-label">Nama Sub Kategori</label>
+                    <div class="col-sm-10">
+                        <select class="form-select" id="namaSubKategori" name="namaSubKategori" onchange="setKategori()">
+                            <option value="">Pilih Sub Kategori</option>
+                            <?php
+                            require_once 'koneksi.php';
+                            $con = db_connect();
 
-                $query = "SELECT id_kategori, nama_kategori, nama_sub_kategori FROM tb_kategori";
-                $result = mysqli_query($con, $query);
+                            $query = "SELECT id_kategori, nama_kategori, nama_sub_kategori FROM tb_kategori";
+                            $result = mysqli_query($con, $query);
 
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo "<option value='" . $row['nama_sub_kategori'] . "' data-id-kategori='" . $row['id_kategori'] . "' data-nama-kategori='" . $row['nama_kategori'] . "'>" . $row['nama_sub_kategori'] . "</option>";
-                }
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<option value='" . $row['nama_sub_kategori'] . "' data-id-kategori='" . $row['id_kategori'] . "' data-nama-kategori='" . $row['nama_kategori'] . "'>" . $row['nama_sub_kategori'] . "</option>";
+                            }
 
-                db_disconnect($con);
-                ?>
-            </select>
-        </div>
-    </div>
+                            db_disconnect($con);
+                            ?>
+                        </select>
+                    </div>
+                </div>
 
-    <div class="row mb-3">
-        <label for="nama" class="col-sm-2 col-form-label">Nama Barang </label>
-        <div class="col-sm-10">
-            <input class="form-control" type="text" name="nama" id="nama" required>
-        </div>
-    </div>
+                <div class="row mb-3">
+                    <label for="nama" class="col-sm-2 col-form-label">Nama Barang </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" name="nama" id="nama" required>
+                    </div>
+                </div>
 
-    <div class="row mb-3">
-        <label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
-        <div class="col-sm-10">
-            <textarea class="form-control" style="height: 100px" name="deskripsi" id="deskripsi"></textarea>
-        </div>
-    </div>
+                <div class="row mb-3">
+                    <label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" style="height: 100px" name="deskripsi" id="deskripsi"></textarea>
+                    </div>
+                </div>
 
-    <div class="row mb-3">
-        <label for="gambar" class="col-sm-2 col-form-label">File Upload</label>
-        <div class="col-sm-10">
-            <input class="form-control" type="file" name="gambar" id="gambar" required>
-        </div>
-    </div>
+                <div class="row mb-3">
+                    <label for="gambar" class="col-sm-2 col-form-label">File Upload</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="file" name="gambar" id="gambar" required>
+                    </div>
+                </div>
 
-    <div class="row mb-3">
-        <label for="inputDate" class="col-sm-2 col-form-label">Tanggal Masuk</label>
-        <div class="col-sm-10">
-            <input type="date" class="form-control">
-        </div>
-    </div>
+                <div class="row mb-3">
+                    <label for="inputDate" class="col-sm-2 col-form-label">Tanggal Masuk</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
 
-    <div class="row mb-3">
-        <label for="inputNumber" class="col-sm-2 col-form-label">Jumlah Stok Minimal</label>
-        <div class="col-sm-10">
-            <input type="number" class="form-control" id="stok_minimal" name="stok_minimal" min="0">
-        </div>
-    </div>
+                <div class="row mb-3">
+                    <label for="inputNumber" class="col-sm-2 col-form-label">Jumlah Stok Minimal</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="stok_minimal" name="stok_minimal" min="0">
+                    </div>
+                </div>
 
-    <input type="hidden" id="idKategori" name="idKategori">
+                <input type="hidden" id="idKategori" name="idKategori">
 
-    <div class="row mb-3">
-        <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Input</button>
-        </div>
-    </div>
-</form>
+                <div class="row mb-3">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Input</button>
+                    </div>
+                </div>
+            </form>
 
 
               <!-- End Input Barang -->
 
             </div>
           </div>
-
-
         </div>
+      </div>
+    </section>
+
+
+    <form action="editBarang.php" method="post">
+
+<!--Pop up untuk edit Data Barang-->
+<div class="editFormPopup-container">
+    <div class="editFormPopup-content">
+        <span class="close" onclick="closeEditFormPopup()">&times;</span>
+        <h4>Edit Kategori</h4>
+        <div class="form-group">
+            <label for="editNama">Nama</label>
+            <input type="text" class="form-control" id="editNama" name="editNama" placeholder="Masukkan nama">
+            <input type="hidden" id="originalNama" name="originalNama">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="editKodeBarang">Kode Barang</label>
+            <input type="text" class="form-control" id="editKodeBarang" name="editKodeBarang" placeholder="Masukkan kode barang">
+            <input type="hidden" id="originalKodeBarang" name="originalKodeBarang">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="editDeskripsi">Deskripsi</label>
+            <input type="text" class="form-control" id="editDeskripsi" name="editDeskripsi" placeholder="Masukkan Deskripsi">
+            <input type="hidden" id="originalDeskripsi" name="originalDeskripsi">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="editStokMinimal">Stok Minimal</label>
+            <input type="text" class="form-control" id="editStokMinimal" name="editStokMinimal" placeholder="Masukkan Stok Minimal">
+            <input type="hidden" id="originalStokMinimal" name="originalStokMinimal">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+    </div>
+</div>
+
+</form>
+
+<!-- Tabel Data Barang -->
+<section class="section">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Tabel Data Barang</h5>
+
+                <!--Tabel Data Kategori-->
+                <table id="example" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Kode</th>
+                            <th>Deskripsi</th>
+                            <th>Stok Minimal</th>
+                            <th>Edit</th>
+                            <th>Hapus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        require_once 'koneksi.php';
+                        $con = db_connect();
+
+                        // Mendapatkan data pengguna dari database
+                        $query = "SELECT id_barang, nama, kode_barang, deskripsi, stok_minimal FROM tb_barang";
+                        $result = mysqli_query($con, $query);
+
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $idBarang = $row['id_barang'];
+                            $nama = $row['nama'];
+                            $kodeBarang = $row['kode_barang'];
+                            $deskripsi = $row['deskripsi'];
+                            $stokMinimal = $row['stok_minimal'];
+
+                            echo "<tr>";
+                            echo "<td>$nama</td>";
+                            echo "<td>$kodeBarang</td>";
+                            echo "<td>$deskripsi</td>";
+                            echo "<td>$stokMinimal</td>";
+                            echo "<td><button type='button' class='btn btn-primary' onclick='editFormPopup(\"$nama\", \"$kodeBarang\", \"$deskripsi\", \"$stokMinimal\")'>Edit</button></td>";
+                            echo "<td><button type='button' class='btn btn-danger' onclick='hapusBarang(\"$idBarang\")'>Hapus</button></td>";
+                            echo "</tr>";
+                        }
+
+                        db_disconnect($con);
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
 
 
   </main><!-- End #main -->
@@ -531,10 +625,50 @@ function getKategori() {
   var selectedOption = dropdown.options[dropdown.selectedIndex];
   var idKategori = selectedOption.value;
   var namaKategori = selectedOption.getAttribute("data-nama-kategori");
-  
+
   document.getElementById("idKategori").value = idKategori;
   document.getElementById("namaKategori").value = namaKategori;
 }
+
+function editFormPopup(nama, kodeBarang, deskripsi, stokMinimal) {
+        document.getElementById("editNama").value = nama;
+        document.getElementById("editKodeBarang").value = kodeBarang;
+        document.getElementById("editDeskripsi").value = deskripsi;
+        document.getElementById("editStokMinimal").value = stokMinimal;
+
+        document.getElementById("originalNama").value = nama;
+        document.getElementById("originalKodeBarang").value = kodeBarang;
+        document.getElementById("originalDeskripsi").value = deskripsi;
+        document.getElementById("originalStokMinimal").value = stokMinimal;
+
+        var popup = document.querySelector('.editFormPopup-container');
+        popup.style.display = 'block';
+    }
+
+    function closeEditFormPopup() {
+        var popup = document.querySelector('.editFormPopup-container');
+        popup.style.display = 'none';
+    }
+
+    function hapusBarang(idBarang) {
+        if (confirm("Apakah Anda yakin ingin menghapus barang ini?")) {
+            // Kirim permintaan hapus ke deleteBarang.php
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'deleteBarang.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // Redirect ke halaman indexUser.php atau halaman lain yang sesuai
+                    window.location.href = 'indexUser.php';
+                } else {
+                    // Penanganan kesalahan saat menghapus barang
+                    alert('Terjadi kesalahan saat menghapus barang.');
+                }
+            };
+            xhr.send('idBarang=' + idBarang);
+        }
+    }
+
 </script>
 
 

@@ -95,7 +95,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
 }        
 .content {
   text-align: center;
-  
+
 }
 .editKategoriPopup {
     display: none;
@@ -107,7 +107,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
 }
-                
+
 .editKategoriPopup-content {
     position: absolute;
     top: 50%;
@@ -118,7 +118,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
     border-radius: 5px;
     width: 600px;
 }
-                
+
 .close {
     position: absolute;
     top: 10px;
@@ -219,67 +219,6 @@ $namaLengkap = $_SESSION['nama_lengkap'];
           </li>
         </ul><!-- End Notification Dropdown Items -->
       </li><!-- End Notification Nav -->
-
-        <li class="nav-item dropdown">
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-            <li class="dropdown-header">
-              You have 3 new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Anna Nelson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>6 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>David Muldon</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>8 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="dropdown-footer">
-              <a href="#">Show all messages</a>
-            </li>
-
-          </ul><!-- End Messages Dropdown Items -->
-
-        </li><!-- End Messages Nav -->
 
         <li class="nav-item dropdown pe-3">
 
@@ -448,7 +387,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
         </ol>
     </nav>
     </div><!-- End Page Title -->
-   
+
 
         <div class="col-lg-12">
           <div class="card">
@@ -504,14 +443,13 @@ $namaLengkap = $_SESSION['nama_lengkap'];
 
 
 
-              <form action="prosesTambahStok.php" method="post">
+              <form action="editKategori.php" method="post">
 
                 <!--Pop up untuk edit kategori-->
                 <div class="editKategoriPopup">
                   <div class="editKategoriPopup-content">
                     <span class="close" onclick="toggleEditPopup()">&times;</span>
                     <h4>Edit Kategori</h4>
-                
                     <form>
                       <div class="form-group">
                         <label for="editKategori">Kategori</label>
@@ -527,7 +465,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                     </form>
                   </div>
                 </div>
-                
+
                 <script>
                   function toggleEditPopup() {
                     var popup = document.querySelector('.editKategoriPopup');
@@ -537,72 +475,71 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                       popup.style.display = 'block';
                     }
                   }
-                </script>          
-                           
+                </script>
 
               </form>
 
-    
+
 
     <!-- Tabel Data Kategori -->
-<section class="section">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Tabel Data Kategori dan Sub Kategori</h5>
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Tabel Data Kategori dan Sub Kategori</h5>
 
 
-          <!--Tabel Data Kategori-->
-          <table id="example" class="table table-striped" style="width:100%">
-            <thead>
-            <tr>
-              <th>Nama Kategori</th>
-              <th>Sub Kategori</th>
-              <th>Kode Kategori</th>
-              <th>Kode Sub Kategori</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-            </thead>
-            <tbody>
-                    <?php
-                    require_once 'koneksi.php';
-                    $con = db_connect();
+              <!--Tabel Data Kategori-->
+              <table id="example" class="table table-striped" style="width:100%">
+                <thead>
+                <tr>
+                  <th>Nama Kategori</th>
+                  <th>Sub Kategori</th>
+                  <th>Kode Kategori</th>
+                  <th>Kode Sub Kategori</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                        <?php
+                        require_once 'koneksi.php';
+                        $con = db_connect();
 
-                    // Mendapatkan data pengguna dari database
-                    $query = "SELECT nama_kategori, kode_kategori, nama_sub_kategori, kode_sub_kategori FROM tb_kategori";
-                    $result = mysqli_query($con, $query);
+                        // Mendapatkan data pengguna dari database
+                        $query = "SELECT nama_kategori, kode_kategori, nama_sub_kategori, kode_sub_kategori FROM tb_kategori";
+                        $result = mysqli_query($con, $query);
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                      $namaKategori= $row['nama_kategori'];
-                      $kodeKategori = $row['kode_kategori'];
-                      $subKategori = $row['nama_sub_kategori'];
-                      $kodeSubKategori = $row['kode_sub_kategori'];
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          $namaKategori= $row['nama_kategori'];
+                          $kodeKategori = $row['kode_kategori'];
+                          $subKategori = $row['nama_sub_kategori'];
+                          $kodeSubKategori = $row['kode_sub_kategori'];
 
 
-                      echo "<tr>";
-                      echo "<td>$namaKategori</td>";
-                      echo "<td>$kodeKategori</td>";
-                      echo "<td>$subKategori</td>";
-                      echo "<td>$kodeSubKategori</td>";
-                      echo "<td><button type='button' class='btn btn-primary' onclick='toggleEditPopup(\"$namaKategori\", \"$kodeKategori\", \"$subKategori\", \"$kodeSubKategori\")'>Edit</button></td>";
-                      echo "<td><button type='button' class='btn btn-danger' onclick='confirmDelete(\"$subKategori\")'>Hapus</button></td>";
-                      echo "</tr>";
-                      echo "</tr>";
-                    }
+                          echo "<tr>";
+                          echo "<td>$namaKategori</td>";
+                          echo "<td>$kodeKategori</td>";
+                          echo "<td>$subKategori</td>";
+                          echo "<td>$kodeSubKategori</td>";
+                          echo "<td><button type='button' class='btn btn-primary' onclick='toggleEditPopup(\"$namaKategori\", \"$kodeKategori\", \"$subKategori\", \"$kodeSubKategori\")'>Edit</button></td>";
+                          echo "<td><button type='button' class='btn btn-danger' onclick='confirmDelete(\"$subKategori\")'>Hapus</button></td>";
+                          echo "</tr>";
+                          echo "</tr>";
+                        }
 
-                    db_disconnect($con);
-                    ?>
-          </tbody>
-          </table>
+                        db_disconnect($con);
+                        ?>
+              </tbody>
+              </table>
+            </div>
+          </div>
+
+
         </div>
       </div>
-
-
-    </div>
-  </div>
-</section>
+    </section>
 
 
 

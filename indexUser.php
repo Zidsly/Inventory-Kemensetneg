@@ -17,6 +17,8 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
 // ...
 ?>
 
+<br>
+
 <!DOCTYPE html>
 <html lang="en">
 
