@@ -9,7 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $editDeskripsi = mysqli_real_escape_string($koneksi, $_POST['editDeskripsi']);
     $editStokMinimal = mysqli_real_escape_string($koneksi, $_POST['editStokMinimal']);
     $originalNama = mysqli_real_escape_string($koneksi, $_POST['originalNama']);
-    $originalKodeBarang = mysqli_real_escape_string($koneksi, $_POST['originalKodeBarang']);
+    $originalKodeBarang = mysqli_re
+
+    al_escape_string($koneksi, $_POST['originalKodeBarang']);
     $idBarang = mysqli_real_escape_string($koneksi, $_POST['idBarang']);
 
     // Update data barang berdasarkan kode barang

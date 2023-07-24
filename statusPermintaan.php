@@ -280,8 +280,15 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
                     echo "<td>" . $row['tgl_minta'] . "</td>";
                     echo "<td>" . $row['nama'] . "</td>";
                     echo "<td>" . $row['jumlah_minta'] . "</td>";
-                    echo "<td>" . $row['status'] . "</td>";
                     echo "<td>";
+                        if ($row['status'] == 'Siap Diambil') {
+                          echo "<span class='badge bg-success p-2 ms-2' style='border-radius: 5; width: 90px; color: white;'>" . $row['status'] . "</span>";
+                        } else if ($row['status'] == 'Menunggu') {
+                          echo "<span class='badge bg-warning p-2 ms-2' style='border-radius: 5; width: 90px; color: white;'>" . $row['status'] . "</span>";
+                        } else if ($row['status'] == 'Selesai') {
+                          echo "<span class='badge bg-info p-2 ms-2' style='border-radius: 5; width: 90px; color: white;'>" . $row['status'] . "</span>";
+                        }
+                    echo "</td>";
                     echo "</td>";
                     echo "</tr>";
                   }
@@ -329,6 +336,14 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
   <script src="assets/js/main.js"></script>
 
   <script>
+    // Fungsi untuk melakukan refresh halaman setiap 1 menit
+    function autoRefresh() {
+      window.location.reload();
+    }
+
+    // Mengatur interval untuk melakukan refresh setiap 1 menit (60000 milidetik)
+    setInterval(autoRefresh, 60000);
+
 
   /*  $(document).ready(function() {
       $('#example').DataTable();

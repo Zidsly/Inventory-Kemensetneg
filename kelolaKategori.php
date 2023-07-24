@@ -454,13 +454,28 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                       <div class="form-group">
                         <label for="editKategori">Kategori</label>
                         <input type="text" class="form-control" id="editKategori" placeholder="Masukkan kategori">
+                        <input type="hidden" id="originalKategori" name="originaKategori">
+                      </div>
+                      <br>
+                      <div class="form-group">
+                        <label for="editKodeKategori">Subkategori</label>
+                        <input type="text" class="form-control" id="editKodeKategori" placeholder="Masukkan subkategori">
+                        <input type="hidden" id="originalKodeKategori" name="originalKodeKategori">
                       </div>
                       <br>
                       <div class="form-group">
                         <label for="editSubkategori">Subkategori</label>
                         <input type="text" class="form-control" id="editSubkategori" placeholder="Masukkan subkategori">
+                        <input type="hidden" id="originalNamaSubKategori" name="originalNamaSubKategori">
                       </div>
                       <br>
+                      <div class="form-group">
+                        <label for="editKodeSubkategori">Subkategori</label>
+                        <input type="text" class="form-control" id="editKodeSubkategori" placeholder="Masukkan subkategori">
+                        <input type="hidden" id="originalKodeSubKategori" name="originalKodeSubKategori">
+                      </div>
+                      <br>
+                      <input type="hidden" id="idKategori" name="idKategori">
                       <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
                   </div>
@@ -508,10 +523,11 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                         $con = db_connect();
 
                         // Mendapatkan data pengguna dari database
-                        $query = "SELECT nama_kategori, kode_kategori, nama_sub_kategori, kode_sub_kategori FROM tb_kategori";
+                        $query = "SELECT id_kategori,nama_kategori, kode_kategori, nama_sub_kategori, kode_sub_kategori FROM tb_kategori";
                         $result = mysqli_query($con, $query);
 
                         while ($row = mysqli_fetch_assoc($result)) {
+                          $idKategori = $row['id_kategori'];
                           $namaKategori= $row['nama_kategori'];
                           $kodeKategori = $row['kode_kategori'];
                           $subKategori = $row['nama_sub_kategori'];
@@ -523,7 +539,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                           echo "<td>$kodeKategori</td>";
                           echo "<td>$subKategori</td>";
                           echo "<td>$kodeSubKategori</td>";
-                          echo "<td><button type='button' class='btn btn-primary' onclick='toggleEditPopup(\"$namaKategori\", \"$kodeKategori\", \"$subKategori\", \"$kodeSubKategori\")'>Edit</button></td>";
+                          echo "<td><button type='button' class='btn btn-primary' onclick='toggleEditPopup(\"$idKategori\",\"$namaKategori\", \"$kodeKategori\", \"$subKategori\", \"$kodeSubKategori\")'>Edit</button></td>";
                           echo "<td><button type='button' class='btn btn-danger' onclick='confirmDelete(\"$subKategori\")'>Hapus</button></td>";
                           echo "</tr>";
                           echo "</tr>";
@@ -577,9 +593,34 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   <script src="assets/js/main.js"></script>
 
   <script>
+    // Fungsi untuk melakukan refresh halaman setiap 1 menit
+    function autoRefresh() {
+      window.location.reload();
+    }
+
+    // Mengatur interval untuk melakukan refresh setiap 1 menit (60000 milidetik)
+    setInterval(autoRefresh, 60000);
+
     $(document).ready(function () {
     $('#example').DataTable();
     });
+
+    function editFormPopup(namaKategori, kodeKategori, namaSubKategori, kodeSubKategori, idKategori) {
+            document.getElementById("editKategori").value = namaKategori;
+            document.getElementById("editKodeKategori").value = kodeKategori;
+            document.getElementById("editNamaSubKategori").value = namaSubKategori;
+            document.getElementById("editKodeSubKategori").value = kodeSubKategori;
+            document.getElementById("idKategori").value = idKategori;
+
+            document.getElementById("originalKategori").value = namaKategori;
+            document.getElementById("originalKodeKategori").value = kodeKategori;
+            document.getElementById("originalNamaSubKategori").value = namaSubKategori;
+            document.getElementById("originalKodeSubKategori").value = kodeSubKategori;
+            document.getElementById("idKategori").value = idKategori;
+
+            var popup = document.querySelector('.editKategoriPopup');
+            popup.style.display = 'block';
+        }
 
     function confirmDelete(nama_sub_kategori, nama_kategori) {
   if (confirm("Apakah Anda yakin ingin menghapus Sub Kategori " + nama_sub_kategori + " pada " + nama_kategori + "?")) {
