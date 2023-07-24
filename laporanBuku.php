@@ -447,12 +447,12 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                       $con = db_connect();
 
                       // Query untuk mendapatkan data dari tabel
+
                       $query = "SELECT tb_order.tgl_minta, tb_user.nama_lengkap, tb_barang.nama,tb_order_detail.jumlah_minta, tb_order_detail.saldo_persediaan
                                 FROM tb_order
                                 JOIN tb_order_detail ON tb_order.id_transaksi = tb_order_detail.id_transaksi
                                 JOIN tb_user ON tb_order.id_user = tb_user.id_user
-                                JOIN tb_barang ON tb_barang.id_barang = tb_barang.id_barang";
-
+                                JOIN tb_barang ON tb_order_detail.id_barang = tb_barang.id_barang";
 
                         /*
                        // Query untuk mendapatkan data dari tabel
@@ -529,6 +529,14 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   <script src="assets/js/main.js"></script>
 
   <script>
+    // Fungsi untuk melakukan refresh halaman setiap 1 menit
+    function autoRefresh() {
+      window.location.reload();
+    }
+
+    // Mengatur interval untuk melakukan refresh setiap 1 menit (60000 milidetik)
+    setInterval(autoRefresh, 60000);
+
     $(document).ready(function () {
     $('#example').DataTable();
     });

@@ -363,7 +363,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                       echo "<td>" . $row['tgl_minta'] . "</td>";
                       echo "<td>" . $row['nama'] . "</td>";
                       echo "<td>" . $row['jumlah_minta'] . "</td>";
-                      echo "<td class='badge bg-warning p-2 ms-2' style='border-radius: 0; color: white;'>" . $row['status'] . "</td>";
+                      echo "<td class='badge bg-warning p-2 ms-2' style='border-radius: 5; width: 90px; color: white;'>" . $row['status'] . "</td>";
                       echo "<td>";
                       echo "<button type='button' class='btn btn-warning btn-ready' data-id='" . $row['id_transaksi'] . "'><i class='bi bi-check-circle'></i></button>";
                       echo "</td>";
@@ -413,6 +413,14 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   <script src="assets/js/main.js"></script>
 
   <script>
+    // Fungsi untuk melakukan refresh halaman setiap 1 menit
+    function autoRefresh() {
+      window.location.reload();
+    }
+
+    // Mengatur interval untuk melakukan refresh setiap 1 menit (60000 milidetik)
+    setInterval(autoRefresh, 60000);
+
     $(document).ready(function () {
     $('#example').DataTable();
     $('#example2').DataTable();

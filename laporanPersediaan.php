@@ -494,6 +494,14 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   <script src="assets/js/main.js"></script>
 
   <script>
+    // Fungsi untuk melakukan refresh halaman setiap 1 menit
+    function autoRefresh() {
+      window.location.reload();
+    }
+
+    // Mengatur interval untuk melakukan refresh setiap 1 menit (60000 milidetik)
+    setInterval(autoRefresh, 60000);
+
     $(document).ready(function () {
     $('#example').DataTable();
     });
@@ -520,7 +528,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
       if (xhr.readyState === 4 && xhr.status === 200) {
         // Tangkap respons dari server (data dalam format JSON)
         var data = JSON.parse(xhr.responseText);
-        
+
         // Tampilkan hasil dalam tabel
         var tableBody = document.getElementById('tableBody');
         tableBody.innerHTML = ''; // Bersihkan isi tabel sebelumnya
@@ -546,7 +554,6 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   });
   </script>
 
-  
 </body>
 
 </html>

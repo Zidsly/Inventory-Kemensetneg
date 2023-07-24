@@ -7,11 +7,14 @@ if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['r
   exit();
 }
 
+
 // Mendapatkan username dan id_user dari session
 $username = $_SESSION['username'];
 $id_user = $_SESSION['id_user'];
 $nama_lengkap = $_SESSION['nama_lengkap'];
+$foto_user = $_SESSION['foto_user'];
 $nip = $_SESSION['nip'];
+
 
 // Lanjutkan dengan konten halaman indexUser.php
 // ...
@@ -95,13 +98,13 @@ $nip = $_SESSION['nip'];
 
         <li class="nav-item dropdown pe-3">
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle" />
+            <img src="<?php echo $foto_user; ?>" alt="Profile" class="rounded-circle foto-profil" />
             <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $nama_lengkap; ?></span> </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6><?php echo $username; ?></h6>
-              <span><?php echo $tipe_akun; ?></span>
+              <span><?php echo $id_user; ?></span>
             </li>
             <li>
               <hr class="dropdown-divider" />
@@ -124,7 +127,7 @@ $nip = $_SESSION['nip'];
             <li>
               <a class="dropdown-item d-flex align-items-center" href="logout.php">
                 <i class="bi bi-box-arrow-right"></i>
-                <span>Keluar</span>
+                <span>Sign Out</span>
               </a>
             </li>
           </ul>
@@ -193,7 +196,7 @@ $nip = $_SESSION['nip'];
       <h1>Profil</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="indexUser.html">Profil</a></li>
+          <li class="breadcrumb-item"><a href="indexUser.php">Profil</a></li>
           <li class="breadcrumb-item active">User</li>
         </ol>
       </nav>
@@ -239,7 +242,7 @@ $nip = $_SESSION['nip'];
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Email</div>
+                    <div class="col-lg-3 col-md-4 label">Kode User</div>
                     <div class="col-lg-9 col-md-8"><?php echo $id_user; ?></div>
                   </div>
 
@@ -251,7 +254,7 @@ $nip = $_SESSION['nip'];
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
                   <!-- Profile Edit Form -->
-                  <form>
+                  <form id="profileEditForm" action="editProfil.php" method="POST" enctype="multipart/form-data">
                     <div class="row mb-3">
                       <label for="nama" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
                       <div class="col-md-8 col-lg-9">
@@ -260,28 +263,33 @@ $nip = $_SESSION['nip'];
                     </div>
 
                     <div class="row mb-3">
-                      <label for="username" class="col-md-4 col-lg-3 col-form-label">Username</label>
+                      <label for="nip" class="col-md-4 col-lg-3 col-form-label">NIP</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="username" type="text" class="form-control" id="username" value="<?php echo $username; ?>" />
+                        <input name="nip" type="text" class="form-control" id="nip" value="<?php echo $nip; ?>" />
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="gambar" class="col-md-4 col-lg-3 col-form-label">Upload Foto</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input class="form-control" type="file" name="gambar" id="gambar" required>
                       </div>
                     </div>
 
                     <div class="text-center">
-                      <button type="submit" class="btn btn-primary">
-                        Save Changes
+                      <button type="submit" class="btn btn-primary" name="simpan">
+                        Simpan
                       </button>
                     </div>
                   </form>
                   <!-- End Profile Edit Form -->
                 </div>
 
-                <div class="tab-pane fade pt-3" id="profile-settings"></div>
-
                 <div class="tab-pane fade pt-3" id="profile-change-password">
                   <!-- Change Password Form -->
-                  <form>
+                  <form action="editpassword.php" method="post"> <!-- Tambahkan atribut action dan method -->
                     <div class="row mb-3">
-                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Password lama</label>
+                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Password Lama</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="password" type="password" class="form-control" id="currentPassword" />
                       </div>
@@ -303,7 +311,7 @@ $nip = $_SESSION['nip'];
 
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary">
-                        Change Password
+                        Ganti Password
                       </button>
                     </div>
                   </form>
@@ -328,6 +336,14 @@ $nip = $_SESSION['nip'];
       Made by <a>Tim Efektif</a>
     </div>
   </footer><!-- End Footer -->
+
+  <script>
+    // Fungsi untuk menampilkan pop-up
+    function showPopup(message) {
+      alert(message);
+      window.location.href = 'profilUser.php'; // Alihkan kembali ke halaman profilUser.php setelah menampilkan pop-up
+    }
+  </script>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

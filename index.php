@@ -66,13 +66,6 @@ $namaLengkap = $_SESSION['nama_lengkap'];
     font-weight: 600;
     color: #ffffff;
   }
-  .pengumuman{
-    font-size: 24px;
-    font-weight: 700;
-    color: #fff;
-    font-family: "Nunito", sans-serif;
-    text-align: center;
-  }
   .notification-scroll {
   max-height: 300px; /* Ubah sesuai kebutuhan */
   overflow-y: auto;
@@ -88,36 +81,6 @@ $namaLengkap = $_SESSION['nama_lengkap'];
 .content {
     text-align: center;
   }
-.c-item {
-  height: 110px;
-  }
-  .c-img {
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.6);
-  }
-  .img {
-  height: 50%; /* Mengurangi lebar gambar menjadi 50% dari ukuran aslinya */
-  width: auto; /* Menjaga rasio aspek gambar */
-}
-.cat-item div {
-    background: #FFFFFF;
-    transition: .5s;
-    
-}
-
-.cat-item:hover div {
-    background: gray;
-    border-color: transparent;
-}
-
-.cat-item div * {
-    transition: .5s;
-}
-
-.cat-item:hover div * {
-    color: #892641 !important;
-}
 
 </style>
 
@@ -376,25 +339,6 @@ $namaLengkap = $_SESSION['nama_lengkap'];
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
           <li class="breadcrumb-item active">Beranda</li>
         </ol>
-
-
-        <!--Image dahsboard-->
-
-
-
-        <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner opacity-75 c-item">
-            <img src="assets/img/gudang6.jpg" class="d-block w-100 c-img" alt="Slide 3">
-            <div class="carousel-caption top-0 mt-4">
-              <p class="pengumuman">Harap Mengambil Barang yang Sudah Dipesan</p>
-            </div>
-            </div>
-          </div>
-
-        <!--End Image Dashboard-->
-
-
-
     </nav>
     </div><!-- End Page Title -->
 
@@ -469,11 +413,11 @@ $namaLengkap = $_SESSION['nama_lengkap'];
                         echo "<td>" . $row['jumlah_minta'] . "</td>";
                         echo "<td>";
                         if ($row['status'] == 'Siap Diambil') {
-                          echo "<span class='badge bg-success p-2 ms-2' style='border-radius: 0; color: white;'>" . $row['status'] . "</span>";
+                          echo "<span class='badge bg-success p-2 ms-2' style='border-radius: 5; width: 90px; color: white;'>" . $row['status'] . "</span>";
                         } else if ($row['status'] == 'Menunggu') {
-                          echo "<span class='badge bg-warning p-2 ms-2' style='border-radius: 0; color: white;'>" . $row['status'] . "</span>";
+                          echo "<span class='badge bg-warning p-2 ms-2' style='border-radius: 5; width: 90px; color: white;'>" . $row['status'] . "</span>";
                         } else if ($row['status'] == 'Selesai') {
-                          echo "<span class='badge bg-info p-2 ms-2' style='border-radius: 0; color: white;'>" . $row['status'] . "</span>";
+                          echo "<span class='badge bg-info p-2 ms-2' style='border-radius: 5; width: 90px; color: white;'>" . $row['status'] . "</span>";
                         }
                         echo "</td>";
                         echo "</td>";
@@ -525,6 +469,14 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   <script src="assets/js/main.js"></script>
 
   <script>
+    // Fungsi untuk melakukan refresh halaman setiap 1 menit
+    function autoRefresh() {
+      window.location.reload();
+    }
+
+    // Mengatur interval untuk melakukan refresh setiap 1 menit (60000 milidetik)
+    setInterval(autoRefresh, 60000);
+
     $(document).ready(function () {
     $('#example').DataTable();
     });

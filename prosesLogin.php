@@ -21,6 +21,10 @@ if ($hasil) {
             $_SESSION['masuk'] = true;
             $_SESSION['id_user'] = $data['id_user']; // untuk menyimpan id_user pada session
             $_SESSION['nama_lengkap'] = $data['nama_lengkap']; // untuk menyimpan id_user pada session
+            $_SESSION['email'] = $data['email']; // untuk menyimpan id_user pada session
+            $_SESSION['tipe_akun'] = $data['tipe_akun']; // untuk menyimpan id_user pada session
+            $_SESSION['nip'] = $data['nip']; // untuk menyimpan id_user pada session
+            $_SESSION['foto_user'] = $data['foto_user']; // untuk menyimpan id_user pada session
 
             // Cek tipe_akun pengguna
             $tipeAkun = $data['tipe_akun'];
@@ -45,4 +49,3 @@ if ($hasil) {
 // Jika tidak berhasil login
 header("Location: login.php?pesan=gagal");
 exit();
-?>

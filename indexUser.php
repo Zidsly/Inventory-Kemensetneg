@@ -12,11 +12,12 @@ if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['r
 $username = $_SESSION['username'];
 $id_user = $_SESSION['id_user'];
 $nama_lengkap = $_SESSION['nama_lengkap'];
+$foto_user = $_SESSION['foto_user'];
+$tipe_akun = $_SESSION['tipe_akun'];
 
 // Lanjutkan dengan konten halaman indexUser.php
 // ...
 ?>
-<br>
 
 <br>
 
@@ -30,6 +31,8 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
   <title>Buat Permintaan - SMART</title>
   <meta content="" name="description" />
   <meta content="" name="keywords" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Favicons -->
   <link href="assets/img/logo2.png" rel="icon" />
@@ -88,24 +91,6 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
     margin-bottom: 0;
     font-weight: 600;
     color: #ffffff;
-  }
-
-  .pengumuman {
-    font-size: 24px;
-    font-weight: 700;
-    color: #fff;
-    font-family: "Nunito", sans-serif;
-    text-align: center;
-  }
-
-  .c-item {
-    height: 110px;
-  }
-
-  .c-img {
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.6);
   }
 
   /*** Category ***/
@@ -198,11 +183,9 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
   }
 
   .product-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
+    text-align: center;
+  }
+
   .product-image {
     height: 150px;
     width: 100%;
@@ -218,26 +201,27 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
   }
 
   .product-title {
-    font-size:14px;
+    font-size: 14px;
     font-weight: bold;
     margin-top: 5px;
     margin-bottom: 10px;
   }
 
   .product-button {
-  display: inline-block;
-  font-size: 14px;
-  padding: 4px 8px;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-  margin-top: auto; /* Menempatkan tombol di bagian bawah */
-}
+    display: inline-block;
+    font-size: 14px;
+    padding: 4px 8px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: auto;
+    /* Menempatkan tombol di bagian bawah */
+  }
 
   .product-button:hover {
     background-color: #892641;
@@ -409,6 +393,21 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
     margin-top: 30px;
     margin-bottom: 10px;
   }
+  body {
+  color: white; /* Warna teks putih */
+  font-size: 20px; /* Ukuran teks */
+}
+
+.running-text {
+  width: 100%; /* Lebar running text */
+  overflow: hidden; /* Agar teks yang melewati lebar div tersembunyi */
+  white-space: nowrap; /* Agar teks berjalan dalam satu baris */
+}
+
+.text {
+  display: inline-block; /* Agar teks berjalan secara horizontal (tidak melompat) */
+  padding: 5px; /* Jarak antara teks dengan pinggir div */
+}
 </style>
 
 
@@ -429,9 +428,17 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
+    <div class="running-text">
+        <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+          <span class="text">Harap Mengambil Barang di Gudang Setelah Barang Sudah Siap Diambil</span>
+        </marquee>
+      </div>
+
     <nav class="header-nav ms-auto">
 
       <ul class="d-flex align-items-center">
+
+
 
         <li class="nav-item dropdown">
           <a class="nav-link nav-icon" href="permintaanBarang.php">
@@ -443,7 +450,7 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+          <img src="<?php echo $foto_user; ?>" alt="Profile" class="rounded-circle foto-profil" />
             <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $nama_lengkap; ?></span> </a>
           </a><!-- End Profile Iamge Icon -->
 
@@ -474,7 +481,7 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
             <li>
               <a class="dropdown-item d-flex align-items-center" href="logout.php">
                 <i class="bi bi-box-arrow-right"></i>
-                <span>Keluar</span>
+                <span>Sign Out</span>
               </a>
             </li>
 
@@ -549,72 +556,61 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
         </ol>
 
 
-        <!--Image dahsboard-->
-        <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner opacity-75 c-item">
-            <img src="assets/img/gudang6.jpg" class="d-block w-100 c-img" alt="Slide 3">
-            <div class="carousel-caption top-0 mt-4">
-              <p class="pengumuman">Harap Mengambil Barang yang Sudah Dipesan</p>
-            </div>
-          </div>
-        </div>
-        <!--End Image Dashboard-->
-
         <!-- Start Search Bar -->
         <?php
+        // Menghubungkan ke database
+        require 'koneksi.php';
+        $conn = db_connect();
+
+        // Fungsi untuk mencari barang berdasarkan keyword nama barang
+        function cariBarang($keyword)
+        {
           // Menghubungkan ke database
-          require 'koneksi.php';
           $conn = db_connect();
-          
-          // Fungsi untuk mencari barang berdasarkan keyword nama barang
-function cariBarang($keyword)
-{
-  // Menghubungkan ke database
-  $conn = db_connect();
 
-  // Melakukan sanitasi input
-  $keyword = mysqli_real_escape_string($conn, $keyword);
+          // Melakukan sanitasi input
+          $keyword = mysqli_real_escape_string($conn, $keyword);
 
-  // Query untuk mencari barang berdasarkan keyword
-  $query = "SELECT * FROM tb_barang WHERE nama LIKE '%$keyword%'";
-  $result = mysqli_query($conn, $query);
+          // Query untuk mencari barang berdasarkan keyword
+          $query = "SELECT * FROM tb_barang WHERE nama LIKE '%$keyword%'";
+          $result = mysqli_query($conn, $query);
 
-  // Membuat array untuk menyimpan hasil pencarian
-  $barangArray = array();
+          // Membuat array untuk menyimpan hasil pencarian
+          $barangArray = array();
 
-  // Memeriksa apakah query berhasil dieksekusi
-  if ($result) {
-    // Menambahkan data barang ke dalam array
-    while ($row = mysqli_fetch_assoc($result)) {
-      $barangArray[] = $row;
-    }
+          // Memeriksa apakah query berhasil dieksekusi
+          if ($result) {
+            // Menambahkan data barang ke dalam array
+            while ($row = mysqli_fetch_assoc($result)) {
+              $barangArray[] = $row;
+            }
 
-    // Menutup result set
-    mysqli_free_result($result);
-  } else {
-    // Menampilkan pesan error jika query gagal dieksekusi
-    echo "Error: " . mysqli_error($conn);
-  }
-
-  // Menutup koneksi ke database
-  mysqli_close($conn);
-
-  return $barangArray;
-}
-
-          // Memeriksa apakah ada input keyword dari pengguna
-          if (isset($_POST['cari'])) {
-            $keyword = $_POST['query'];
-
-            // Memanggil fungsi cariBarang dengan keyword yang dimasukkan pengguna
-            $barangArray = cariBarang($keyword);
+            // Menutup result set
+            mysqli_free_result($result);
+          } else {
+            // Menampilkan pesan error jika query gagal dieksekusi
+            echo "Error: " . mysqli_error($conn);
           }
+
+          // Menutup koneksi ke database
+          mysqli_close($conn);
+
+          return $barangArray;
+        }
+
+        // Memeriksa apakah ada input keyword dari pengguna
+        if (isset($_POST['cari'])) {
+          $keyword = $_POST['query'];
+
+          // Memanggil fungsi cariBarang dengan keyword yang dimasukkan pengguna
+          $barangArray = cariBarang($keyword);
+        }
 
         ?>
         <div class="search-bar">
           <form class="search-form d-flex align-items-center" method="POST" action="#">
             <input type="text" name="keyword" autofocus placeholder="Cari barang disini..." autocomplete="off">
-            <button type="submit" name="cari" class="btn btn-primary rounded-pill px-4 me-3" style="height: 100%;">Cari</button>          
+            <button type="submit" name="cari" class="btn btn-primary rounded-pill px-4 me-3" style="height: 100%;">Cari</button>
           </form>
         </div>
         <!-- End Search Bar -->
@@ -768,6 +764,15 @@ function cariBarang($keyword)
     $(document).ready(function() {
       $('#example').DataTable();
     });
+
+  const marqueeElement = document.querySelector('.running-text marquee');
+  const step = 6; // Ubah nilai ini untuk mengatur kecepatan langkah
+  marqueeElement.setAttribute('scrollamount', step);
+
+  // Fungsi untuk mengatur ukuran langkah (step)
+  function setStep(stepValue) {
+    marqueeElement.setAttribute('scrollamount', stepValue);
+  }
 
     // Tampilkan dropdown content saat tombol dropdown di klik
     var dropdownButtons = document.querySelectorAll('.dropdown-btn');

@@ -534,6 +534,14 @@ $namaLengkap = $_SESSION['nama_lengkap'];
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <script>
+    // Fungsi untuk melakukan refresh halaman setiap 1 menit
+    function autoRefresh() {
+      window.location.reload();
+    }
+
+    // Mengatur interval untuk melakukan refresh setiap 1 menit (60000 milidetik)
+    setInterval(autoRefresh, 60000);
+
     $(document).ready(function () {
     $('#example').DataTable();
     });
