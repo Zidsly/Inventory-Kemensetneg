@@ -15,6 +15,14 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
 $foto_user = $_SESSION['foto_user'];
 $tipe_akun = $_SESSION['tipe_akun'];
 
+$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+
+if (isset($_POST['cari'])) {
+  $keyword = $_POST['keyword'];
+            // Memanggil fungsi cariBarang dengan keyword yang dimasukkan pengguna
+            //$barangArray = cariBarang($keyword);
+}
+
 // Lanjutkan dengan konten halaman indexUser.php
 // ...
 ?>
@@ -557,60 +565,13 @@ $tipe_akun = $_SESSION['tipe_akun'];
 
 
         <!-- Start Search Bar -->
-        <?php
-        // Menghubungkan ke database
-        require 'koneksi.php';
-        $conn = db_connect();
-
-        // Fungsi untuk mencari barang berdasarkan keyword nama barang
-        function cariBarang($keyword)
-        {
-          // Menghubungkan ke database
-          $conn = db_connect();
-
-          // Melakukan sanitasi input
-          $keyword = mysqli_real_escape_string($conn, $keyword);
-
-          // Query untuk mencari barang berdasarkan keyword
-          $query = "SELECT * FROM tb_barang WHERE nama LIKE '%$keyword%'";
-          $result = mysqli_query($conn, $query);
-
-          // Membuat array untuk menyimpan hasil pencarian
-          $barangArray = array();
-
-          // Memeriksa apakah query berhasil dieksekusi
-          if ($result) {
-            // Menambahkan data barang ke dalam array
-            while ($row = mysqli_fetch_assoc($result)) {
-              $barangArray[] = $row;
-            }
-
-            // Menutup result set
-            mysqli_free_result($result);
-          } else {
-            // Menampilkan pesan error jika query gagal dieksekusi
-            echo "Error: " . mysqli_error($conn);
-          }
-
-          // Menutup koneksi ke database
-          mysqli_close($conn);
-
-          return $barangArray;
-        }
-
-        // Memeriksa apakah ada input keyword dari pengguna
-        if (isset($_POST['cari'])) {
-          $keyword = $_POST['query'];
-
-          // Memanggil fungsi cariBarang dengan keyword yang dimasukkan pengguna
-          $barangArray = cariBarang($keyword);
-        }
-
-        ?>
-        <div class="search-bar">
+        <!-- Start Search Bar -->
+        <!-- LETAK CODING LAMA BUAT SEARCH -->
+	    <!-- End Search Bar -->
+      <div class="search-bar">
           <form class="search-form d-flex align-items-center" method="POST" action="#">
-            <input type="text" name="keyword" autofocus placeholder="Cari barang disini..." autocomplete="off">
-            <button type="submit" name="cari" class="btn btn-primary rounded-pill px-4 me-3" style="height: 100%;">Cari</button>
+            <input type="text" id="keyword" name="keyword" autofocus placeholder="Cari barang disini..." autocomplete="off" value="<?=$keyword;?>">
+            <button type="submit" name="cari" class="btn btn-primary rounded-pill px-4 me-3" style="height: 100%;">Cari</button>          
           </form>
         </div>
         <!-- End Search Bar -->
@@ -618,44 +579,42 @@ $tipe_akun = $_SESSION['tipe_akun'];
     </div><!-- End Page Title -->
 
     <div class="dropdown">
-      <?php
-      // Ambil data dari tabel tb_kategori
-      $sql = "SELECT nama_kategori FROM tb_kategori";
-      $result = mysqli_query($conn, $sql);
+<?php
+require_once 'koneksi.php';
+$conn = db_connect();
 
-      $kategoriArray = array(); // Membuat array untuk menyimpan nama kategori unik
+$sql = "SELECT nama_kategori FROM tb_kategori";
+$result = mysqli_query($conn, $sql);
 
-      if (mysqli_num_rows($result) > 0) {
-        // Membuat tombol dropdown untuk setiap baris data yang belum ada di array
-        while ($row = mysqli_fetch_assoc($result)) {
-          $namaKategori = $row["nama_kategori"];
-          if (!in_array($namaKategori, $kategoriArray)) {
-            $kategoriArray[] = $namaKategori;
-            $dropdownContentId = strtolower(str_replace(" ", "", $namaKategori));
+$kategoriArray = array();
 
-            // Query untuk mendapatkan subkategori berdasarkan kategori
-            $querySubkategori = "SELECT nama_sub_kategori FROM tb_kategori WHERE nama_kategori = '$namaKategori'";
-            $resultSubkategori = mysqli_query($conn, $querySubkategori);
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+    $namaKategori = $row["nama_kategori"];
+    if (!in_array($namaKategori, $kategoriArray)) {
+        $kategoriArray[] = $namaKategori;
+        $dropdownContentId = strtolower(str_replace(" ", "", $namaKategori));
 
-            echo '<button class="dropdown-btn" data="' . $dropdownContentId . '">' . $namaKategori . '</button>';
-            echo '<div class="dropdown-content" id="' . $dropdownContentId . '">';
-            echo '    <div class="subcategories">';
-            while ($rowSubkategori = mysqli_fetch_assoc($resultSubkategori)) {
-              $namaSubkategori = $rowSubkategori["nama_sub_kategori"];
-              echo '        <a href="#">' . $namaSubkategori . '</a>';
-            }
-            echo '    </div>';
-            echo '</div>';
-          }
+        $querySubkategori = "SELECT nama_sub_kategori FROM tb_kategori WHERE nama_kategori = '$namaKategori'";
+        $resultSubkategori = mysqli_query($conn, $querySubkategori);
+
+        echo '<button class="dropdown-btn" data="' . $dropdownContentId . '">' . $namaKategori . '</button>';
+        echo '<div class="dropdown-content" id="' . $dropdownContentId . '">';
+        echo '    <div class="subcategories">';
+        while ($rowSubkategori = mysqli_fetch_assoc($resultSubkategori)) {
+        $namaSubkategori = $rowSubkategori["nama_sub_kategori"];
+        echo '        <a href="indexUser.php?nama_sub_kategori=' . urlencode($namaSubkategori) . '" class="subkategori-link">' . $namaSubkategori . '</a>';
         }
-      } else {
-        echo "Tidak ada data kategori.";
-      }
+        echo '    </div>';
+        echo '</div>';
+    }
+    }
+} else {
+    echo "Tidak ada data kategori.";
+}
 
-      // Memutus koneksi dari database
-      db_disconnect($conn);
-      ?>
-
+//db_disconnect($conn);
+?>
     </div>
 
     <div class="row">
@@ -675,17 +634,37 @@ $tipe_akun = $_SESSION['tipe_akun'];
           require_once 'koneksi.php';
           $con = db_connect();
 
-          // Mendapatkan jumlah produk yang akan ditampilkan
           $limit = isset($_GET['limit']) ? intval($_GET['limit']) : 18;
+          $namaSubkategori = isset($_GET['nama_sub_kategori']) ? $_GET['nama_sub_kategori'] : '';
+          $idKategori = isset($_GET['id_kategori']) ? $_GET['id_kategori'] : '';
+          $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
 
-          // Query untuk mengambil data barang dari tabel tb_barang
-          $query = "SELECT * FROM tb_barang LIMIT $limit";
-          $result = mysqli_query($con, $query);
+          if (isset($_POST['cari'])) {
+            $keyword = $_POST['keyword'];
+                      // Memanggil fungsi cariBarang dengan keyword yang dimasukkan pengguna
+                      //$barangArray = cariBarang($keyword);
+          }
 
-          // Menghitung jumlah card yang sudah ditampilkan
+          if ($namaSubkategori !== '') {
+              $query = "SELECT tb_barang.* FROM tb_barang
+                  JOIN tb_kategori ON tb_barang.nama_sub_kategori = tb_kategori.nama_sub_kategori
+                  WHERE tb_kategori.nama_sub_kategori = '$namaSubkategori'
+                  LIMIT $limit";
+            $result = mysqli_query($con, $query);
+          } else if ($keyword !== ''){
+            $query = "SELECT * FROM tb_barang WHERE nama LIKE '%$keyword%'";
+            $result = mysqli_query($conn, $query);
+          }else{
+              $query = "SELECT * FROM tb_barang LIMIT $limit";
+            $result = mysqli_query($con, $query);
+          }
+
+          //$result = mysqli_query($con, $query);
+
           $count = 0;
 
-          echo '<div class="product-grid">';
+          echo '<div id="product-grid" class="product-grid">';
+
 
           while ($row = mysqli_fetch_assoc($result)) {
             echo '<div class="product-card">';
