@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 21, 2023 at 09:00 PM
+-- Generation Time: Jul 24, 2023 at 05:17 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -31,7 +31,7 @@ CREATE TABLE `tb_barang` (
   `id_barang` int(25) NOT NULL,
   `kode_barang` int(25) NOT NULL,
   `id_kategori` int(25) NOT NULL,
-  `nama_kategori` varchar(25) NOT NULL,
+  `nama_sub_kategori` varchar(25) NOT NULL,
   `nama` varchar(25) NOT NULL,
   `deskripsi` varchar(200) NOT NULL,
   `gambar` blob DEFAULT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE `tb_barang` (
 -- Dumping data for table `tb_barang`
 --
 
-INSERT INTO `tb_barang` (`id_barang`, `kode_barang`, `id_kategori`, `nama_kategori`, `nama`, `deskripsi`, `gambar`, `tgl_masuk`, `stok_minimal`) VALUES
+INSERT INTO `tb_barang` (`id_barang`, `kode_barang`, `id_kategori`, `nama_sub_kategori`, `nama`, `deskripsi`, `gambar`, `tgl_masuk`, `stok_minimal`) VALUES
 (1, 1, 1010301001, 'Alat Tulis', 'Ballpoint Balliner Merah', '', '', '2023-07-22', 999999),
 (2, 2, 1010301001, 'Alat Tulis', 'Ballpoint Faster', '', '', '2023-07-22', 999999),
 (3, 4, 1010301001, 'Alat Tulis', 'Ballpoint Pilot G-2 XS', '', '', '2023-07-22', 999999),
@@ -810,42 +810,6 @@ ALTER TABLE `tb_order_detail`
 --
 ALTER TABLE `tb_user`
   MODIFY `id_user` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=407;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `tb_barang`
---
-ALTER TABLE `tb_barang`
-  ADD CONSTRAINT `tb_barang_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `tb_kategori` (`id_kategori`);
-
---
--- Constraints for table `tb_cek_stok`
---
-ALTER TABLE `tb_cek_stok`
-  ADD CONSTRAINT `tb_cek_stok_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `tb_barang` (`id_barang`);
-
---
--- Constraints for table `tb_input_stok`
---
-ALTER TABLE `tb_input_stok`
-  ADD CONSTRAINT `tb_input_stok_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `tb_barang` (`id_barang`),
-  ADD CONSTRAINT `tb_input_stok_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id_user`);
-
---
--- Constraints for table `tb_order`
---
-ALTER TABLE `tb_order`
-  ADD CONSTRAINT `tb_order_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id_user`);
-
---
--- Constraints for table `tb_order_detail`
---
-ALTER TABLE `tb_order_detail`
-  ADD CONSTRAINT `tb_order_detail_ibfk_1` FOREIGN KEY (`id_transaksi`) REFERENCES `tb_order` (`id_transaksi`),
-  ADD CONSTRAINT `tb_order_detail_ibfk_2` FOREIGN KEY (`id_barang`) REFERENCES `tb_barang` (`id_barang`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
