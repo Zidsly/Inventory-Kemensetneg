@@ -27,117 +27,148 @@
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/css/style.css" rel="stylesheet" />
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 
 <style>
-  .card {
-}
-  .card-title {
-  white-space: nowrap;
-  margin-top: 20px;
-}
-.small {
-  font-size: 20px;
-  font-weight: 600;
-  color: #892641;
-}
-.logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 20px 0; /* Atur jarak atas dan bawah sesuai kebutuhan */
-  text-align: center;
-}
-.logo-custom img {
-  position: relative;
-  top: 40px;
-  max-height: 80px;
-}
-.card-title {
-  text-align: center;
-}
+  .main-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
 
+  .left-container {
+    display: flex;
+    width: 40%;
+    align-items: center;
+    justify-content: center;
+    background-image:
+      linear-gradient(to bottom right, rgba(200, 38, 65, 0.52), rgba(0, 0, 0, 0.73)),
+      url("assets/img/login.png");
+    background-size: cover;
+  }
+
+  .text-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 64px;
+  }
+
+  .text-container h5 {
+    color: #fff;
+    font-weight: 400;
+  }
+
+  .text-container h2 {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .right-container {
+    display: flex;
+    background-color: #892641;
+    width: 60%;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-title {
+    font-weight: 800;
+    padding: 0;
+  }
+
+  .card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 128px;
+    background-color: #fff;
+  }
+
+  .logo {
+    width: 68px;
+  }
+
+  .card {
+    display: flex;
+    border-radius: 36px;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 0;
+  }
+
+  .card-body {
+    width: 95%;
+  }
+
+  .card-bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 </style>
 
 <body>
-
   <main>
-    <div class="container">
+    <div class="main-container">
+      <div class="left-container">
+        <div class="text-container">
+          <h5>Selamat Datang di Website SMART</h5>
+          <h2>Sistem Manajemen dan Pelayanan Permintaan Barang Persediaan Terpadu</h2>
+        </div>
+      </div>
 
-      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
-
-              <div class="card mb-3">
-              <div class="logo-custom d-flex align-items-center justify-content-center">
-                <img src="assets/img/logo2.png" alt="Logo2">
-              </div><!-- End Logo -->
-
-                <div class="card-body">
-
-                  <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Dewan Pertimbangan Presiden</h5>
-                    <p class="text-center small">SMART</p>
-                  </div>
-
-                  <?php
-                    if(isset($_GET['pesan'])){
-                      if($_GET['pesan'] == "belum_login"){
-                          echo "<p style='color: #f00'>Anda harus login untuk mengakses halaman admin</p>";
-                       }
-                      if($_GET['pesan'] == "gagal"){
-                          echo "<p style='color: #f00'>Login gagal! username dan password salah!</p>";
-                      }
-                     }
-                 ?>
-
-
-                  <form class="row g-3 needs-validation" action="prosesLogin.php" method="post" novalidate>
-
-                    <div class="col-12">
-                      <label for="yourUsername" class="form-label">Username</label>
-                      <div class="input-group has-validation">
-                        <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" name="username" class="form-control" id="yourUsername" required>
-                        <div class="invalid-feedback">Silahkan masukan Username</div>
-                      </div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Silahkan Masukan Password</div>
-                    </div>
-
-                    <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
-                        <label class="form-check-label" for="rememberMe">Ingat Akun</label>
-                      </div>
-                      <br>
-                    </div>
-                    <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Login</button>
-                    </div>
-                    <br>
-                  </form>
-
-                </div>
-              </div>
-
-              <div class="credits">
-                Dibuat oleh <a href="">Tim Efektif</a>
-              </div>
-
+      <div class="right-container">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="pb-2 card-header">
+              <img class="logo" src="assets/img/logo2.png" alt="">
+              <h5 class="card-title text-center pb-0 fs-4">Login</h5>
             </div>
+
+            <?php
+            if (isset($_GET['pesan'])) {
+              if ($_GET['pesan'] == "belum_login") {
+                echo "<p style='color: #f00'>Anda harus login untuk mengakses halaman admin</p>";
+              }
+              if ($_GET['pesan'] == "gagal") {
+                echo "<p style='color: #f00'>Login gagal! username dan password salah!</p>";
+              }
+            }
+            ?>
+
+
+            <form class="row g-3 needs-validation" action="prosesLogin.php" method="post" novalidate>
+              <div class="col-12">
+                <input type="text" name="username" class="form-control" placeholder="Username" id="yourUsername" required>
+                <div class="invalid-feedback">Please enter your username.</div>
+              </div>
+
+              <div class="col-12">
+                <input type="password" name="password" class="form-control" placeholder="Password" id="yourPassword" required>
+                <div class="invalid-feedback">Please enter your password!</div>
+              </div>
+
+              <div class="col-12 card-bottom">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
+                  <label class="form-check-label" for="rememberMe">Ingat akun</label>
+                </div>
+                <button class="btn btn-primary" type="submit">Login</button>
+              </div>
+            </form>
           </div>
         </div>
-
-      </section>
-
+      </div>
     </div>
   </main><!-- End #main -->
 
