@@ -19,6 +19,7 @@ $nip = $_SESSION['nip'];
 // Lanjutkan dengan konten halaman indexUser.php
 // ...
 ?>
+<br>
 
 <!DOCTYPE html>
 

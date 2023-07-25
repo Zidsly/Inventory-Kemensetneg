@@ -11,7 +11,8 @@ if (!isset($_SESSION['masuk']) || ($_SESSION['masuk'] !== true) || ($_SESSION['r
 $username = $_SESSION['username'];
 $id_user = $_SESSION['id_user'];
 $nama_lengkap = $_SESSION['nama_lengkap'];
-
+$foto_user = $_SESSION['foto_user'];
+$nip = $_SESSION['nip'];
 ?>
 
 <br>
@@ -140,8 +141,8 @@ $nama_lengkap = $_SESSION['nama_lengkap'];
 
         <li class="nav-item dropdown pe-3">
 
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+          <img src="<?php echo $foto_user; ?>" alt="Profile" class="rounded-circle foto-profil" />
             <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $nama_lengkap; ?></span> </a>
           </a><!-- End Profile Iamge Icon -->
 
