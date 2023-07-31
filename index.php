@@ -127,7 +127,7 @@ $namaLengkap = $_SESSION['nama_lengkap'];
           <span class="badge bg-primary badge-number"><?php echo $totalNotifikasi; ?></span>
         </a><!-- End Notification Icon -->
 
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications" style="max-height: 600px; overflow-y:auto;">
           <li class="dropdown-header">
             Notifikasi Terbaru
             <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Lihat Semua</span></a>
