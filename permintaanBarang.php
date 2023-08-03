@@ -503,8 +503,9 @@ $nip = $_SESSION['nip'];
     echo '                <div class="row">';
     echo '                  <div class="col-md d-flex justify-content-start">';
     echo '                    <a href="indexUser.php" class="btn btn-danger rounded-pill px-4 me-0 me-xl-3">Kembali</a>';
+    echo '<form id="pesanForm" action="prosesCart.php" method="POST" onsubmit="return validateForm(event);">';
     echo '<button type="submit" name="pesan" class="btn btn-primary rounded-pill px-4 me-3">Pesan</button>';
-
+    echo '</form>';
 
     echo '                  </div>';
     echo '                </div>';
@@ -575,6 +576,27 @@ $nip = $_SESSION['nip'];
       });
     });
   </script>
+
+<script>
+function validateForm(event) {
+  event.preventDefault(); // Prevent the default form submission
+
+  var inputs = document.querySelectorAll('input[type="number"]');
+
+  // Loop through all input elements of type number
+  for (var i = 0; i < inputs.length; i++) {
+    var inputValue = inputs[i].value;
+
+    if (inputValue === "" || inputValue == 0) {
+      alert("Jumlah minta tidak boleh kosong / lebih dari 0");
+      return false; // Stop the form submission
+    }
+  }
+
+  // If validation passes, submit the form programmatically
+  document.getElementById("pesanForm").submit();
+}
+</script>
 </body>
 
 </html>
