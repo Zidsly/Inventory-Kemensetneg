@@ -481,16 +481,10 @@ $nip = $_SESSION['nip'];
           echo '                      </td>';
           echo '                      <td>';
           echo '                        <div class="d-flex flex-wrap">';
-          //echo '                          <button type="button" class="btn btn-primary btn-kurang-1 me-2">-</button>';
-          echo '                          <input type="number" class="form-control" name="jumlah_minta[' . $cartItem["id_barang"] . ']" value="' . ($cartItem['jumlah_minta'] > 0 ? $cartItem['jumlah_minta'] : 1) . '" min="1" style="width: 75px;">';
-
-          //echo '                            <input type="number" class="form-control jumlah-input" name="jumlah_minta_' . $cartItem["id_barang"] . '" value="1" style="width: 75px;">';
-          //echo '                        <input type="number" class="form-control" name="jumlah_minta_' . $cartItem["id_barang"] . '" value="' . $cartItem["jumlah_minta"] . '" style="width: 75px;">';
-          //echo '                          <button type="button" class="btn btn-primary btn-tambah-1 mx-2">+</button>';
+          echo '                          <input type="number" class="form-control" name="jumlah_minta[' . $cartItem["id_barang"] . ']" value="' . ($cartItem['jumlah_minta'] > 0 ? $cartItem['jumlah_minta'] : 1) . '" min="1" style="width: 75px;" required>';
           echo '                        </div>';
           echo '                      </td>';
           echo '                    </tr>';
-
           $no++;
         }
       }
