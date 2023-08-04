@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_FILES['gambar']['error'] == 0) {
         $gambarName = $_FILES['gambar']['name'];
         $gambarTmp = $_FILES['gambar']['tmp_name'];
-        $gambarPath = 'assets/img/' . $gambarName;
+        $gambarPath = 'assets/img/barang/' . $gambarName;
 
         // Pindahkan file gambar ke direktori tujuan
         move_uploaded_file($gambarTmp, $gambarPath);
